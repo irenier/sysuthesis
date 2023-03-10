@@ -472,7 +472,7 @@
 \IfFontExistsTF{STZhongsong}{
     \newCJKfontfamily\titlefont{STZhongsong}
 }{
-    \newcommand{\titlefont}{\rmfamily}
+    \newcommand{\titlefont}{\songti}
 }
 
 % 本科生的封面
