@@ -1,0 +1,89 @@
+% !TeX root = ./thesis.tex
+
+\sysusetup{
+  title                   = {中山大学学位论文模板示例文档 \sysuthesisversion},
+  title*                  = {An example of thesis template for Sun Yat-sen University \sysuthesisversion},
+  author                  = {作者名},
+  author*                 = {author},
+  student-id              = {00000000},
+  department              = {数学学院},
+  department*             = {Department of Mathematics},
+  speciality              = {数学与应用数学},
+  speciality*             = {Mathematics and Applied Mathematics},
+  supervisor              = {XXX~教授, XXX~教授},
+  supervisor*             = {Prof. XXX, Prof. XXX},
+  keywords                = {中山大学, 学位论文, 学士},
+  keywords*               = {Sun Yat-sen University (SYSU), Thesis, Bachelor},
+  % date                    = {2023-03-01},   % 默认为今日
+  cover-title             = twoline,        % 默认为 oneline
+  cover-title-firstline   = {第一行},
+  cover-title-secondline  = {第二行},
+  cover-title-firstline*  = {firstline},
+  cover-title-secondline* = {secondline},
+  % color                   = black,     % 默认为 sysugreen
+  % print                   = twoside,        % 默认为 oneside
+}
+
+% 设置英文字体
+\setmainfont{Times New Roman}[Ligatures=Rare]
+\setsansfont{Arial}
+\setmonofont{inconsolata}
+
+% 设置数学字体及相关格式
+\unimathsetup{
+  math-style=ISO,
+  % partial=upright,
+  % nabla=italic,
+}
+\setmathfont{XITS Math}
+
+% 加载额外的宏包
+
+% 定理类环境宏包
+\usepackage{amsthm}
+
+% 插图
+\usepackage{graphicx}
+
+% 三线表
+\usepackage{booktabs}
+
+% 图片并排
+\usepackage{subcaption}
+
+% 跨页表格
+\usepackage{longtable}
+
+% 算法
+\usepackage[ruled,linesnumbered]{algorithm2e}
+
+% SI 量和单位
+\usepackage{siunitx}
+
+% 用于测试的宏包
+\usepackage{lipsum}
+\usepackage{zhlipsum}
+
+% 参考文献使用 BibTeX + natbib 宏包
+% 顺序编码制
+\usepackage[sort&compress]{gbt7714}
+\bibliographystyle{gbt7714-numerical}
+% 著者-出版年制
+% \bibliographystyle{gbt7714-author-year}
+
+% 参考文献使用 BibLaTeX 宏包
+% \usepackage[backend=biber,style=gb7714-2015]{biblatex}
+% \usepackage[backend=biber,style=gb7714-2015ay]{biblatex}
+% 声明 BibLaTeX 的数据库
+% \addbibresource{bib/sysu.bib}
+
+% 数学命令
+\newcommand\diff{\mathop{}\!\symup{d}}
+\newcommand\eup{{\symup{e}}}
+\newcommand\iup{{\symup{i}}}
+
+% hyperref 宏包在最后调用
+\usepackage{hyperref}
+
+% 配置图片的默认目录
+\graphicspath{{figures/}{pictures/}}

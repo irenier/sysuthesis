@@ -1,0 +1,46 @@
+% !TeX encoding = UTF-8
+% !TeX program = xelatex
+% !TeX spellcheck = en_US
+
+\documentclass{sysuthesis}
+
+% 加载宏包、全部的配置
+\input{sysusetup.tex}
+
+\begin{document}
+
+% 本科生论文:
+%   title page：封面、扉页、学术诚信声明
+%   frontmatter: 摘要，目录
+%   mainmatter: 正文章节，参考文献
+%   appendix: 附录
+
+\maketitle
+
+\frontmatter
+\input{chapters/abstract.tex}
+
+\tableofcontents
+
+% 生成表格目录
+% \listoffigures
+
+% 生成图像目录
+% \listoftables
+
+\mainmatter
+\input{chapters/chapter1.tex}
+\input{chapters/chapter2.tex}
+
+\backmatter
+\bibliography{bib/sysu}  % 参考文献使用 BibTeX 编译
+% \printbibliography       % 参考文献使用 BibLaTeX 编译
+
+\appendix
+
+\input{chapters/appendix.tex}
+
+\input{chapters/acknowledgements.tex}
+% \input{chapters/publications.tex}
+
+\end{document}
