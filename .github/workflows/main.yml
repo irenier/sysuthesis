@@ -1,0 +1,28 @@
+name: Build LaTeX document
+on: [push, pull_request]
+jobs:
+  build_latex:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set up Git repository
+        uses: actions/checkout@v3
+      - name: Compile LaTeX document using XeLaTeX
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: thesis.tex
+          latexmk_use_xelatex: true
+          pre_compile: "latexmk -C"
+          post_compile: "mv thesis.pdf thesis_xelatex.pdf"
+      - name: Compile LaTeX document using LuaLaTeX
+        uses: xu-cheng/latex-action@v2
+        with:
+          root_file: thesis.tex
+          latexmk_use_lualatex: true
+          pre_compile: "latexmk -C"
+          post_compile: "mv thesis.pdf thesis_lualatex.pdf"
+      - name: Upload PDF file
+        uses: actions/upload-artifact@v3
+        with:
+          name: PDF
+          path: ~/*.pdf
+          if-no-files-found: error
