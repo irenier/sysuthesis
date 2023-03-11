@@ -25,8 +25,12 @@
 }
 
 % 设置英文字体
-\setmainfont{Times New Roman}[Ligatures=Rare]
-\setsansfont{Arial}
+\IfFontExistsTF{Times New Roman}{
+  \setmainfont{Times New Roman}[Ligatures=Rare]
+}{
+  \setmainfont{TeX Gyre Termes}
+}
+\setsansfont{TeX Gyre Heros}
 \setmonofont{inconsolata}
 
 % 设置数学字体及相关格式
