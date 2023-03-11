@@ -24,5 +24,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           name: PDF
-          path: ~/*.pdf
+          path: |
+            thesis_xelatex.pdf
+            thesis_lualatex.pdf
           if-no-files-found: error
