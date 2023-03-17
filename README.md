@@ -8,7 +8,7 @@
 
 ### 依赖与冲突
 
-本模板要求使用 TeXLive、MacTeX 或 MiKTeX 不低于 2020 年的发行版，安装方式详见 [install-latex-guide-zh-cn](http://mirrors.ctan.org/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf)。
+本模板要求使用 TeXLive、MacTeX 或 MiKTeX 不低于 2020 年的发行版，安装方式详见 [install-latex-guide-zh-cn](http://mirrors.ctan.org/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf)。若不想在本地使用，经测试也可在 [Overleaf](https://www.overleaf.com/) 和 [TeXPage](https://texpage.com/template/88eb11aa-bd5c-4b6b-b654-86517c5148a1) 上使用。
 
 本模板直接依赖的宏包有：xeCJK, ctex, etoolbox, unicode-math, amsmath, fontspec, geometry, graphicx, fancyhdr, xcolor, titletoc, enumitem, float, caption, footmisc, url, notoccite。
 
