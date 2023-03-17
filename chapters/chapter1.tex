@@ -36,6 +36,14 @@
 
 \subsection{插图}
 
+插入图片于固定位置，如\autoref{fig-single}。
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=3cm]{figures/sysu-badge.pdf}
+    \caption{插图}
+    \label{fig-single}
+\end{figure}
+
 对于图片的并排，推荐使用 \verb|subcaption| 宏包。
 
 \begin{figure}[H]
@@ -81,7 +89,7 @@
 \begin{enumerate}
     \item 大写希腊字母默认为斜体，如
           \begin{equation*}
-              \Gamma \Delta \Theta \Lambda \Xi \Pi \Sigma \Upsilon \Phi \Psi \Omega.
+              \Gamma \Delta \Theta \Lambda \Xi \Pi \Sigma \Upsilon \Phi \Psi \Omega
           \end{equation*}
           若需使用正体，请在命令前加 \verb|up|，例如
           \begin{verbatim}
@@ -101,6 +109,12 @@
 \begin{equation}
     \int_I \omega(x)\diff x = \upint_{a}^b f(x)\diff x - \lowint_a^b f(x)\diff x
 \end{equation}
+
+区分 \verb|\mathscr| 和 \verb|\mathcal|：
+\begin{gather*}
+    \mathscr{A} \mathscr{B} \mathscr{C} \mathscr{D} \mathscr{E} \mathscr{F} \mathscr{G} \mathscr{H} \mathscr{I} \mathscr{J} \mathscr{K} \mathscr{L} \mathscr{M} \mathscr{N} \mathscr{O} \mathscr{P} \mathscr{Q} \mathscr{R} \mathscr{S} \mathscr{T} \mathscr{U} \mathscr{V} \mathscr{W} \mathscr{X} \mathscr{Y} \mathscr{Z}\\
+    \mathcal{A} \mathcal{B} \mathcal{C} \mathcal{D} \mathcal{E} \mathcal{F} \mathcal{G} \mathcal{H} \mathcal{I} \mathcal{J} \mathcal{K} \mathcal{L} \mathcal{M} \mathcal{N} \mathcal{O} \mathcal{P} \mathcal{Q} \mathcal{R} \mathcal{S} \mathcal{T} \mathcal{U} \mathcal{V} \mathcal{W} \mathcal{X} \mathcal{Y} \mathcal{Z}
+\end{gather*}
 
 \subsection{定理与证明}
 
