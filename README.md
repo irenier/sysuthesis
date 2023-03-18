@@ -200,12 +200,19 @@ comparison](http://mirrors.ctan.org/fonts/newcomputermodern/doc/newcm-unimath-sy
 
 |字体名                  | 字符数量|
 |----------------------- | ----------|
-|Latin Modern Math       | 1585|
-|New CM Math             | 2428|
-|XITS Math               | 2427|
-|STIX Math Two           | 2428|
-|TeX Gyre Pagella Math   | 1638|
-|DejaVu Math             | 1640|
-|Fira Math               | 1052|
+|Latin Modern Math | 1602 |
+|New CM Math | 2428 |
+|STIX Two Math | 2445 |
+|Asana Math | 2175 |
+|Garamond Math | 1647 |
+|TeX Gyre Pagella Math | 1655 |
+|DejaVu Math TeX Gyre | 1657 |
+|Libertinus Math | 1657 |
+|Erewhon Math | 1668 |
+|Concrete Math | 1060 |
+|Euler Math | 1012 |
+|Fira Math | 1052 |
 
-若使用 New CM Math，则需 TeXLive 2021 或以上版本。
+注意：某些字体仅在最新版本中提供。例如，若使用 New CM Math，则需 TeXLive 2021 或以上版本。
+
+此外，Windows 系统还自带了 Cambria Math 字体。
