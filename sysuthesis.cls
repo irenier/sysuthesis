@@ -333,7 +333,19 @@
     \@mainmattertrue
 }
 
-\g@addto@macro\appendix{\@mainmattertrue}%
+\g@addto@macro\appendix{%
+    \ctexset{
+        section = {
+          name = {附\space},
+         },
+        subsection = {
+                name = {附\space},
+            },
+        subsubsection = {
+                name = {附\space},
+            },
+    },
+}
 
 % 定义用户接口：
 \sysu@define@key{
@@ -506,12 +518,11 @@
             \color{\sysu@color}
             \rule[\baselineskip]{\paperwidth}{1.25pt}
         }
-        \vskip 20pt
+        \vspace*{\stretch{0.5}}
 
         % 论文标题 黑体二号居中
         \begingroup%
         \heiti\fontsize{22bp}{33bp}\selectfont
-        \renewcommand\arraystretch{1.35}
         \ifsysu@cover@title@oneline
             题目：\underline{\makebox[12cm]{\sysu@title}}
         \else
