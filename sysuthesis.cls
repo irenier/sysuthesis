@@ -344,7 +344,7 @@
         subsubsection = {
                 name = {附\space},
             },
-    },
+    }%
 }
 
 % 定义用户接口：
