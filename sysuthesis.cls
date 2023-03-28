@@ -110,6 +110,13 @@
                 },
             default = oneline,
         },
+    number = {
+            choices = {
+                    chinese,
+                    arabic,
+                },
+            default = arabic,
+        },
     color = {
             default = sysugreen,
         },
@@ -198,14 +205,6 @@
 \sysu@package@conflict{newtxmath}{amssymb}
 \sysu@package@conflict{newtxmath}{unicode-math}
 \sysu@package@conflict{newtxmath}{upgreek}
-
-
-% mathtools 需要在 unicode-math 前载入，
-\AtBeginOfPackageFile*{mathtools}{
-    \@ifpackageloaded{unicode-math}{
-        \sysu@error{The "mathtools" package should be loaded before "unicode-math"}
-    }{}
-}%
 
 \def\contentsname{目录}%
 \def\listfigurename{插图目录}%
@@ -335,14 +334,24 @@
 
 \g@addto@macro\appendix{%
     \ctexset{
+        chapter = {
+          aftername = \hskip 0.75em,
+          numberformat = \normalfont\bfseries,
+         },
         section = {
           name = {附\space},
+          number = \thesection,
+          numberformat = \normalfont\bfseries,
          },
         subsection = {
                 name = {附\space},
+                number = \thesubsection,
+                numberformat = \normalfont\bfseries,
             },
         subsubsection = {
                 name = {附\space},
+                number = \thesubsubsection,
+                numberformat = \normalfont\bfseries,
             },
     }%
 }
@@ -496,7 +505,7 @@
         \includegraphics[width=3cm]{figures/sysu-badge.pdf}
 
         \begingroup%
-        \bfseries\titlefont\fontsize{36bp}{36bp}\selectfont
+        \titlefont\bfseries\fontsize{36bp}{36bp}\selectfont
         \textcolor{\sysu@color}{\sysu@thesis@name}\par
         \endgroup
 
@@ -678,63 +687,124 @@
 % 用 ctex 的接口设置全部章节标题格式。
 
 \setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{1}
 
-\ctexset{
-    chapter = {
-      numbering = true,
-      name = {},
-      number = \thechapter,
-      format = \centering\heiti\zihao{3},
-      numberformat = \normalfont\bfseries,
-      aftername = \hskip 0.75em,
-      beforeskip = \baselineskip,
-      afterskip = \baselineskip,
-      fixskip = true,
-     },
-    section = {
-      numbering = true,
-      name = {},
-      number = \thesection,
-      format = \heiti\zihao{4},
-      numberformat = \normalfont\bfseries,
-      aftername = \hskip 0.75em,
-      beforeskip = \baselineskip,
-      afterskip = \baselineskip,
-      fixskip = true,
-     },
-    subsection = {
-            numbering = true,
-            name = {},
-            number = \thesubsection,
-            format = \bfseries\songti\zihao{-4},
-            numberformat = \normalfont\bfseries,
-            aftername = \hskip 0.75em,
-            indent = 2\ccwd,
-            beforeskip = \baselineskip,
-            afterskip = \baselineskip,
-            fixskip = true,
-        },
-    subsubsection = {
-            numbering = true,
-            name = {},
-            number = \thesubsubsection,
-            format = \bfseries\songti\zihao{-4},
-            numberformat = \normalfont\bfseries,
-            aftername = \hskip 0.75em,
-            indent = 2\ccwd,
-            beforeskip = \baselineskip,
-            afterskip = \baselineskip,
-            fixskip = true,
-        },
-    paragraph = {
-            numbering = false,
-            name = {},
-            format = \bfseries\songti\zihao{-4},
-            indent = 2\ccwd,
-            beforeskip = \baselineskip,
-            afterskip = \baselineskip,
-            fixskip = true,
-        },
+\AtBeginDocument{%
+    \ifsysu@number@arabic%
+        \ctexset{
+            chapter = {
+              numbering = true,
+              name = {},
+              number = \thechapter,
+              format = \centering\heiti\zihao{3},
+              numberformat = \normalfont\bfseries,
+              aftername = \hskip 0.75em,
+              beforeskip = \baselineskip,
+              afterskip = \baselineskip,
+              fixskip = true,
+             },
+            section = {
+              numbering = true,
+              name = {},
+              number = \thesection,
+              format = \heiti\zihao{4},
+              numberformat = \normalfont\bfseries,
+              aftername = \hskip 0.75em,
+              beforeskip = \baselineskip,
+              afterskip = \baselineskip,
+              fixskip = true,
+             },
+            subsection = {
+                    numbering = true,
+                    name = {},
+                    number = \thesubsection,
+                    format = \bfseries\songti\zihao{-4},
+                    numberformat = \normalfont\bfseries,
+                    aftername = \hskip 0.75em,
+                    indent = 2\ccwd,
+                    beforeskip = \baselineskip,
+                    afterskip = \baselineskip,
+                    fixskip = true,
+                },
+            subsubsection = {
+                    numbering = true,
+                    name = {},
+                    number = \thesubsubsection,
+                    format = \bfseries\songti\zihao{-4},
+                    numberformat = \normalfont\bfseries,
+                    aftername = \hskip 0.75em,
+                    indent = 2\ccwd,
+                    beforeskip = \baselineskip,
+                    afterskip = \baselineskip,
+                    fixskip = true,
+                },
+            paragraph = {
+                    numbering = false,
+                    name = {},
+                    format = \bfseries\songti\zihao{-4},
+                    indent = 2\ccwd,
+                    beforeskip = \baselineskip,
+                    afterskip = \baselineskip,
+                    fixskip = true,
+                },
+        }%
+    \else%
+        \ctexset{
+            chapter = {
+              numbering = true,
+              name = {},
+              number = \chinese{chapter},
+              format = \centering\heiti\zihao{3},
+              aftername = {、\ignorespaces},
+              beforeskip = \baselineskip,
+              afterskip = \baselineskip,
+              fixskip = true,
+             },
+            section = {
+              numbering = true,
+              name = {（,）},
+              number = \chinese{section},
+              format = \heiti\zihao{4},
+              aftername = \hskip 0.5em,
+              beforeskip = \baselineskip,
+              afterskip = \baselineskip,
+              fixskip = true,
+             },
+            subsection = {
+                    numbering = true,
+                    name = {},
+                    number = \arabic{subsection},
+                    format = \bfseries\songti\zihao{-4},
+                    numberformat = \normalfont\bfseries,
+                    aftername = \hskip 0.75em,
+                    indent = 2\ccwd,
+                    beforeskip = \baselineskip,
+                    afterskip = \baselineskip,
+                    fixskip = true,
+                },
+            subsubsection = {
+                    numbering = true,
+                    name = {（,）},
+                    number = \arabic{subsubsection},
+                    format = \bfseries\songti\zihao{-4},
+                    numberformat = \normalfont\bfseries,
+                    aftername = \hskip 0.75em,
+                    indent = 2\ccwd,
+                    beforeskip = \baselineskip,
+                    afterskip = \baselineskip,
+                    fixskip = true,
+                },
+            paragraph = {
+                    numbering = false,
+                    name = {},
+                    format = \bfseries\songti\zihao{-4},
+                    indent = 2\ccwd,
+                    beforeskip = \baselineskip,
+                    afterskip = \baselineskip,
+                    fixskip = true,
+                },
+        }%
+    \fi%
 }
 
 % 将不带编号的 chapter 加入书签
@@ -797,6 +867,30 @@
 [7.5ex]{\normalsize}
 {\contentspush{\thecontentslabel \hskip 1.5ex}}{}
 {\sysu@leaders\contentspage}
+
+\titlecontents{subsubsection}
+[13.5ex]{\normalsize}
+{\contentspush{\thecontentslabel \hskip 1.5ex}}{}
+{\sysu@leaders\contentspage}
+
+% 处理本科生在目录中添加空行。
+\newif\ifsysu@addtocspace
+\sysu@addtocspacetrue
+\g@addto@macro\frontmatter{\sysu@addtocspacefalse}%
+\g@addto@macro\mainmatter{\sysu@addtocspacetrue}%
+\g@addto@macro\backmatter{\sysu@addtocspacefalse}%
+\g@addto@macro\appendix{\sysu@addtocspacefalse}%
+
+\renewcommand\chapter{%
+  \ifsysu@print@twoside\cleardoublepage\else\clearpage\fi
+  \thispagestyle{\CTEX@chapter@pagestyle}%
+  \global\@topnum\z@
+  \@afterindenttrue
+  \ifsysu@addtocspace
+      \addtocontents{toc}{\protect\addvspace{0.5\baselineskip}}%
+  \fi
+  \secdef\@chapter\@schapter
+ }
 
 % 处理表格目录以及插图目录
 \renewcommand\listoffigures{%

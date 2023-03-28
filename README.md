@@ -1,6 +1,6 @@
 # sysuthesis
 
-此项目为中山大学本科生毕业论文（设计） $\LaTeX$ **非官方**模板，力求符合《中山大学本科生毕业论文（设计）写作与印制规范》。
+此项目为中山大学本科生毕业论文（设计） $\LaTeX$ **非官方**模板，力求符合《中山大学本科生毕业论文（设计）写作与印制规范》，使用该模板前请务必阅读此文档。
 
 [点击此处下载 `zip` 压缩包](https://github.com/irenier/sysuthesis/archive/refs/heads/master.zip)。
 
@@ -23,9 +23,9 @@ newtx, upgreek。
 |  | `sysuvisual.sty` | 提供校徽 `tizk` 图片 |
 | 主要文件 | `thesis.tex` | 主文档 |
 |  | `sysusetup.tex` | 配置文档 |
-|  | `./chapter/*.tex` | 章节文档 |
-|  | `./figures/sysu-badge.pdf` | 校徽 `pdf` 格式图片 |
-|  | `./bib/sysu.bib` | BiBTeX 数据库 |
+|  | `chapters/*.tex` | 章节文档 |
+|  | `figures/sysu-badge.pdf` | 校徽 `pdf` 格式图片 |
+|  | `bib/sysu.bib` | BiBTeX 数据库 |
 
 ### 开始编译
 
@@ -69,6 +69,12 @@ newtx, upgreek。
   - `oneside`：单面打印，不添加空白页。
 
   - `twoside`：双面打印，添加空白页。
+
+- `number`：设定章节标题编号的方式。可选：`arabic`（默认），`chinese`。
+
+  - `arabic`：标题用“1、2……”，次级标题为“1.1、2.1……”，三级标题用“1.1.1、2.1.1……”，四级标题用“1.1.1.1、2.1.1.1……”
+
+  - `chinese`：标题用“一、二……”，次级标题为“（一）、（二）……”，三级标题用“1、2……”，四级标题用“（1）、（2）……”
 
 - `color`：设定文档的主要颜色，包括校徽、封面的分割线、超链接以及引用的颜色。可选：`sysugreen`（默认）、`sysured` 以及用户自定义的颜色。
 
