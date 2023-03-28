@@ -828,7 +828,7 @@
 }
 
 \newenvironment{abstract}{%
-    \sysu@chapter[中文摘要]{【摘要】}%
+    \sysu@chapter[中文摘要]{摘要}%
 }{
     \par\null\par\noindent\hangindent=4\ccwd\relax
     \textbf{关键词}：\sysu@keywords@text\par
@@ -836,7 +836,7 @@
 
 % 英文摘要环境
 \newenvironment{abstract*}{%
-    \sysu@chapter[英文摘要]{\bfseries [ABSTRACT]}%
+    \sysu@chapter[英文摘要]{ABSTRACT}%
 }{
     \par\null\par\noindent\hangindent=5.3em\relax
     \textbf{Keywords}: \sysu@keywords@en@text\par
