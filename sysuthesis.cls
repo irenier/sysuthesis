@@ -528,7 +528,7 @@
         \makebox[\linewidth]{
             \color{\sysu@color}
             \rule[\baselineskip]{\paperwidth}{1.25pt}
-        }
+        } \par
         \vspace*{\stretch{0.5}}
 
         % 论文标题 黑体二号居中
@@ -650,16 +650,20 @@
     \begin{titlepage}%
         \sysu@pdfbookmark{学术诚信声明}%
         \null
-        \vskip 0.3cm%
-            {\centering\heiti\fontsize{16bp}{32bp}\selectfont
-                学术诚信声明\par}%
-        \vskip 0.7cm%
-        \fontsize{12bp}{18bp}\rmfamily\selectfont
+        \vspace*{\baselineskip}%
+        \begingroup%
+        \centering\heiti\zihao{3}%
+        学术诚信声明\par%
+        \endgroup%
+        \vspace*{\baselineskip}%
+
         \sysu@originality\par
-        \vskip 1.7cm%
+        \vspace*{2\baselineskip}%
+
         \begin{flushright}
+            \renewcommand\arraystretch{1.5}
             \begin{tabular}{cc}
-                \makebox[4em][s]{作者签名}：    &                                        \\[0.7cm]
+                \makebox[4em][s]{作者签名}：    &                                        \\
                 \makebox[4em][s]{日\hss 期}： & \hskip 6ex 年 \hskip 6ex 月 \hskip 6ex 日
             \end{tabular}
         \end{flushright}
