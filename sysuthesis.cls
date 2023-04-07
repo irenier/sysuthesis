@@ -165,6 +165,8 @@
     \@ifpackageloaded{biblatex}{}{
         \RequirePackage{natbib}
     }
+    % URL 的字体设为保持原样。
+    \urlstyle{same}
 }
 
 % 对冲突的宏包报错。
@@ -666,12 +668,12 @@
 
 % 生成中文封面。
 \renewcommand\maketitle{%
+    \pagenumbering{Alph}
     \pagestyle{empty}%
     \sysu@makecover
     \sysu@maketitlepage
     \sysu@makecopyrightpage
-    \cleardoublepage
-    \pagestyle{plain}%
+    \cleardoublepage%
 }
 
 % 脚注需要使用带圈的数字
@@ -836,7 +838,7 @@
 
 % 英文摘要环境
 \newenvironment{abstract*}{%
-    \sysu@chapter[英文摘要]{ABSTRACT}%
+    \sysu@chapter[英文摘要]{\textbf{ABSTRACT}}%
 }{
     \par\null\par\noindent\hangindent=5.3em\relax
     \textbf{Keywords}: \sysu@keywords@en@text\par
@@ -910,9 +912,6 @@
 
 % 首段缩进。
 \ctexset{autoindent=true}
-
-% URL 的字体设为保持原样。
-\urlstyle{same}
 
 % 脚注用带圈的数字：
 \renewcommand\thefootnote{\sysu@textcircled{footnote}}
