@@ -508,7 +508,7 @@
 
         \begingroup%
         \titlefont\bfseries\fontsize{36bp}{36bp}\selectfont
-        \textcolor{\sysu@color}{\sysu@thesis@name}\par
+        \textcolor{\sysu@color}{\IfFontExistsTF{STZhongsong}{\hskip1ex}{} \sysu@thesis@name}\par
         \endgroup
 
         % 做分割线
