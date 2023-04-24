@@ -1,8 +1,8 @@
 % !TeX root = ./thesis.tex
 
 \sysusetup{
-  title                   = {中山大学学位论文模板示例文档 \sysuthesisversion},
-  title*                  = {An example of thesis template for Sun Yat-sen University \sysuthesisversion},
+  title                   = {中山大学学位论文模板示例文档},
+  title*                  = {An example of thesis template for Sun Yat-sen University},
   author                  = {作者名},
   author*                 = {author},
   student-id              = {00000000},
@@ -29,9 +29,21 @@
 \IfFontExistsTF{Times New Roman}{
   \setmainfont{Times New Roman}[Ligatures=Rare]
 }{
-  \setmainfont{TeX Gyre Termes}
+  \setmainfont{texgyretermes}[
+    Extension      = .otf,
+    UprightFont    = *-regular,
+    BoldFont       = *-bold,
+    ItalicFont     = *-italic,
+    BoldItalicFont = *-bolditalic
+  ]
 }
-\setsansfont{TeX Gyre Heros}
+\setsansfont{texgyreheros}[
+  Extension      = .otf,
+  UprightFont    = *-regular,
+  BoldFont       = *-bold,
+  ItalicFont     = *-italic,
+  BoldItalicFont = *-bolditalic
+]
 \setmonofont{inconsolata}
 
 % 设置数学字体及相关格式
