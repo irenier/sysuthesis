@@ -1,8 +1,8 @@
 # sysuthesis
 
-此项目为中山大学本科生毕业论文（设计） $\LaTeX$ **非官方**模板，力求符合《中山大学本科生毕业论文（设计）写作与印制规范》，使用该模板前请务必阅读此文档。
-
 [点击此处下载 `zip` 压缩包](https://github.com/irenier/sysuthesis/archive/refs/heads/master.zip)。
+
+此项目为中山大学本科生毕业论文（设计） $\LaTeX$ **非官方**模板，力求符合《中山大学本科生毕业论文（设计）写作与印制规范》，使用该模板前请务必阅读此文档，不熟悉 $\LaTeX$ 可阅读[一份（不太）简短的 LaTeX2ε 介绍](http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf)。
 
 ## 编译方法
 
@@ -25,7 +25,7 @@ newtx, upgreek。
 |  | `sysusetup.tex` | 配置文档 |
 |  | `chapters/*.tex` | 章节文档 |
 |  | `figures/sysu-badge.pdf` | 校徽 `pdf` 格式图片 |
-|  | `bib/sysu.bib` | BiBTeX 数据库 |
+|  | `bib/sysu.bib` | BibTeX 数据库 |
 
 ### 开始编译
 
@@ -58,9 +58,9 @@ newtx, upgreek。
 
 - `cover-title`：设定封面及扉页标题的行数。可选：`oneline`（默认）, `twoline`。
 
-  - `oneline`：封面标题将使用参数 `title` 及 `title*` 中的内容。
+  - `oneline`：封面及扉页标题将使用参数 `title` 及 `title*` 中的内容。
 
-  - `twoline`：则封面标题将使用参数 `cover-title-firstline`,
+  - `twoline`：封面及扉页标题将使用参数 `cover-title-firstline`,
         `cover-title-firstline*`, `cover-title-secondline` 以及
         `cover-title-secondline*` 中的内容。
 
@@ -147,13 +147,13 @@ newtx, upgreek。
 
 ### 参考文献
 
-参考文献支持使用 BibTeX 或者 Biber 生成，请根据自己的需要自行使用。
+参考文献使用 BibTeX 或者 Biber 生成，使用指南请阅读[一份（不太）简短的 LaTeX2ε 介绍](http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf)第 6.1 节。
 
 ## 字体设置
 
 ### 中文字体
 
-在 `thesis.tex` 中进行设置：
+在 `thesis.tex` 中进行设置。
 
 根据当前系统自动配置：
 
@@ -161,7 +161,7 @@ newtx, upgreek。
 \documentclass{sysuthesis}
 ```
 
-或者手动指定字体
+或者手动指定字体：
 
 ```TeX
 \documentclass[fontset=windows]{sysuthesis}

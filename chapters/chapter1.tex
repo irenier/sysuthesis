@@ -94,7 +94,9 @@ sit amet orci dignissim rutrum.\footnote{这是一个脚注。}
     \label{algo:algorithm1}
 \end{algorithm}
 
-\subsection{数学符号以及公式}
+\section{数学相关}
+
+\subsection{数学符号和公式}
 
 本模板使用 \verb|unicode-math| 宏包，并设置了 \verb|math-style=ISO|。需要注意以下几点：
 
@@ -118,9 +120,10 @@ sit amet orci dignissim rutrum.\footnote{这是一个脚注。}
 \end{enumerate}
 
 公式按章编独立序号：
-\begin{equation}
+\begin{equation} \label{eq-1}
     \int_I \omega(x)\diff x = \upint_{a}^b f(x)\diff x - \lowint_a^b f(x)\diff x
 \end{equation}
+引用公式：见式 \eqref{eq-1}。
 
 区分 \verb|\mathscr| 和 \verb|\mathcal|：
 \begin{gather*}
@@ -128,7 +131,7 @@ sit amet orci dignissim rutrum.\footnote{这是一个脚注。}
     \mathcal{A} \mathcal{B} \mathcal{C} \mathcal{D} \mathcal{E} \mathcal{F} \mathcal{G} \mathcal{H} \mathcal{I} \mathcal{J} \mathcal{K} \mathcal{L} \mathcal{M} \mathcal{N} \mathcal{O} \mathcal{P} \mathcal{Q} \mathcal{R} \mathcal{S} \mathcal{T} \mathcal{U} \mathcal{V} \mathcal{W} \mathcal{X} \mathcal{Y} \mathcal{Z}
 \end{gather*}
 
-\subsection{定理与证明}
+\subsection{定理环境}
 
 示例文件中使用 \verb|amsthm| 宏包配置了定理、引理和证明等环境。环境名有\\ \textsf{theorem}, \textsf{assertion}, \textsf{axiom}, \textsf{corollary}, \textsf{lemma}, \textsf{proposition}, \textsf{assumption}, \textsf{definition}, \textsf{example}, \textsf{remark}。
 
@@ -150,7 +153,7 @@ sit amet orci dignissim rutrum.\footnote{这是一个脚注。}
     \end{align*}
 \end{proof}
 
-\begin{theorem}[控制收敛定理]
+\begin{theorem}[控制收敛定理] \label{thm-1}
     设\(f_k\in L(E)\) \((k = 1,2,\cdots)\)，且有
     \[\lim_{k\to\infty}f_k(x) = f(x), \,\text{a.e.}\, x\in E\]
     若存在\(E\)上的\textsf{可积}函数\(F(x)\)，使得
@@ -158,6 +161,7 @@ sit amet orci dignissim rutrum.\footnote{这是一个脚注。}
     则
     \[\lim_{k\to\infty} \int_E f_k(x)\diff x = \int_E f(x)\diff x\]
 \end{theorem}
+引用定理编号：见定理 \ref{thm-1}；引用定理名称：见\nameref{thm-1}。
 
 \begin{corollary}[依测度收敛型控制收敛定理]
     设\(f_k\in L(\mathbb{R}^n)\) \((k = 1,2,\cdots)\)，且\(f_k(x)\)在\(\mathbb{R}^n\)上依测度收敛于\(f(x)\)。若存在\(F\in L(\mathbb{R}^n)\)使得
@@ -172,12 +176,14 @@ sit amet orci dignissim rutrum.\footnote{这是一个脚注。}
 
 \section{引用文献的标注}
 
+BIB\TeX 数据库文件位于 \verb|bib/sysu.bib|。
+
 参考文献的序号左顶格，并用数字加方括号表示，如“[1]”。每一条参考文献著录均以“.”结束。
 
 测试标注格式，如\autoref{tab-ref} 所示。其他的标注格式请参考 \href{http://mirrors.ctan.org/biblio/bibtex/contrib/gbt7714/gbt7714.pdf}{gbt7714} 或者
 \href{http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}{biblatex-gb7714-2015}。
 
-\begin{table}
+\begin{table}[H]
     \centering
     \caption{标注格式}
     \label{tab-ref}
