@@ -4,7 +4,7 @@ on: [push, pull_request]
 
 env:
   CTAN_URL: https://mirrors.rit.edu/CTAN
-  TL_PACKAGES: algorithm2e aliascnt biber biblatex biblatex-gb7714-2015 bibtex bigfoot booktabs caption chinese-jfm circledtext cm-unicode csquotes ctex endfloat enumitem etoolbox fancyhdr fancyvrb fandol filehook float fontspec footmisc gbt7714 geometry hycolor hypdoc hyperref ifoddpage iftex inconsolata kvdefinekeys kvoptions kvsetkeys l3build l3experimental latexmk listings lm-math lualatex-math luatex85 lua-ul makecell mathtools natbib newcomputermodern notoccite ntheorem physics pict2e preview psnfss relsize setspace siunitx stix2-otf symbol tabularray tex-gyre tex-gyre-math titlesec translator unicode-math url xcolor xits
+  TL_PACKAGES: algorithm2e biber biblatex biblatex-gb7714-2015 bibtex bigfoot booktabs caption chinese-jfm circledtext cm-unicode csquotes ctex endfloat enumitem etoolbox fancyhdr fancyvrb fandol filehook float fontspec footmisc gbt7714 geometry hycolor hypdoc hyperref ifoddpage iftex inconsolata kvdefinekeys kvoptions kvsetkeys l3build l3experimental latexmk listings lm-math lualatex-math luatex85 lua-ul makecell mathtools natbib newcomputermodern notoccite ntheorem oberdiek physics pict2e preview psnfss relsize setspace siunitx stix2-otf symbol tabularray tex-gyre tex-gyre-math titlesec translator unicode-math url xcolor xits
 
 jobs:
   build-on-ubuntu:
