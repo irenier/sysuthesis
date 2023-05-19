@@ -13,31 +13,34 @@
 %   title page：封面、扉页、学术诚信声明
 %   frontmatter: 摘要，目录
 %   mainmatter: 正文章节，参考文献
-%   appendix: 附录
+%   appendix: 附录，致谢
 
-% 生成封面、扉页、学术诚信声明
+% 封面、扉页、学术诚信声明
 \maketitle
 
 \frontmatter
+% 摘要
 \input{chapters/abstract.tex}
 
-% 生成正文目录
+% 正文目录
 \tableofcontents
-% 生成表格目录
+% 表格目录
 % \listoffigures
-% 生成图像目录
+% 图像目录
 % \listoftables
 
 \mainmatter
+% 正文各章节
 \input{chapters/chapter1.tex}
 \input{chapters/chapter2.tex}
 
-\bibliography{bib/sysu}  % 参考文献使用 BibTeX 编译
-% \printbibliography       % 参考文献使用 BibLaTeX 编译
+\bibliography{bib/sysu}   % 参考文献使用 BibTeX 编译
+% \printbibliography   % 参考文献使用 BibLaTeX 编译
 
 \appendix
+% 附录
 \input{chapters/appendix.tex}
+% 致谢
 \input{chapters/acknowledgements.tex}
-% \input{chapters/publications.tex}
 
 \end{document}

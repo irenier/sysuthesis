@@ -161,8 +161,8 @@
 \RequirePackage{notoccite}
 % \RequirePackage{sysuvisual}
 
-\AtEndPreamble{
-    \@ifpackageloaded{biblatex}{}{
+\AtEndPreamble{%
+    \@ifpackageloaded{biblatex}{}{%
         \RequirePackage{natbib}
     }
     % URL 的字体设为保持原样。
@@ -214,7 +214,6 @@
 \def\bibname{参考文献}%
 \def\appendixname{附录}%
 \def\sysu@acknowledgements@name{致谢}%
-\def\sysu@publication@name{在读期间发表的学术论文与取得的研究成果}%
 
 % 注意重定义 \normalsize 应在 unicode-math 的 \setmathfont 前。
 
@@ -987,7 +986,6 @@
 }
 
 % biblatex 宏包的配置
-
 \AtEndOfPackageFile*{biblatex}{
     \defbibheading{bibliography}[\bibname]{%
         \@mainmatterfalse
@@ -1000,18 +998,11 @@
 
 % 附录
 
-% 定义了一个满足要求的致谢环境：
+% 定义致谢环境
 \newenvironment{acknowledgements}{%
     \@mainmatterfalse
     \chapter{\sysu@acknowledgements@name}%
 }{}
-
-% 发表成果环境：
-\newenvironment{publications}{%
-    \@mainmatterfalse
-    \chapter{\sysu@publication@name}%
-}{}
-
 
 % 其他宏包的设置
 
@@ -1065,8 +1056,16 @@
     \def\subsubsectionautorefname~#1\null{第~#1~小小节\null}
     \def\paragraphautorefname~#1\null{第~#1~段\null}
     \def\suptaragraphautorefname~#1\null{第~#1~小段\null}
-    \def\theoremautorefname{定理}
     \def\HyRef@autopageref#1{\hyperref[{#1}]{第~\pageref*{#1} 页}}
+    \def\assertionautorefname{\sysu@assertion@name}
+    \def\assumptionautorefname{\sysu@assumption@name}
+    \def\axiomautorefname{\sysu@axiom@name}
+    \def\corollaryautorefname{\sysu@corollary@name}
+    \def\definitionautorefname{\sysu@definition@name}
+    \def\exampleautorefname{\sysu@example@name}
+    \def\lemmaautorefname{\sysu@lemma@name}
+    \def\propositionautorefname{\sysu@proposition@name}
+    \def\theoremautorefname{\sysu@theorem@name}
 }
 
 % 定义校徽颜色
@@ -1078,7 +1077,7 @@
 
 \AtEndOfPackageFile*{amsthm}{
     \newtheoremstyle{sysuplain}
-    {}{}
+    {6pt}{6pt}
     {}{2\ccwd}
     {\bfseries}{}
     {\ccwd}{}
@@ -1095,16 +1094,34 @@
     \newcommand\sysu@proposition@name{命题}
     \newcommand\sysu@remark@name{注}
     \newcommand\sysu@theorem@name{定理}
+
     \newtheorem{theorem}{\sysu@theorem@name}[chapter]
-    \newtheorem{assertion}[theorem]{\sysu@assertion@name}
-    \newtheorem{axiom}[theorem]{\sysu@axiom@name}
-    \newtheorem{corollary}[theorem]{\sysu@corollary@name}
-    \newtheorem{lemma}[theorem]{\sysu@lemma@name}
-    \newtheorem{proposition}[theorem]{\sysu@proposition@name}
+
+    \newaliascnt{assertion}{theorem}
+    \newtheorem{assertion}[assertion]{\sysu@assertion@name}
+    \aliascntresetthe{assertion}
+
+    \newaliascnt{axiom}{theorem}
+    \newtheorem{axiom}[axiom]{\sysu@axiom@name}
+    \aliascntresetthe{axiom}
+
+    \newaliascnt{corollary}{theorem}
+    \newtheorem{corollary}[corollary]{\sysu@corollary@name}
+    \aliascntresetthe{corollary}
+
+    \newaliascnt{lemma}{theorem}
+    \newtheorem{lemma}[lemma]{\sysu@lemma@name}
+    \aliascntresetthe{lemma}
+
+    \newaliascnt{proposition}{theorem}
+    \newtheorem{proposition}[proposition]{\sysu@proposition@name}
+    \aliascntresetthe{proposition}
+
     \newtheorem{assumption}{\sysu@assumption@name}[chapter]
     \newtheorem{definition}{\sysu@definition@name}[chapter]
     \newtheorem{example}{\sysu@example@name}[chapter]
     \newtheorem*{remark}{\sysu@remark@name}
+
     % 重定义 proof 环境
     \renewcommand\qedsymbol{\mdlgwhtsquare}
     \renewenvironment{proof}[1][\sysu@proof@name]{\par
