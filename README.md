@@ -29,7 +29,7 @@ newtx, upgreek。
 
 ### 开始编译
 
-- 使用 latexmk 自动编译。参数设置为 `-xelatex` 或者 `-lualatex`。若使用了 minted 宏包，还需加上参数 `-shell-escape`。命令如下：
+- 使用 `latexmk` 自动编译。参数设置为 `-xelatex` 或者 `-lualatex`。若使用了 minted 宏包，还需加上参数 `-shell-escape`。命令如下：
 
     ```bash
     latexmk -xelatex thesis.tex
@@ -198,26 +198,24 @@ newtx, upgreek。
 \setmathfont{Latin Modern Math}
 ```
 
-可用字体如下表所示，全部数学符号的命令参考 [List of symbols
-defined by the
-package](http://mirrors.ctan.org/macros/unicodetex/latex/unicode-math/unimath-symbols.pdf)
-以及 [Math coverage and symbol
-comparison](http://mirrors.ctan.org/fonts/newcomputermodern/doc/newcm-unimath-symbols.pdf)。
+可用字体如下表所示，全部数学符号的命令参考 [List of symbols defined by the package](http://mirrors.ctan.org/macros/unicodetex/latex/unicode-math/unimath-symbols.pdf) 以及 [Math coverage and symbol comparison](http://mirrors.ctan.org/fonts/newcomputermodern/doc/newcm-unimath-symbols.pdf)。
 
-|字体名                  | 字符数量|
-|----------------------- | ----------|
-|Latin Modern Math | 1602 |
-|New CM Math | 2428 |
-|STIX Two Math | 2445 |
-|Asana Math | 2175 |
-|Garamond Math | 1647 |
-|TeX Gyre Pagella Math | 1655 |
-|DejaVu Math TeX Gyre | 1657 |
-|Libertinus Math | 1657 |
-|Erewhon Math | 1668 |
-|Concrete Math | 1060 |
-|Euler Math | 1012 |
-|Fira Math | 1052 |
+| 字体名 | 字符数量 |
+|---|---|
+| Latin Modern Math | 1602 |
+| New CM Math | 2428 |
+| XITS Math | 2429 |
+| STIX Two Math | 2447 |
+| Asana Math | 2323 |
+| Erewhon Math | 1679 |
+| DejaVu Math TeX Gyre | 1657 |
+| Libertinus Math | 1657 |
+| XCharter Math | 1657 |
+| TeX Gyre Pagella Math | 1655 |
+| Concrete Math | 1654 |
+| Garamond Math | 1647 |
+| Euler Math | 1638 |
+| Fira Math | 1052 |
 
 注意：某些字体仅在最新版本中提供。例如，若使用 New CM Math，则需 TeXLive 2021 或以上版本。
 

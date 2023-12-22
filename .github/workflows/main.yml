@@ -14,7 +14,7 @@ jobs:
         export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
     steps:
       - name: Set up Git repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Install TeX Live
         run: |
           ${{ env.SET_PATH }}
@@ -35,7 +35,7 @@ jobs:
           ${{ env.SET_PATH }}
           latexmk -lualatex -halt-on-error -shell-escape -jobname=%A-lualatex thesis.tex
       - name: Upload PDF file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: PDF
           path: |
