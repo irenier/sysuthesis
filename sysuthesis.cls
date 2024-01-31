@@ -1,6 +1,5 @@
 \NeedsTeXFormat{LaTeX2e}
-\newcommand\sysuthesisversion{v1.0}
-\ProvidesClass{sysuthesis}[2023/03/01 {\sysuthesisversion} sysu thesis template]
+\ProvidesClass{sysuthesis}[2024/01/31 sysu thesis template]
 
 % 报错和警告
 \newcommand\sysu@error[1]{%
@@ -11,9 +10,10 @@
 }
 
 % 检查 LaTeX kernel 版本
-\@ifl@t@r\fmtversion{2020/02/02}{}{
+\providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
+\IfFormatAtLeastTF{2022-06-01}{}{
     \sysu@error{%
-        TeX Live 2020 or later version is required to compile this document%
+        TeX Live 2022 or later version is required to compile this document%
     }
 }
 
@@ -30,7 +30,6 @@
 \RequirePackage{kvdefinekeys}
 \RequirePackage{kvsetkeys}
 \RequirePackage{kvoptions}
-\RequirePackage{ifthen}
 
 \let\sysu@setup@hook\@empty
 \newcommand\sysusetup[1]{%
@@ -90,10 +89,6 @@
     }%
 }
 
-\newcommand\sysu@option@hook[2]{%
-    \expandafter\g@addto@macro\csname sysu@#1@@code\endcsname{#2}%
-}
-
 \sysu@define@key{
     print = {
             choices = {
@@ -144,7 +139,6 @@
 
 \LoadClass[a4paper,scheme=chinese,zihao=-4]{ctexbook}
 
-\RequirePackage{etoolbox}
 \RequirePackage{unicode-math}
 \RequirePackage{amsmath}
 \RequirePackage{fontspec}
@@ -157,11 +151,10 @@
 \RequirePackage{float}
 \RequirePackage{caption}
 \RequirePackage[perpage,bottom]{footmisc}
-\RequirePackage{url}
 \RequirePackage{notoccite}
 % \RequirePackage{sysuvisual}
 
-\AtEndPreamble{%
+\AddToHook{env/document/before}{%
     \@ifpackageloaded{biblatex}{}{%
         \RequirePackage{natbib}
     }
@@ -170,13 +163,12 @@
 }
 
 % 对冲突的宏包报错。
-\RequirePackage{filehook}
 \newcommand\sysu@package@conflict[2]{%
-    \AtEndOfPackageFile*{#1}{%
-        \AtBeginOfPackageFile*{#2}{%
+    \AddToHook{package/#1/after}{%
+        \AddToHook{package/#2/before}{%
             \sysu@error{The "#2" package is incompatible with "#1"}%
-        }%
-    }%
+        }
+    }
 }
 
 \sysu@package@conflict{biblatex}{bibunits}
@@ -324,6 +316,7 @@
     \@mainmatterfalse
     \pagenumbering{Roman}%
     \pagestyle{plain}%
+    \sysu@addtocspacefalse
 }
 
 \renewcommand\mainmatter{%
@@ -331,6 +324,7 @@
     \pagenumbering{arabic}%
     \pagestyle{plain}%
     \@mainmattertrue
+    \sysu@addtocspacetrue
 }
 
 \g@addto@macro\appendix{%
@@ -355,6 +349,7 @@
                 numberformat = \normalfont\bfseries,
             },
     }%
+    \sysu@addtocspacefalse
 }
 
 % 定义用户接口：
@@ -491,11 +486,13 @@
 }
 
 % 设置封面字体
-\IfFontExistsTF{STZhongsong}{
+\ExplSyntaxOn
+\sys_if_platform_windows:TF{%
     \newCJKfontfamily\titlefont{STZhongsong}
 }{
     \newcommand{\titlefont}{\songti}
 }
+\ExplSyntaxOff
 
 % 本科生的封面
 \newcommand\sysu@makecover{%
@@ -507,7 +504,7 @@
 
         \begingroup%
         \titlefont\bfseries\fontsize{36bp}{36bp}\selectfont
-        \textcolor{\sysu@color}{\IfFontExistsTF{STZhongsong}{\hskip1ex}{} \sysu@thesis@name}\par
+        \textcolor{\sysu@color}{\sysu@thesis@name}\par
         \endgroup
 
         % 做分割线
@@ -881,10 +878,6 @@
 % 处理本科生在目录中添加空行。
 \newif\ifsysu@addtocspace
 \sysu@addtocspacetrue
-\g@addto@macro\frontmatter{\sysu@addtocspacefalse}%
-\g@addto@macro\mainmatter{\sysu@addtocspacetrue}%
-\g@addto@macro\backmatter{\sysu@addtocspacefalse}%
-\g@addto@macro\appendix{\sysu@addtocspacefalse}%
 
 \renewcommand\chapter{%
   \ifsysu@print@twoside\cleardoublepage\else\clearpage\fi
@@ -973,7 +966,7 @@
 % 参考文献
 \PassOptionsToPackage{compress}{natbib}
 
-\AtEndOfPackageFile*{natbib}{
+\AddToHook{package/natbib/after}{%
     % 为了将参考文献加入目录和 pdf 书签，重新定义 natbib 的 \bibsection
     \renewcommand\bibsection{%
         \@mainmatterfalse
@@ -986,7 +979,7 @@
 }
 
 % biblatex 宏包的配置
-\AtEndOfPackageFile*{biblatex}{
+\AddToHook{package/biblatex/after}{%
     \defbibheading{bibliography}[\bibname]{%
         \@mainmatterfalse
         \chapter{\bibname}%
@@ -1006,7 +999,7 @@
 
 % 其他宏包的设置
 
-\AtEndOfPackageFile*{hyperref}{
+\AddToHook{package/hyperref/after}{%
     \hypersetup{
         % bookmarksnumbered  = true,
         CJKbookmarks       = true,
@@ -1075,7 +1068,7 @@
     \definecolor{sysured}{cmyk}{0.3, 1, 1, 0.5}
 }
 
-\AtEndOfPackageFile*{amsthm}{
+\AddToHook{package/amsthm/after}{%
     \newtheoremstyle{sysuplain}
     {6pt}{6pt}
     {}{2\ccwd}
@@ -1139,7 +1132,7 @@
 % 按章节编号。
 \PassOptionsToPackage{algochapter}{algorithm2e}
 
-\AtEndOfPackageFile*{algorithm2e}{
+\AddToHook{package/algorithm2e/after}{%
     \SetAlgorithmName{算法}{算法}{算法清单}
     % 设置算法环境的格式。
     \SetAlCapSkip{6pt}
