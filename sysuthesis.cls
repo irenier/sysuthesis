@@ -1116,7 +1116,7 @@
     \newtheorem*{remark}{\sysu@remark@name}
 
     % 重定义 proof 环境
-    \renewcommand\qedsymbol{\mdlgwhtsquare}
+    % \renewcommand\qedsymbol{ $\mdlgwhtsquare$ }
     \renewenvironment{proof}[1][\sysu@proof@name]{\par
         \pushQED{\qed}%
         \normalfont \topsep6\p@\@plus6\p@\relax
