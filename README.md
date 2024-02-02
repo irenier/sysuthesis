@@ -2,18 +2,21 @@
 
 [点击此处下载 `zip` 压缩包](https://github.com/irenier/sysuthesis/archive/refs/heads/master.zip)。
 
-此项目为中山大学本科生毕业论文（设计） $\LaTeX$ **非官方**模板，力求符合《中山大学本科生毕业论文（设计）写作与印制规范》，使用该模板前请务必阅读此文档，不熟悉 $\LaTeX$ 可阅读[一份（不太）简短的 LaTeX2ε 介绍](http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf)。
+此项目为中山大学本科生毕业论文（设计） $\LaTeX$ **非官方**模板，力求符合《中山大学本科生毕业论文（设计）写作与印制规范》。
+
+使用该模板前请务必阅读此文档，不熟悉 $\LaTeX$ 可阅读 [一份（不太）简短的 LaTeX2ε 介绍](http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf)。
+
+本模板要求使用 TeXLive、MacTeX 或 MiKTeX **不低于 2022 年**的发行版，安装方式详见 [install-latex-guide-zh-cn](http://mirrors.ctan.org/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf)。若需要在线使用，请使用 Overleaf 的 [模板](https://www.overleaf.com/latex/templates/sysuthesis/sghrrhbdvjbd) 或 TeXPage 的 [模板](https://texpage.com/template/88eb11aa-bd5c-4b6b-b654-86517c5148a1)。
+
+[![example](https://writelatex.s3.amazonaws.com/published_ver/33895.jpeg?X-Amz-Expires=14400&X-Amz-Date=20240202T032317Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWJBOALPNFPV7PVH5/20240202/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=e539f6e0d6e7b24c353bed2862bb00b8c236be65b0d4bf7b795da4e97cf3729b)](https://www.overleaf.com/latex/templates/sysuthesis/sghrrhbdvjbd.pdf)
 
 ## 编译方法
 
 ### 依赖与冲突
 
-本模板要求使用 TeXLive、MacTeX 或 MiKTeX 不低于 2020 年的发行版，安装方式详见 [install-latex-guide-zh-cn](http://mirrors.ctan.org/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf)。若不想在本地使用，经测试也可在 [Overleaf](https://www.overleaf.com/) 和 [TeXPage](https://texpage.com/template/88eb11aa-bd5c-4b6b-b654-86517c5148a1) 上使用。
+本模板直接依赖的宏包有：xeCJK, ctex, unicode-math, amsmath, fontspec, geometry, graphicx, fancyhdr, xcolor, titletoc, enumitem, float, caption, footmisc, notoccite。
 
-本模板直接依赖的宏包有：xeCJK, ctex, etoolbox, unicode-math, amsmath, fontspec, geometry, graphicx, fancyhdr, xcolor, titletoc, enumitem, float, caption, footmisc, url, notoccite。
-
-与本模板不兼容的宏包有：amsfonts, amssymb, bm, cite, mathrsfs,
-newtx, upgreek。
+与本模板不兼容的宏包有：amsfonts, amssymb, bm, cite, mathrsfs, newtx, upgreek。
 
 ### 模板组成
 
@@ -105,15 +108,17 @@ newtx, upgreek。
 模板提供的选项见下表
 
 | 选项 | 选项（英文） | 说明 |
-| --- | --- | --- |
-|`title`      |  `title*`      |  论文标题|
-|`author`     |  `author*`     |  作者姓名|
-|`department` |  `department*` |  学院|
-|`speciality` |  `speciality*` |  专业|
-|`supervisor` |  `supervisor*` |  导师姓名|
-|`keywords`   |  `keywords*`   |  关键词|
-|`student-id` |              |  学号|
-|`date`       |             |  完成时间|
+|---|---|---|
+| `title` | `title*` | 论文标题 |
+| `author` | `author*` | 作者姓名 |
+| `department` | `department*` | 学院 |
+| `speciality` | `speciality*` | 专业 |
+| `supervisor` | `supervisor*` | 导师姓名 |
+| `keywords` | `keywords*` | 关键词 |
+| `cover-title-firstline` | `cover-title-firstline*` | 封面标题第一行 |
+| `cover-title-secondline` | `cover-title-secondline*` | 封面标题第二行 |
+| `student-id` |  | 学号 |
+| `date` |  | 完成时间 |
 
 我们需要注意以下几点：
 
@@ -147,7 +152,7 @@ newtx, upgreek。
 
 ### 参考文献
 
-参考文献使用 BibTeX 或者 Biber 生成，使用指南请阅读[一份（不太）简短的 LaTeX2ε 介绍](http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf)第 6.1 节。
+参考文献使用 BibTeX 或者 Biber 生成，使用指南请阅读 [一份（不太）简短的 LaTeX2ε 介绍](http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf) 第 6.1 节。
 
 ## 字体设置
 
@@ -167,9 +172,7 @@ newtx, upgreek。
 \documentclass[fontset=windows]{sysuthesis}
 ```
 
-可选参数 `adobe`, `fandol`, `founder`, `mac`, `macnew`, `macold`, `ubuntu`, `windows`。详见
-[CTeX宏集手册](http://mirrors.ctan.org/language/chinese/ctex/ctex.pdf)
-第 4.3 节。
+可选参数 `adobe`, `fandol`, `founder`, `mac`, `macnew`, `macold`, `ubuntu`, `windows`。详见 [CTeX宏集手册](http://mirrors.ctan.org/language/chinese/ctex/ctex.pdf) 第 4.3 节。
 
 **注意**：
 
