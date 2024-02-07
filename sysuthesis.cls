@@ -154,7 +154,7 @@
 \RequirePackage{notoccite}
 % \RequirePackage{sysuvisual}
 
-\AddToHook{env/document/before}{%
+\AddToHook{begindocument/before}{%
     \@ifpackageloaded{biblatex}{}{%
         \RequirePackage{natbib}
     }
