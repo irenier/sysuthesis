@@ -1,14 +1,12 @@
 # sysuthesis
 
-[点击此处下载 `zip` 压缩包](https://github.com/irenier/sysuthesis/archive/refs/heads/master.zip)。
+[点击此处下载 `zip` 压缩包](https://github.com/irenier/sysuthesis/archive/refs/heads/master.zip)，[点击此处预览 `pdf` 文件](https://www.overleaf.com/latex/templates/sysuthesis/sghrrhbdvjbd.pdf)。
 
 此项目为中山大学本科生毕业论文（设计） $\LaTeX$ **非官方**模板，力求符合《中山大学本科生毕业论文（设计）写作与印制规范》。
 
 使用该模板前请务必阅读此文档，不熟悉 $\LaTeX$ 可阅读 [一份（不太）简短的 LaTeX2ε 介绍](http://mirrors.ctan.org/info/lshort/chinese/lshort-zh-cn.pdf)。
 
 本模板要求使用 TeXLive、MacTeX 或 MiKTeX **不低于 2022 年**的发行版，安装方式详见 [install-latex-guide-zh-cn](http://mirrors.ctan.org/info/install-latex-guide-zh-cn/install-latex-guide-zh-cn.pdf)。若需要在线使用，请使用 Overleaf 的 [模板](https://www.overleaf.com/latex/templates/sysuthesis/sghrrhbdvjbd) 或 TeXPage 的 [模板](https://texpage.com/template/88eb11aa-bd5c-4b6b-b654-86517c5148a1)。
-
-[![example](https://writelatex.s3.amazonaws.com/published_ver/33895.jpeg?X-Amz-Expires=14400&X-Amz-Date=20240202T032317Z&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAWJBOALPNFPV7PVH5/20240202/us-east-1/s3/aws4_request&X-Amz-SignedHeaders=host&X-Amz-Signature=e539f6e0d6e7b24c353bed2862bb00b8c236be65b0d4bf7b795da4e97cf3729b)](https://www.overleaf.com/latex/templates/sysuthesis/sghrrhbdvjbd.pdf)
 
 ## 编译方法
 
