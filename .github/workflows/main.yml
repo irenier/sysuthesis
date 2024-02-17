@@ -25,7 +25,9 @@ jobs:
           tlmgr update --self --all --repository=${{ env.CTAN_URL }}/systems/texlive/tlnet/
       - name: Install fonts
         run: |
-          echo 'deb http://deb.debian.org/debian bookworm contrib non-free' >> /etc/apt/sources.list
+          sudo apt-get update
+          sudo apt-get -y install software-properties-common
+          sudo add-apt-repository multiverse
           sudo apt-get update
           sudo apt-get -y install ttf-mscorefonts-installer
           sudo cp -s /tmp/texlive/texmf-var/fonts/conf/texlive-fontconfig.conf /etc/fonts/conf.d/09-texlive.conf
