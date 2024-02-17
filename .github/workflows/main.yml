@@ -29,6 +29,7 @@ jobs:
           sudo apt-get -y install software-properties-common
           sudo add-apt-repository multiverse
           sudo apt-get update
+          echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | sudo debconf-set-selections
           sudo apt-get -y install ttf-mscorefonts-installer
           sudo cp -s /tmp/texlive/texmf-var/fonts/conf/texlive-fontconfig.conf /etc/fonts/conf.d/09-texlive.conf
           sudo fc-cache -fsv
