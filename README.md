@@ -1,6 +1,6 @@
 # sysuthesis
 
-[点击此处下载 `zip` 压缩包](https://github.com/irenier/sysuthesis/archive/refs/heads/master.zip)，[点击此处预览 `pdf` 文件](https://www.overleaf.com/latex/templates/sysuthesis/sghrrhbdvjbd.pdf)。
+[点击此处下载 `zip` 压缩包](https://github.com/irenier/sysuthesis/archive/refs/heads/main.zip)，[点击此处预览 `pdf` 文件](https://www.overleaf.com/latex/templates/sysuthesis/sghrrhbdvjbd.pdf)。
 
 此项目为中山大学本科生毕业论文（设计） $\LaTeX$ **非官方**模板，力求符合《中山大学本科生毕业论文（设计）写作与印制规范》。
 
