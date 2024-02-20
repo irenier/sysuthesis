@@ -11,7 +11,7 @@
 
 % 检查 LaTeX kernel 版本
 \providecommand\IfFormatAtLeastTF{\@ifl@t@r\fmtversion}
-\IfFormatAtLeastTF{2022-06-01}{}{
+\IfFormatAtLeastTF{2022-06-01}{}{%
     \sysu@error{%
         TeX Live 2022 or later version is required to compile this document%
     }
@@ -31,13 +31,16 @@
 \RequirePackage{kvsetkeys}
 \RequirePackage{kvoptions}
 
+\SetupKeyvalOptions{
+    family=sysu,
+    prefix=sysu@,
+    setkeys=\kvsetkeys}
 \let\sysu@setup@hook\@empty
 \newcommand\sysusetup[1]{%
     \let\sysu@setup@hook\@empty
     \kvsetkeys{sysu}{#1}%
     \sysu@setup@hook
 }
-
 \newcommand\sysu@define@key[1]{%
     \kvsetkeys{sysu@key}{#1}%
 }
@@ -117,12 +120,6 @@
         },
 }
 
-\SetupKeyvalOptions{
-    family  = sysu,
-    prefix  = sysu@,
-    setkeys = \kvsetkeys,
-}
-
 \DeclareDefaultOption{\PassOptionsToClass{\CurrentOption}{ctexbook}}
 \ProcessKeyvalOptions*
 
@@ -139,14 +136,15 @@
 
 \LoadClass[a4paper,scheme=chinese,zihao=-4]{ctexbook}
 
+\RequirePackage{xparse}
 \RequirePackage{unicode-math}
 \RequirePackage{amsmath}
 \RequirePackage{fontspec}
 \RequirePackage{geometry}
-\RequirePackage{graphicx}
 \RequirePackage{fancyhdr}
-\RequirePackage{xcolor}
 \RequirePackage{titletoc}
+\RequirePackage{graphicx}
+\RequirePackage{xcolor}
 \RequirePackage{enumitem}
 \RequirePackage{float}
 \RequirePackage{caption}
@@ -316,7 +314,6 @@
     \@mainmatterfalse
     \pagenumbering{Roman}%
     \pagestyle{plain}%
-    \sysu@addtocspacefalse
 }
 
 \renewcommand\mainmatter{%
@@ -324,7 +321,6 @@
     \pagenumbering{arabic}%
     \pagestyle{plain}%
     \@mainmattertrue
-    \sysu@addtocspacetrue
 }
 
 \g@addto@macro\appendix{%
@@ -349,7 +345,6 @@
                 numberformat = \normalfont\bfseries,
             },
     }%
-    \sysu@addtocspacefalse
 }
 
 % 定义用户接口：
@@ -851,42 +846,59 @@
     \@starttoc{toc}%
 }
 
-% 定义目录线：
-\newcommand\sysu@leaders{\titlerule*[9pt]{\textperiodcentered}}
+% 定义目录线
+\newcommand\sysu@leaders{\titlerule*[8pt]{.}}
+
+% 定义页码宽度
+\contentsmargin{3ex}
 
 % 本科生的目录使用小四宋体（同正文字体）
 \titlecontents{chapter}
-[\z@]{\normalsize}
-{\contentspush{\thecontentslabel \unskip \hskip 1.5ex}}{}
+[3ex]{\addvspace{8bp}\normalsize}
+{\contentslabel{3ex}}{\hskip-3ex}
 {\sysu@leaders\contentspage}
 
 \titlecontents{section}
-[3ex]{\normalsize}
-{\contentspush{\thecontentslabel \hskip 1.5ex}}{}
+[7.5ex]{\normalsize}
+{\contentslabel{4.5ex}}{\hskip-4.5ex}
 {\sysu@leaders\contentspage}
 
 \titlecontents{subsection}
-[7.5ex]{\normalsize}
-{\contentspush{\thecontentslabel \hskip 1.5ex}}{}
+[13.5ex]{\normalsize}
+{\contentslabel{6ex}}{\hskip-6ex}
 {\sysu@leaders\contentspage}
 
 \titlecontents{subsubsection}
-[13.5ex]{\normalsize}
-{\contentspush{\thecontentslabel \hskip 1.5ex}}{}
+[21ex]{\normalsize}
+{\contentslabel{7.5ex}}{\hskip-7.5ex}
 {\sysu@leaders\contentspage}
 
-% 处理本科生在目录中添加空行。
-\newif\ifsysu@addtocspace
-\sysu@addtocspacetrue
+\g@addto@macro\appendix{%
+    \titlecontents{chapter}
+    [8ex]{\addvspace{8bp}\normalsize}
+    {\contentslabel{8ex}}{\hskip-8ex}
+    {\sysu@leaders\contentspage}
+
+    \titlecontents{section}
+    [15ex]{\normalsize}
+    {\contentslabel{7ex}}{\hskip-7ex}
+    {\sysu@leaders\contentspage}
+
+    \titlecontents{subsection}
+    [23.5ex]{\normalsize}
+    {\contentslabel{8.5ex}}{\hskip-8.5ex}
+    {\sysu@leaders\contentspage}
+
+    \titlecontents{subsubsection}
+    [33.5ex]{\normalsize}
+    {\contentslabel{10ex}}{\hskip-10ex}
+    {\sysu@leaders\contentspage}
+}
 
 \renewcommand\chapter{%
   \ifsysu@print@twoside\cleardoublepage\else\clearpage\fi
-  \thispagestyle{\CTEX@chapter@pagestyle}%
   \global\@topnum\z@
   \@afterindenttrue
-  \ifsysu@addtocspace
-      \addtocontents{toc}{\protect\addvspace{0.5\baselineskip}}%
-  \fi
   \secdef\@chapter\@schapter
  }
 
@@ -1031,8 +1043,10 @@
     }
     %
     % 在 PDF 字符串中去掉换行，以减少 hyperref 的警告信息。
-    \pdfstringdefDisableCommands{
-        \let\\\@empty
+    \pdfstringdefDisableCommands{%
+        \let\\\relax
+        \let\quad\relax
+        \let\qquad\relax
         \let\hspace\@gobble
     }
     % 设置中文的 \autoref。
@@ -1138,7 +1152,7 @@
     \SetAlCapSkip{6pt}
     \SetAlCapFnt{\small}
     \SetAlCapNameFnt{\small}
-    \SetAlgoCaptionSeparator{\unskip\hspace*{\ccwd}}
+    \SetAlgoCaptionSeparator{\hspace*{\ccwd}}
     % 设置算法清单的格式
     \renewcommand\listofalgocfs{%
         \cleardoublepage
