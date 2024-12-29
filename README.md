@@ -30,7 +30,7 @@
 
 ### 开始编译
 
-- 使用 `latexmk` 自动编译。参数设置为 `-xelatex` 或者 `-lualatex`。若使用了 minted 宏包，还需加上参数 `-shell-escape`。命令如下：
+- 使用 `latexmk` 自动编译。参数设置为 `-xelatex` 或者 `-lualatex`。命令如下：
 
     ```bash
     latexmk -xelatex thesis.tex
