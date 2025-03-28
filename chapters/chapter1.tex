@@ -33,46 +33,46 @@ sit amet orci dignissim rutrum.\footnote{这是一个脚注。}
 三线表使用如下格式，如\autoref{tab-tab}。
 
 \begin{table}[H]
-    \centering
-    \caption{表号和表题在表的正上方}
-    \label{tab-tab}
-    \begin{tabular}{ll}
-        \toprule
-        说明     & 说明     \\
-        \midrule
-        这是一个测试 & 这是一个测试 \\
-        这是一个测试 & 这是一个测试 \\
-        \bottomrule
-    \end{tabular}
+	\centering
+	\caption{表号和表题在表的正上方}
+	\label{tab-tab}
+	\begin{tabular}{ll}
+		\toprule
+		说明     & 说明     \\
+		\midrule
+		这是一个测试 & 这是一个测试 \\
+		这是一个测试 & 这是一个测试 \\
+		\bottomrule
+	\end{tabular}
 \end{table}
 
 \subsection{插图}
 
 插入图片于固定位置，如\autoref{fig-single}。
 \begin{figure}[H]
-    \centering
-    \includegraphics[width=3cm]{figures/sysu-badge.pdf}
-    \caption{插图}
-    \label{fig-single}
+	\centering
+	\includegraphics[width=3cm]{figures/sysu-badge.pdf}
+	\caption{插图}
+	\label{fig-single}
 \end{figure}
 
 对于图片的并排，推荐使用 \verb|subcaption| 宏包。
 
 \begin{figure}[H]
-    \centering
-    \begin{subfigure}{3cm}
-        \centering
-        \includegraphics[width=3cm]{figures/sysu-badge.pdf}
-        \caption{校徽}
-    \end{subfigure}
-    \hspace{3cm}
-    \begin{subfigure}{3cm}
-        \centering
-        \includegraphics[width=3cm]{figures/sysu-badge.pdf}
-        \caption{校徽}
-    \end{subfigure}
-    \caption{插图}
-    \label{fig-example}
+	\centering
+	\begin{subfigure}{3cm}
+		\centering
+		\includegraphics[width=3cm]{figures/sysu-badge.pdf}
+		\caption{校徽}
+	\end{subfigure}
+	\hspace{3cm}
+	\begin{subfigure}{3cm}
+		\centering
+		\includegraphics[width=3cm]{figures/sysu-badge.pdf}
+		\caption{校徽}
+	\end{subfigure}
+	\caption{插图}
+	\label{fig-example}
 \end{figure}
 
 \subsection{算法}
@@ -81,17 +81,17 @@ sit amet orci dignissim rutrum.\footnote{这是一个脚注。}
 \vspace{.5\baselineskip}
 
 \begin{algorithm}[H]
-    \KwIn{input data}
-    \KwOut{output data}
-    \tcc{a comment line in C-style}
-    \Repeat{$e<\tau$}{
-        $f_n\leftarrow Y_1$\;
-        $f_{n+1}\leftarrow f_n\times f_{n-1}$\;
-        $e\leftarrow \frac{f_n}{2}$\;
-    }
-    \KwRet{$e$}
-    \caption{算法示例}
-    \label{algo:algorithm1}
+	\KwIn{input data}
+	\KwOut{output data}
+	\tcc{a comment line in C-style}
+	\Repeat{$e<\tau$}{
+		$f_n\leftarrow Y_1$\;
+		$f_{n+1}\leftarrow f_n\times f_{n-1}$\;
+		$e\leftarrow \frac{f_n}{2}$\;
+	}
+	\KwRet{$e$}
+	\caption{算法示例}
+	\label{algo:algorithm1}
 \end{algorithm}
 
 \section{数学相关}
@@ -101,34 +101,34 @@ sit amet orci dignissim rutrum.\footnote{这是一个脚注。}
 本模板使用 \verb|unicode-math| 宏包，并设置了 \verb|math-style=ISO|。需要注意以下几点：
 
 \begin{enumerate}
-    \item 大写希腊字母默认为斜体，如
-          \begin{equation*}
-              \Gamma \Delta \Theta \Lambda \Xi \Pi \Sigma \Upsilon \Phi \Psi \Omega.
-          \end{equation*}
-          若需使用正体，请在命令前加 \verb|up|，例如
-          \begin{verbatim}
+	\item 大写希腊字母默认为斜体，如
+	      \begin{equation*}
+		      \Gamma \Delta \Theta \Lambda \Xi \Pi \Sigma \Upsilon \Phi \Psi \Omega.
+	      \end{equation*}
+	      若需使用正体，请在命令前加 \verb|up|，例如
+	      \begin{verbatim}
               \upGamma \upDelta \upTheta \upLambda \upXi \upPi
               \upSigma \upUpsilon \upPhi \upPsi \upOmega
           \end{verbatim}
-          则可得到
-          \begin{equation*}
-              \upGamma \upDelta \upTheta \upLambda \upXi \upPi \upSigma \upUpsilon \upPhi \upPsi \upOmega.
-          \end{equation*}
-    \item 偏微分符号 $\partial$ 默认使用斜体。若需默认使用正体，请在 \texttt{sysusetup.tex} 文件中的 \verb|\unimathsetup| 中设置 \verb|partial=upright|。
-    \item 哈密顿算子 $\nabla$ 默认使用正体。
-          若需默认使用斜体，请在 \texttt{sysusetup.tex} 文件中的 \verb|\unimathsetup| 中设置 \verb|nabla=italic|。
+	      则可得到
+	      \begin{equation*}
+		      \upGamma \upDelta \upTheta \upLambda \upXi \upPi \upSigma \upUpsilon \upPhi \upPsi \upOmega.
+	      \end{equation*}
+	\item 偏微分符号 $\partial$ 默认使用斜体。若需默认使用正体，请在 \texttt{sysusetup.tex} 文件中的 \verb|\unimathsetup| 中设置 \verb|partial=upright|。
+	\item 哈密顿算子 $\nabla$ 默认使用正体。
+	      若需默认使用斜体，请在 \texttt{sysusetup.tex} 文件中的 \verb|\unimathsetup| 中设置 \verb|nabla=italic|。
 \end{enumerate}
 
 公式按章编独立序号：
 \begin{equation} \label{eq-1}
-    \int_I \omega(x)\diff x = \upint_{a}^b f(x)\diff x - \lowint_a^b f(x)\diff x.
+	\int_I \omega(x)\diff x = \upint_{a}^b f(x)\diff x - \lowint_a^b f(x)\diff x.
 \end{equation}
 引用公式：见\autoref{eq-1}。
 
 区分 \verb|\mathscr| 和 \verb|\mathcal|：
 \begin{gather*}
-    \mathscr{A} \mathscr{B} \mathscr{C} \mathscr{D} \mathscr{E} \mathscr{F} \mathscr{G} \mathscr{H} \mathscr{I} \mathscr{J} \mathscr{K} \mathscr{L} \mathscr{M} \mathscr{N} \mathscr{O} \mathscr{P} \mathscr{Q} \mathscr{R} \mathscr{S} \mathscr{T} \mathscr{U} \mathscr{V} \mathscr{W} \mathscr{X} \mathscr{Y} \mathscr{Z}\\
-    \mathcal{A} \mathcal{B} \mathcal{C} \mathcal{D} \mathcal{E} \mathcal{F} \mathcal{G} \mathcal{H} \mathcal{I} \mathcal{J} \mathcal{K} \mathcal{L} \mathcal{M} \mathcal{N} \mathcal{O} \mathcal{P} \mathcal{Q} \mathcal{R} \mathcal{S} \mathcal{T} \mathcal{U} \mathcal{V} \mathcal{W} \mathcal{X} \mathcal{Y} \mathcal{Z}.
+	\mathscr{A} \mathscr{B} \mathscr{C} \mathscr{D} \mathscr{E} \mathscr{F} \mathscr{G} \mathscr{H} \mathscr{I} \mathscr{J} \mathscr{K} \mathscr{L} \mathscr{M} \mathscr{N} \mathscr{O} \mathscr{P} \mathscr{Q} \mathscr{R} \mathscr{S} \mathscr{T} \mathscr{U} \mathscr{V} \mathscr{W} \mathscr{X} \mathscr{Y} \mathscr{Z}\\
+	\mathcal{A} \mathcal{B} \mathcal{C} \mathcal{D} \mathcal{E} \mathcal{F} \mathcal{G} \mathcal{H} \mathcal{I} \mathcal{J} \mathcal{K} \mathcal{L} \mathcal{M} \mathcal{N} \mathcal{O} \mathcal{P} \mathcal{Q} \mathcal{R} \mathcal{S} \mathcal{T} \mathcal{U} \mathcal{V} \mathcal{W} \mathcal{X} \mathcal{Y} \mathcal{Z}.
 \end{gather*}
 
 \subsection{定理环境}
@@ -136,65 +136,65 @@ sit amet orci dignissim rutrum.\footnote{这是一个脚注。}
 示例文件中使用 \verb|amsthm| 宏包配置了定理、引理和证明等环境。环境名有\\ \textsf{theorem}, \textsf{assertion}, \textsf{axiom}, \textsf{corollary}, \textsf{lemma}, \textsf{proposition}, \textsf{assumption}, \textsf{definition}, \textsf{example}, \textsf{remark}。
 
 \begin{assertion} \label{assertion-1}
-    测试。
+	测试。
 \end{assertion}
 
 \begin{assumption} \label{assumption-1}
-    测试。
+	测试。
 \end{assumption}
 
 \begin{axiom} \label{axiom-1}
-    测试。
+	测试。
 \end{axiom}
 
 \begin{example} \label{example-1}
-    测试。
+	测试。
 \end{example}
 
 \begin{proof}
-    测试。
+	测试。
 \end{proof}
 
 \begin{proposition} \label{proposition-1}
-    测试。
+	测试。
 \end{proposition}
 
 \begin{remark}
-    测试。
+	测试。
 \end{remark}
 
 \begin{definition} \label{def-1}
-    设\(f(x)\)是\(E\subset\mathbb{R}^n\)上的非负可测函数，定义\(f(x)\)在\(E\)上的积分为
-    \[\int_E f(x)\diff x = \sup_{\stackrel{h(x)\leqslant f(x)}{x\in E}}\left\{\int_E h(x)\diff x : h(x)\,\text{是\(\mathbb{R}^n\)上的非负可测简单函数}\right\}.\]
-    这里的积分可以是\(+\infty\)；若\(\int_E f(x)\diff x < +\infty\)，则称\(f(x)\)在\(E\)上是\textsf{可积的}，或称\(f(x)\)是\(E\)上的\textsf{可积函数}。
+	设\(f(x)\)是\(E\subset\mathbb{R}^n\)上的非负可测函数，定义\(f(x)\)在\(E\)上的积分为
+	\[\int_E f(x)\diff x = \sup_{\stackrel{h(x)\leqslant f(x)}{x\in E}}\left\{\int_E h(x)\diff x : h(x)\,\text{是\(\mathbb{R}^n\)上的非负可测简单函数}\right\}.\]
+	这里的积分可以是\(+\infty\)；若\(\int_E f(x)\diff x < +\infty\)，则称\(f(x)\)在\(E\)上是\textsf{可积的}，或称\(f(x)\)是\(E\)上的\textsf{可积函数}。
 \end{definition}
 
 \begin{lemma}[Chebyshev 不等式] \label{lemma-1}
-    若\(f(x)\)是\(E\)上的非负可测函数，且\(a\)为正的常数，则
-    \[m\left(\left\{x\in E : f(x) \geqslant a\right\}\right)\leqslant \frac{1}{a}\int_{E} f(x)\diff x.\]
+	若\(f(x)\)是\(E\)上的非负可测函数，且\(a\)为正的常数，则
+	\[m\left(\left\{x\in E : f(x) \geqslant a\right\}\right)\leqslant \frac{1}{a}\int_{E} f(x)\diff x.\]
 \end{lemma}
 
 \begin{proof}
-    \begin{align*}
-        \int_E f(x)\diff x & \geqslant \int_E f(x)\chi_{E\left(f \geqslant a\right)}(x)\diff x = \int_{E\left(f \geqslant a\right)} f(x)\diff x             \\
-                           & \geqslant \int_{E\left(f\geqslant a\right)} a\diff x = a\cdot m\left(\left\{x\in E : f(x) \geqslant a\right\}\right). \qedhere
-    \end{align*}
+	\begin{align*}
+		\int_E f(x)\diff x & \geqslant \int_E f(x)\chi_{E\left(f \geqslant a\right)}(x)\diff x = \int_{E\left(f \geqslant a\right)} f(x)\diff x             \\
+		                   & \geqslant \int_{E\left(f\geqslant a\right)} a\diff x = a\cdot m\left(\left\{x\in E : f(x) \geqslant a\right\}\right). \qedhere
+	\end{align*}
 \end{proof}
 
 \begin{theorem}[控制收敛定理] \label{thm-1}
-    设\(f_k\in L(E)\) \((k = 1,2,\cdots)\)，且有
-    \[\lim_{k\to\infty}f_k(x) = f(x), \,\text{a.e.}\, x\in E.\]
-    若存在\(E\)上的\textsf{可积}函数\(F(x)\)，使得
-    \[\left\vert f_k(x)\right\vert\leqslant F(x),\,\text{a.e.}\, x\in E\quad (k = 1,2,\cdots)\]
-    则
-    \[\lim_{k\to\infty} \int_E f_k(x)\diff x = \int_E f(x)\diff x.\]
+	设\(f_k\in L(E)\) \((k = 1,2,\cdots)\)，且有
+	\[\lim_{k\to\infty}f_k(x) = f(x), \,\text{a.e.}\, x\in E.\]
+	若存在\(E\)上的\textsf{可积}函数\(F(x)\)，使得
+	\[\left\vert f_k(x)\right\vert\leqslant F(x),\,\text{a.e.}\, x\in E\quad (k = 1,2,\cdots)\]
+	则
+	\[\lim_{k\to\infty} \int_E f_k(x)\diff x = \int_E f(x)\diff x.\]
 \end{theorem}
 
 \begin{corollary}[依测度收敛型控制收敛定理] \label{corollary-1}
-    设\(f_k\in L(\mathbb{R}^n)\) \((k = 1,2,\cdots)\)，且\(f_k(x)\)在\(\mathbb{R}^n\)上依测度收敛于\(f(x)\)。若存在\(F\in L(\mathbb{R}^n)\)使得
-    \[\left\vert f_k(x)\right\vert \leqslant F(x),\,\text{a.e.}\, x\in\mathbb{R}^n \quad (k = 1,2,\cdots)\]
-    则\(f\in L(\mathbb{R}^n)\)，且有
-    \[\lim_{k\to\infty}\int_{\mathbb{R}^n} f_k(x)\diff x = \int_{\mathbb{R}^n} f(x)\diff x.\]
+	设\(f_k\in L(\mathbb{R}^n)\) \((k = 1,2,\cdots)\)，且\(f_k(x)\)在\(\mathbb{R}^n\)上依测度收敛于\(f(x)\)。若存在\(F\in L(\mathbb{R}^n)\)使得
+	\[\left\vert f_k(x)\right\vert \leqslant F(x),\,\text{a.e.}\, x\in\mathbb{R}^n \quad (k = 1,2,\cdots)\]
+	则\(f\in L(\mathbb{R}^n)\)，且有
+	\[\lim_{k\to\infty}\int_{\mathbb{R}^n} f_k(x)\diff x = \int_{\mathbb{R}^n} f(x)\diff x.\]
 \end{corollary}
 
 引用定理编号：\autoref{thm-1}，\autoref{assertion-1}，\autoref{axiom-1}，\autoref{corollary-1}，\autoref{lemma-1}，\autoref{proposition-1}，\autoref{assumption-1}， \autoref{def-1}，\autoref{example-1}。
@@ -211,18 +211,18 @@ BIB\TeX 数据库文件位于 \verb|bib/sysu.bib|。
 \href{http://mirrors.ctan.org/macros/latex/contrib/biblatex-contrib/biblatex-gb7714-2015/biblatex-gb7714-2015.pdf}{biblatex-gb7714-2015}。
 
 \begin{table}[H]
-    \centering
-    \caption{标注格式}
-    \label{tab-ref}
-    \begin{tabular}{ll}
-        \toprule
-        命令                                            & 结果                                         \\
-        \midrule
-        % \verb|\citep{Knuth1984}|                      & 数字标记法\citep{Knuth1984}                     \\
-        \verb|\cite{Knuth1984}|                       & 角注标记法\cite{Knuth1984}                      \\
-        % \verb|\parencite{Knuth1984}| & 数字标记法\parencite{Knuth1984} \\
-        \verb|\cite{Knuth1986,Knuth1984}|             & 引用两个\cite{Knuth1986,Knuth1984}             \\
-        \verb|\cite{Knuth1984,Knuth1986,Lamport1994}| & 引用多个\cite{Knuth1984,Knuth1986,Lamport1994} \\
-        \bottomrule
-    \end{tabular}
+	\centering
+	\caption{标注格式}
+	\label{tab-ref}
+	\begin{tabular}{ll}
+		\toprule
+		命令                                            & 结果                                         \\
+		\midrule
+		% \verb|\citep{Knuth1984}|                      & 数字标记法\citep{Knuth1984}                     \\
+		\verb|\cite{Knuth1984}|                       & 角注标记法\cite{Knuth1984}                      \\
+		% \verb|\parencite{Knuth1984}| & 数字标记法\parencite{Knuth1984} \\
+		\verb|\cite{Knuth1986,Knuth1984}|             & 引用两个\cite{Knuth1986,Knuth1984}             \\
+		\verb|\cite{Knuth1984,Knuth1986,Lamport1994}| & 引用多个\cite{Knuth1984,Knuth1986,Lamport1994} \\
+		\bottomrule
+	\end{tabular}
 \end{table}
