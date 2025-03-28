@@ -196,7 +196,7 @@
 在 `sysusetup.tex` 中进行设置，例如：
 
 ```TeX
-\setmathfont{Latin Modern Math}
+\setmathfont{latinmodern-math}[Extension=.otf]
 ```
 
 可用字体如下表所示，全部数学符号的命令参考 [List of symbols defined by the package](http://mirrors.ctan.org/macros/unicodetex/latex/unicode-math/unimath-symbols.pdf) 以及 [Math coverage and symbol comparison](http://mirrors.ctan.org/fonts/newcomputermodern/doc/newcm-unimath-symbols.pdf)。
