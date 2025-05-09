@@ -494,7 +494,7 @@
 	\begin{titlepage}%
 		\sysu@pdfbookmark{封面}%
 		\centering
-		% \sysubadge{3cm}{\sysu@color}
+		% \sysudraw{badge}[landscape][3cm][\sysu@color]
 		\includegraphics[width=3cm]{figures/sysu-badge.pdf}
 
 		\begingroup%
