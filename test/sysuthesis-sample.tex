@@ -1,0 +1,155 @@
+\documentclass{sysuthesis}
+
+\sysusetup[option]
+  {
+    type = bachelor
+    % type = master
+    % type = doctor
+  }
+\sysusetup[style]
+  {
+    % cjk-font  = windows,
+    math-font = newcm
+  }
+\sysusetup[info]
+  {
+    title        = {标题第一行\\标题第二行},
+    title*       = {first line\\ second line},
+    keywords     = {中山大学, 论文模版, 本科生, 研究生},
+    keywords*    = {SYSU, template, undergraduate, graduate},
+    student-id   = {00000000},
+    author       = {作者名},
+    author*      = {XXX},
+    department   = {数学学院},
+    department*  = {Department of Mathematics},
+    major        = {数学与应用数学},
+    major*       = {Mathematics and Applied Mathematics},
+    supervisors  = {XXX~教授, XXX~教授},
+    supervisors* = {Professor~XXX, Professor~XXX},
+    % date         = {2025/04/30},  % 默认为今日
+    secret-level = {公开},  % 研究生模版参数
+    thesis-code  = {00000000}  % 研究生模版参数
+  }
+\sysusetup[bib]
+  {
+    backend  = bibtex,
+    style    = gbt7714-numerical,
+    resource = sysuthesis-sample
+  }
+% \sysusetup[bib]
+%   {
+%     backend  = biblatex,
+%     style    = gb7714-2015,
+%     resource = sysuthesis-sample.bib
+%   }
+
+% 载入其他宏包
+% 数学定理
+\usepackage{thmtools}
+% \usepackage{keytheorems}
+% 图片并排
+\usepackage{subcaption}
+% 算法
+\usepackage[ruled]{algorithm2e}
+% 代码
+\usepackage{minted}
+
+\begin{document}
+
+\maketitle
+\frontmatter
+
+\begin{abstract}
+  中文摘要 \cite{Knuth1984}
+\end{abstract}
+
+\begin{abstract*}
+  abstract \cite{Knuth1986}
+\end{abstract*}
+
+\tableofcontents
+
+\mainmatter
+
+\chapter{测试}
+\section{测试}
+\subsection{定理测试}
+
+测试。\footnote{测试。}
+
+\begin{lemma}[Fubini] \label{lemma-Fubini}
+  测试。
+\end{lemma}
+
+\begin{theorem}[Lebesgue] \label{thm-Lebesgue}
+  测试。
+\end{theorem}
+
+\begin{corollary}[Fourier] \label{cor-Fourier}
+  测试。
+\end{corollary}
+
+\begin{proposition}[Cantor] \label{prop-Cantor}
+  测试。
+\end{proposition}
+
+\begin{definition}[Riemann] \label{def-Riemann}
+  测试。
+\end{definition}
+
+\begin{example}[Gauss] \label{exp-Gauss}
+  测试。
+\end{example}
+
+\begin{remark}[Kolmogorov] \label{rmk-Kolmogorov}
+  测试。
+\end{remark}
+
+\begin{proof}
+  测试。
+\end{proof}
+
+\autoref{thm-Lebesgue}, \autoref{lemma-Fubini}, \autoref{cor-Fourier}, \autoref{prop-Cantor}, \autoref{def-Riemann}, \autoref{exp-Gauss}, \autoref{rmk-Kolmogorov} \footnote{测试。}
+
+\nameref{thm-Lebesgue}, \nameref{lemma-Fubini}, \nameref{cor-Fourier}, \nameref{prop-Cantor}, \nameref{def-Riemann}, \nameref{exp-Gauss}, \nameref{rmk-Kolmogorov}
+
+\newpage
+
+\section{脚注测试}
+
+测试。 \footnote{测试。}
+
+\chapter{测试}
+\section{算法测试}
+
+\begin{algorithm}
+  \caption{算法示例}
+  \label{alg-algorithm}
+  \KwIn{input data}
+  \KwOut{output data}
+  \tcc{a comment line in C-style}
+  \Repeat{$e<\tau$}{
+    $f_n\leftarrow Y_1$\;
+    $f_{n+1}\leftarrow f_n\times f_{n-1}$\;
+    $e\leftarrow \frac{f_n}{2}$\;
+  }
+  \KwRet{$e$}
+\end{algorithm}
+
+\autoref{alg-algorithm}
+
+\section{代码测试}
+
+\begin{minted}[bgcolor=gray!5!white, autogobble]{c}
+  int main() {
+    printf("hello, world");
+    return 0;
+  }
+\end{minted}
+
+\appendix
+
+\chapter{测试}
+\section{测试}
+
+\end{document}

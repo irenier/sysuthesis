@@ -1,0 +1,47 @@
+name: build
+on:
+  - push
+  - pull_request
+
+jobs:
+  build:
+    if: "!startsWith(github.ref, 'refs/tags/v')"
+    runs-on: ubuntu-latest
+    container:
+      image: texlive/texlive:latest
+
+    strategy:
+      matrix:
+        engine: [xelatex, lualatex]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Install fonts
+        run: |
+          echo "deb http://deb.debian.org/debian bookworm contrib non-free" >> /etc/apt/sources.list
+          apt-get update
+          apt-get -y install ttf-mscorefonts-installer fonts-noto-cjk-extra
+          fc-cache -fsv
+
+      - name: Install sysuthesis class
+        run: l3build install
+
+      - name: Prepare test files
+        working-directory: test
+        run: |
+          cp sysuthesis-sample.tex thesis-bachelor.tex
+          sed 's/bachelor/master/g' sysuthesis-sample.tex > thesis-master.tex
+          sed 's/bachelor/doctor/g' sysuthesis-sample.tex > thesis-doctor.tex
+
+      - name: Compile with ${{ matrix.engine }}
+        working-directory: test
+        run: |
+          latexmk -${{ matrix.engine }} -halt-on-error -jobname="%A-${{ matrix.engine }}" thesis-*.tex
+
+      - name: Upload PDFs
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-${{ matrix.engine }}
+          path: test/*.pdf
