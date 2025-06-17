@@ -47,6 +47,7 @@
 
 % 载入其他常用宏包
 \usepackage{thmtools}       % 数学定理
+% \usepackage{keytheorems}    % 数学定理
 \usepackage{subcaption}     % 图片并排
 \usepackage{tabularray}     % 表格
 \UseTblrLibrary{booktabs}   % 三线表样式
@@ -78,6 +79,10 @@
 \section{研究背景}
 
 此处陈述研究背景和现状。脚注是个好用的功能。\footnote{这是一个脚注示例。}
+
+\subsection{二级标题示例}
+
+在这里可以进一步细化研究背景的某个特定方面。
 
 \section{主要工作}
 
@@ -137,6 +142,12 @@
   \int_I \omega(x)\ dx = \upint_{a}^b f(x)\ dx - \lowint_a^b f(x)\ dx.
 \end{equation}
 引用上述公式：见\autoref{eq-1}。
+
+模板可以区分两种不同的花体字母：\verb|\mathscr| 和 \verb|\mathcal|：
+\begin{gather*}
+  \mathscr{A} \mathscr{B} \mathscr{C} \mathscr{D} \mathscr{E} \mathscr{F} \mathscr{G} \mathscr{H} \mathscr{I} \mathscr{J} \mathscr{K} \mathscr{L} \mathscr{M} \mathscr{N} \mathscr{O} \mathscr{P} \mathscr{Q} \mathscr{R} \mathscr{S} \mathscr{T} \mathscr{U} \mathscr{V} \mathscr{W} \mathscr{X} \mathscr{Y} \mathscr{Z}\\
+  \mathcal{A} \mathcal{B} \mathcal{C} \mathcal{D} \mathcal{E} \mathcal{F} \mathcal{G} \mathcal{H} \mathcal{I} \mathcal{J} \mathcal{K} \mathcal{L} \mathcal{M} \mathcal{N} \mathcal{O} \mathcal{P} \mathcal{Q} \mathcal{R} \mathcal{S} \mathcal{T} \mathcal{U} \mathcal{V} \mathcal{W} \mathcal{X} \mathcal{Y} \mathcal{Z}.
+\end{gather*}
 
 \chapter{核心算法与实现}
 
@@ -225,6 +236,29 @@
     Eta           & Theta        & Iota            \\
     Kappa         & Lambda       & Mu              \\
     Nu Xi Omicron & Pi Rho Sigma & Tau Upsilon Phi \\
+  \end{tblr}
+\end{table}
+
+\section{参考文献的标注方法}
+
+本模板的 BIB\TeX{} 数据库文件位于 \verb|sysuthesis-sample.bib|。参考文献的序号在正文中应为上标形式，并用方括号表示，如 \cite{Knuth1984}。每一条参考文献的著录均应以“.”结束。
+
+下表展示了几种不同的引用命令及其效果。
+
+\begin{table}[H]
+  \centering
+  \caption{引用命令与格式示例}
+  \label{tab-ref}
+  \begin{tblr}{ll}
+    \toprule
+    \LaTeX{} 命令                                                 & 显示结果                                           \\
+    \midrule
+    \texttt{\backslash citep\{Knuth1984\}}                      & 数字标记法\citep{Knuth1984}                         \\
+    \texttt{\backslash cite\{Knuth1984\}}                       & 角注标记法\cite{Knuth1984}                          \\
+    % \texttt{\backslash parencite\{Knuth1984\}}                  & 数字标记法\parencite{Knuth1984}                                    \\
+    \texttt{\backslash cite\{Knuth1986,Knuth1984\}}             & 同时引用两篇文献\cite{Knuth1986,Knuth1984}             \\
+    \texttt{\backslash cite\{Knuth1984,Knuth1986,Lamport1994\}} & 同时引用多篇文献\cite{Knuth1984,Knuth1986,Lamport1994} \\
+    \bottomrule
   \end{tblr}
 \end{table}
 

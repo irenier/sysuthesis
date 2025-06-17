@@ -161,6 +161,7 @@ To produce the documentation run the original source files ending with
 \begin{document}
   \RecordChanges
   \DocInput{sysuthesis.dtx}
+  \newpage
   \PrintChanges
   \newpage
   \PrintIndex
@@ -170,7 +171,7 @@ To produce the documentation run the original source files ending with
 %
 % \title{\heiti 中山大学学位论文模板}
 % \author{Renier Tan}
-% \date{2025/06/17\quad v0.1.1}
+% \date{2025/06/17\quad v0.2.0}
 %
 % \changes{v0.1.0}{2025/04/30}{进行模板编写。}
 %
@@ -587,7 +588,7 @@ To produce the documentation run the original source files ending with
 %
 % \subsection{封面与扉页}
 %
-% \begin{function}[added=2025-04-30]{\maketitle}
+% \begin{function}[added=2025-04-30, updated=2025-06-17]{\maketitle}
 %   \begin{syntax}
 %     \tn{maketitle}\oarg{页面}
 %   \end{syntax}
@@ -2080,7 +2081,7 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 %
 % \changes{v0.1.1}{2025/06/17}{修复单行标题不显示的问题。}
-% 
+%
 % 封面论文中文标题。
 %    \begin{macrocode}
 \@@_define_element:nn { i / cover / title }
@@ -2518,13 +2519,10 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_cover_i:
   {
+    \@@_clearpage:
     \newgeometry { hmargin = 0 pt, vmargin = { 2.5 cm, 2 cm } }
-    \begin { titlepage }
-      \thispagestyle{ empty }
-      \tl_set:Nn \thepage { A }
-      \@@_use_element:nn { i / cover }
-        { emblem-image, thesis-type-name, divide-lines, title, info, date }
-    \end { titlepage }
+    \@@_use_element:nn { i / cover }
+      { emblem-image, thesis-type-name, divide-lines, title, info, date }
     \restoregeometry
   }
 %    \end{macrocode}
@@ -2535,13 +2533,10 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_titlepage_i:
   {
+    \@@_clearpage:
     \newgeometry { hmargin = 0 pt, vmargin = { 2.5 cm, 2 cm } }
-    \begin { titlepage }
-      \thispagestyle{ empty }
-      \tl_set:Nn \thepage { B }
-      \@@_use_element:nn { i / title-page }
-        { title, title-en, info, date }
-    \end { titlepage }
+    \@@_use_element:nn { i / title-page }
+      { title, title-en, info, date }
     \restoregeometry
   }
 %    \end{macrocode}
@@ -2552,13 +2547,11 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_declaration_i:
   {
-    \begin { titlepage }
-      \@@_chapter:n { \c_@@_name_integr_decl_tl }
-      \thispagestyle{ empty }
-      \tl_set:Nn \thepage { C }
-      \@@_use_element:nn { i / declaration }
-        { integr-decl, author-sign }
-    \end { titlepage }
+    \@@_clearpage:
+    \@@_chapter:n { \c_@@_name_integr_decl_tl }
+    \thispagestyle { empty }
+    \@@_use_element:nn { i / declaration }
+      { integr-decl, author-sign }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2570,15 +2563,12 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_cover_ii:
   {
-    \begin { titlepage }
-      \thispagestyle{ empty }
-      \tl_set:Nn \thepage { A }
-      \@@_use_element:nn { ii / cover }
-        {
-          secret-code, school-image, thesis-type-name,
-          title, title-en, info, date
-        }
-    \end { titlepage }
+    \@@_clearpage:
+    \@@_use_element:nn { ii / cover }
+      {
+        secret-code, school-image, thesis-type-name,
+        title, title-en, info, date
+      }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2588,12 +2578,9 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_titlepage_ii:
   {
-    \begin { titlepage }
-      \thispagestyle{ empty }
-      \tl_set:Nn \thepage { B }
-      \@@_use_element:nn { ii / title-page }
-        { thesis-type-name, title, title-en, info, committee, date }
-    \end { titlepage }
+    \@@_clearpage:
+    \@@_use_element:nn { ii / title-page }
+      { thesis-type-name, title, title-en, info, committee, date }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2603,16 +2590,14 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_declaration_ii:
   {
-    \begin { titlepage }
-      \@@_chapter:n { \c_@@_name_orig_decl_tl }
-      \thispagestyle{ empty }
-      \tl_set:Nn \thepage { C }
-      \@@_use_element:nn { ii / declaration }
-        {
-          orig-decl, author-sign, auth-title,
-          auth-decl, author-supervisors-sign
-        }
-    \end { titlepage }
+    \@@_clearpage:
+    \@@_chapter:n { \c_@@_name_orig_decl_tl }
+    \thispagestyle { empty }
+    \@@_use_element:nn { ii / declaration }
+      {
+        orig-decl, author-sign, auth-title,
+        auth-decl, author-supervisors-sign
+      }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -2628,24 +2613,36 @@ To produce the documentation run the original source files ending with
 %
 % \begin{macro}{\maketitle}
 % 封装制作封面和扉页的用户命令，可选参数：cover, titlepage, declaration。
-% 在草稿模式下，封面绘制将被禁用，有助于提升编译速度。
 %    \begin{macrocode}
 \RenewDocumentCommand \maketitle { o }
   {
+%    \end{macrocode}
+% 在草稿模式下，封面绘制将被禁用，有助于提升编译速度。
+%    \begin{macrocode}
     \bool_if:NF \g_@@_opt_draft_bool
       {
         \tl_set:Nn \l_@@_tmpa_tl
           { \int_to_roman:n { \g_@@_info_type_int } }
-        \tl_if_novalue:nTF { #1 }
-          {
-            \clist_map_inline:nn
-              { cover, titlepage, declaration }
-              { \use:c { @@_ ##1 _ \l@@_tmpa_tl : } }
-          }
-          {
-            \clist_map_inline:nn { #1 }
-              { \use:c { @@_ ##1 _ \l@@_tmpa_tl : } }
-          }
+        \begin { titlepage }
+%    \end{macrocode}
+%
+% \changes{v0.2.0}{2025/06/17}{修复封面页码错误。}
+%
+% 封面页码使用大写英文字母。
+%    \begin{macrocode}
+          \pagestyle { empty }
+          \pagenumbering { Alph }
+          \tl_if_novalue:nTF { #1 }
+            {
+              \clist_map_inline:nn
+                { cover, titlepage, declaration }
+                { \use:c { @@_ ##1 _ \l@@_tmpa_tl : } }
+            }
+            {
+              \clist_map_inline:nn { #1 }
+                { \use:c { @@_ ##1 _ \l@@_tmpa_tl : } }
+            }
+        \end { titlepage }
       }
   }
 %    \end{macrocode}
