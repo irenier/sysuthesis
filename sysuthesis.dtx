@@ -24,64 +24,6 @@
 %                             and README.md.
 %
 %<*internal>
-\iffalse
-%</internal>
-%
-%<*readme>
-The `sysuthesis` class
-=====================
-
-The `sysuthesis` class is intended for typesetting Sun Yat-sen University
-dissertations with LaTeX, providing support for bachelor, master,
-doctoral thesis. Compilation of this class requires
-either `xelatex` or `lualatex` engine.
-
-Usage
------
-
-A minimal example of this document class should look like
-
-```tex
-\documentclass{sysuthesis}
-\begin{document}
-\maketitle
-\frontmatter
-\begin{abstract}
-  中文摘要。
-\end{abstract}
-\begin{abstract*}
-  abstract.
-\end{abstract*}
-\tableofcontents
-\mainmatter
-\chapter{欢迎}
-欢迎使用 \LaTeX{}！
-\appendix
-\end{document}
-```
-
-Contributing
-------------
-
-[Issues](https://github.com/irenier/sysuthesis/issues) and
-[pull requests](https://github.com/irenier/sysuthesis/pulls)
-are always welcome.
-
-License
--------
-
-This work may be distributed and/or modified under the conditions of
-the [LaTeX Project Public License](http://www.latex-project.org/lppl.txt),
-either version 1.3c of this license or (at your option) any later
-version.
-
------
-
-Copyright (C) 2024 - 2025 by Renier Tan <irantan@163.com>.
-%</readme>
-%
-%<*internal>
-\fi
 \begingroup
   \def\NameOfLaTeXe{LaTeX2e}
 \expandafter\endgroup\ifx\NameOfLaTeXe\fmtname\else
@@ -118,9 +60,6 @@ To produce the documentation run the original source files ending with
   \usedir{source/latex/sysuthesis}
     \file{\jobname.ins}            {\from{\jobname.dtx}{install}}
 %</internal>
-  \usedir{doc/latex/sysuthesis}
-  \nopreamble\nopostamble
-    \file{README.md}               {\from{\jobname.dtx}{readme}}
 }
 
 \obeyspaces
@@ -150,40 +89,39 @@ To produce the documentation run the original source files ending with
 %</internal>
 %
 %<class|visual>\NeedsTeXFormat{LaTeX2e}
-%<*!(driver|install|readme)>
+%<*!(driver|install)>
 %<!driver>  \GetIdInfo $Id: sysuthesis.dtx 0.1.0 2025-04-30 12:00:00 +0800 Renier Tan <irantan@163.com> $
 %<class>  {Thesis template for Sun Yat-sen University}
 %<class>\ProvidesExplClass{sysuthesis}
 %<visual>  {Sun Yat-sen University's visual elements}
 %<visual>\ProvidesExplPackage{sysuvisual}
 %<!driver>  {\ExplFileDate}{\ExplFileVersion}{\ExplFileDescription}
-%</!(driver|install|readme)>
+%</!(driver|install)>
 %
 %<*driver>
+\PassOptionsToPackage{svgnames}{xcolor}
+\PassOptionsToPackage{olddefault}{fontsetup}
 \documentclass{l3doc}
-\usepackage
-  [
+\usepackage[
     scheme=chinese,
     fontset=fandol,
     linespread=1.2
-  ]
-  {ctex}
-\usepackage[svgnames]{xcolor}
-\usepackage
-  {
-    libertinus,
+]{ctex}
+\usepackage{
+    fontsetup,
+    amsmath,
     siunitx,
     tabularray,
     hvlogos,
     listings,
-    bookmark,
     gbt7714,
+    xcolor,
     hyperref
-  }
+}
 \UseTblrLibrary{booktabs}
 \bibliographystyle{gbt7714-numerical}
-\def\tableautorefname{表~}
-\def\figureautorefname{图~}
+\def\tableautorefname{表}
+\def\figureautorefname{图}
 \lstnewenvironment{latexexample}{
   \lstset{
     basicstyle=\ttfamily\small,
@@ -202,7 +140,7 @@ To produce the documentation run the original source files ending with
 }{}
 \ExplSyntaxOn
 \cs_new:Nn \__syntax_bar: { \textup { \textbar } }
-\cs_new:Npn \__syntax_opt:n #1 { \textit { #1 } }
+\cs_new:Npn \__syntax_opt:n #1 { \textsl { #1 } }
 \cs_new:Npn \__syntax_def:n #1 { \textbf { \textup { #1 } } }
 \cs_new:Npn \__syntax_opt_aux:n #1>
   { \__syntax_opt:n { \ensuremath { \langle } #1 \ensuremath { \rangle } } }
@@ -220,7 +158,6 @@ To produce the documentation run the original source files ending with
     \char_set_active_eq:NN \( \__syntax_def_aux:n
   }
 \ExplSyntaxOff
-\makeatother
 \begin{document}
   \RecordChanges
   \DocInput{sysuthesis.dtx}
@@ -233,7 +170,7 @@ To produce the documentation run the original source files ending with
 %
 % \title{\heiti 中山大学学位论文模板}
 % \author{Renier Tan}
-% \date{2025/04/30\quad v0.1.0}
+% \date{2025/06/17\quad v0.1.1}
 %
 % \changes{v0.1.0}{2025/04/30}{进行模板编写。}
 %
@@ -243,15 +180,14 @@ To produce the documentation run the original source files ending with
 %
 % \section{介绍}
 %
-% \subsection{模版介绍}
+% \subsection{模板介绍}
 %
-% \cls{sysuthesis}，即中山大学学位论文模版，是用于排版中山大学学生学位论文需求的 \LaTeX 模版。
-% 其中，本科生模版格式依据《中山大学本科生毕业论文（设计）写作与印制规范》，
-% 研究生模版格式依据《中山大学研究生学位论文格式要求》。
+% \cls{sysuthesis} 是中山大学学位论文 \LaTeX 模板，用于排版本科生、研究生学位论文。
+% 格式分别遵循《中山大学本科生毕业论文（设计）写作与印制规范》和《中山大学研究生学位论文格式要求》。
 %
-% \subsection{历史模版}
+% \subsection{历史模板}
 %
-% 在本模板编写之初，能找到的论文模板有：
+% 编写之初，可供参考的校内 \LaTeX{} 论文模板有：
 % \begin{itemize}
 %   \item 黄俊杰和陈冠英的 sysuthesis \cite{sysugitlab2021}
 %   \item 中山大学超算队的 sysu-thesis \cite{SYSUSCC2025}
@@ -259,24 +195,17 @@ To produce the documentation run the original source files ending with
 %   \item \href{https://github.com/DapengFeng}{@DapengFeng} 的 sysuthesis \cite{DapengFeng2025}
 %   \item \href{https://github.com/yanghw8}{@yanghw8} 的 sysuthesis-unofficial \cite{Yang2025}
 % \end{itemize}
-% 鉴于一些模板年久失修，另一些模板只针对本科生或研究生设计，所以我参考了以上的模板，
-% 以及 \cls{fduthesis}\cite{Zeng2025} 和 \cls{njuthesis}\cite{njulug2025} 等优秀项目，
-% 利用 \LaTeX3 语法，构建了这一全新的模板，力求实现简洁性和易用性。
+% 鉴于上述模板或年久失修，或仅针对特定学位设计，本项目在参考其实现以及 \cls{fduthesis}\cite{Zeng2025}、\cls{njuthesis}\cite{njulug2025} 等优秀模板的基础上，利用 \LaTeX3 语法重构，旨在提供一个统一、简洁、易用的解决方案。
 %
 % \subsection{快速上手}
 %
-% 如需要了解 \LaTeX 排版的基本知识，请阅读 \textit{lshort-zh-cn}\cite{Oetiker2024} 或者 《\LaTeX 入门》\cite{刘2013}。
+% 若需了解 \LaTeX{} 排版基础，请阅读 \textit{lshort-zh-cn}\cite{Oetiker2024} 或《\LaTeX{} 入门》\cite{刘2013}。
 %
 % \subsection{关于本说明手册}
 %
-% 本模板通过 \textsc{DocStrip} 进行维护，\file{sysuthesis.dtx} 包含
-% \cls{sysuthesis} 文档类的所有信息。前半部分为模板说明，即各种常用命令与必要的使
-% 用方法；后半部分为代码实现，为带有详细注释的 \TeX{} 源代码。
+% 本模板使用 \textsc{DocStrip} 进行维护，源文件 \file{sysuthesis.dtx} 包含了模板的全部信息。其前半部分为使用说明，后半部分为带有详细注释的代码实现。
 %
-% 本文档采用不同字体表示不同内容。无衬线字体表示宏包名称，如 \pkg{xeCJK} 宏包、\cls{sysuthesis}
-% 文档类等；等宽字体表示代码或文件名，如 \cs{sysusetup} 命令、\env{abstract} 环境、\TeX{} 文档
-% \file{thesis.tex} 等；带有尖括号的楷体（或西文斜体）表示命令参数，如 \meta{模板选项}、
-% \meta{English title} 等。在使用时，参数两侧的尖括号不必输入。
+% 本手册采用不同字体区分不同内容：无衬线字体表示宏包（如 \pkg{xeCJK}）和文档类（如 \cls{sysuthesis}）；等宽字体表示代码或文件（如 \tn{sysusetup} 命令、\env{abstract} 环境、\file{thesis.tex} 文件）；楷体（或西文斜体）表示命令参数（如 \meta{模板选项}、\meta{English title}）。使用时无需输入参数两侧的尖括号。
 %
 % \subsection{文件构成}
 %
@@ -285,23 +214,23 @@ To produce the documentation run the original source files ending with
 % \begin{table}
 %   \centering
 %   \begin{talltblr}[
-%       caption = {\cls{sysuthesis}文件构成},
+%       caption = {\cls{sysuthesis} 文件构成},
 %       label = {tab-sysuthesis-files},
-%       note{a} = {仅供开发使用，并不会在发布版本中出现。}
+%       note{a} = {仅供开发使用，不会出现在发布版本中。}
 %     ] { row{1} = {font=\bfseries}, colspec = {ll} }
 %     \toprule
-%     名称                                 & 说明                          \\
+%     名称                                & 说明             \\
 %     \midrule
-%     \file{LICENSE}                      & 许可证                        \\
-%     \file{sysuthesis.cls}               & 模板文档类                     \\
-%     \file{sysuthesis.dtx}\TblrNote{a}   & 文档类源代码                   \\
-%     \file{sysuthesis.ins}\TblrNote{a}   & 文档类安装脚本                 \\
-%     \file{sysuthesis.pdf}               & 用户手册（本文档）              \\
-%     \file{sysuthesis-sample.bib}        & 示例参考文献列表                \\
-%     \file{sysuthesis-sample.tex}        & 示例文档，不妨以此为基础撰写论文   \\
-%     \file{sysu-emblem.pdf}              & 校徽图片                      \\
-%     \file{sysu-name-cn.pdf}             & 中文校名图片                   \\
-%     \file{README.md}                    & 自述文件                      \\
+%     \file{LICENSE}                    & 许可证文件          \\
+%     \file{sysuthesis.cls}             & 文档类文件          \\
+%     \file{sysuthesis.dtx}\TblrNote{a} & 模板源代码          \\
+%     \file{sysuthesis.ins}\TblrNote{a} & 模板安装脚本         \\
+%     \file{sysuthesis.pdf}             & 用户手册（即本文档）     \\
+%     \file{sysuthesis-sample.bib}      & 参考文献示例数据库      \\
+%     \file{sysuthesis-sample.tex}      & 示例文档，可作撰写论文的基础 \\
+%     \file{sysu-emblem.pdf}            & 校徽矢量图          \\
+%     \file{sysu-name-cn.pdf}           & 中文校名矢量图        \\
+%     \file{README.md}                  & 项目自述文件         \\
 %     \bottomrule
 %   \end{talltblr}
 % \end{table}
@@ -310,41 +239,32 @@ To produce the documentation run the original source files ending with
 %
 % \subsubsection{CTAN}
 %
-% 通常情况下，您不需要额外安装此模板，因为其已经发布在 CTAN。若没有安装，
-% 请使用宏包管理器安装 \cls{sysuthesis}。例如在 \TeXLive 中，执行（可能需要管理员权限）：
+% 本模板已发布至 CTAN，通常随 \TeX{} 发行版自动安装，无需手动操作。若未安装，请使用发行版的宏包管理器安装 \cls{sysuthesis}。例如，在 \TeX{} Live 中执行（可能需要管理员权限）：
 % \begin{bashexample}
 %   tlmgr install sysuthesis
 % \end{bashexample}
 %
 % \subsubsection{GitHub 仓库}
 %
-% 最新开发进度会提交在本项目的
-% \href{https://github.com/irenier/sysuthesis}{GitHub 仓库}。
-% 克隆仓库代码后，执行如下命令：
+% 若需使用最新开发版，可从本项目的 \href{https://github.com/irenier/sysuthesis}{GitHub 仓库} 克隆。克隆后，在项目根目录执行以下命令完成安装：
 % \begin{bashexample}
 %   l3build install
 % \end{bashexample}
 %
 % \subsubsection{GitHub Releases}
 %
-% 本模板不定期打包正式发行版，发布在
-% \href{https://github.com/irenier/sysuthesis/releases/latest}{Github Releases 页面}。
-% 可供下载的文件包括下列三种：
+% 模板不定期打包正式发行版，发布于 \href{https://github.com/irenier/sysuthesis/releases/latest}{GitHub Releases}。可供下载的文件主要有：
 % \begin{description}
-%   \item[\file{sysuthesis-v*.pdf}] 模板说明文档（本文档）。
-%   \item[\file{sysuthesis-user-v*.zip}] 交付给用户的完整模板包，
-%        包括格式文件和范本文档，可在解压后用于本地编译，
-%        也可直接上传至在线编译网站。
-%   \item[\file{sysuthesis-ctan-v*.zip}] 交付给 CTAN 的源代码包，
-%        普通用户请忽略。
+%   \item[\file{sysuthesis-v*.pdf}] 模板说明文档（即本文档）。
+%   \item[\file{sysuthesis-user-v*.zip}] 用户模板包，包含编译论文所需的所有文件。解压后可用于本地编译，或直接上传至在线平台。
+%   \item[\file{sysuthesis-ctan-v*.zip}] CTAN 发布包，普通用户无需关心。
 % \end{description}
 %
 % \subsection{编译}
 %
 % \subsubsection{四步编译}
 %
-% 假设主文档为 \file{thesis.tex}。
-% 使用 \XeLaTeX{} 编译论文，请在命令行中执行
+% 假设主文档为 \file{thesis.tex}，使用 \XeLaTeX{} 编译时，请在命令行中依次执行：
 % \begin{bashexample}
 %   xelatex thesis
 %   bibtex thesis
@@ -352,7 +272,7 @@ To produce the documentation run the original source files ending with
 %   xelatex thesis
 % \end{bashexample}
 %
-% 使用 \LuaLaTeX{} 编译论文，请在命令行中执行
+% 使用 \LuaLaTeX{} 编译时，请在命令行中依次执行：
 % \begin{bashexample}
 %   lualatex thesis
 %   bibtex thesis
@@ -362,7 +282,7 @@ To produce the documentation run the original source files ending with
 %
 % \subsubsection{\pkg{latexmk} 编译}
 %
-% 该命令的使用方法为：
+% 推荐使用 \pkg{latexmk} 实现自动编译，命令如下：
 % \begin{bashexample}
 %   latexmk -xelatex thesis
 % \end{bashexample}
@@ -373,16 +293,13 @@ To produce the documentation run the original source files ending with
 %
 % \subsubsection{在线编译}
 %
-% \cls{sysuthesis} 也提供了
-% \href{https://www.overleaf.com/latex/templates/sysuthesis/sghrrhbdvjbd}{Overleaf}
-% 和 \href{https://www.texpage.com/zh/template/88eb11aa-bd5c-4b6b-b654-86517c5148a1/}{TeXPage} 的版本，
-% 打开链接并登录后即可直接编辑。
+% 本模板已上传 \href{https://www.overleaf.com/latex/templates/sysuthesis/sghrrhbdvjbd}{Overleaf} 和 \href{https://www.texpage.com/zh/template/88eb11aa-bd5c-4b6b-b654-86517c5148a1/}{TeXPage} 平台，打开链接即可在线使用。
 %
 % \section{使用说明}
 %
 % \subsection{基本用法}
 %
-% 下面是一份使用该模板的简单文档。
+% 以下是一个使用本模板的最小示例：
 %
 % \begin{latexexample}
 %   \documentclass{sysuthesis}
@@ -404,22 +321,18 @@ To produce the documentation run the original source files ending with
 %   \end{document}
 % \end{latexexample}
 %
-% 若编译上述文档，您将会得到一个 13 页的 PDF 文档，
-% 这是一份空白的本科生论文，下面将介绍填写具体内容的方法。
+% 编译上述代码将生成一份空白的本科生论文框架。下文将介绍如何填充具体内容。
 %
 % \subsection{模板选项}
 %
-% \textbf{模板选项位于 \tn{documentclass} 后的方括号内}，用于指定模板的行为。
-% 下文中尖括号内列出了若干个允许的选项，其中加粗的为默认选项（缺省值）。
+% 模板选项在 \tn{documentclass} 的可选参数中指定，位于 \tn{documentclass} 后的方括号内，用于控制全局样式。下文列出了可用选项，其中加粗的为默认值。
 %
 % \subsubsection{学位信息}
 % \begin{function}[added=2025-04-30]{type}
 %   \begin{syntax}
 %     type = <(bachelor)|master|doctor>
 %   \end{syntax}
-% 选择毕业论文模板类型，这将决定模板整体的外观。可选值分别为
-% 学士（本科生）、硕士研究生、博士研究生，默认为学士。
-% 此选项还可以位于 \tn{sysusetup[option]} 后的花括号内。
+% 设置学位论文类型，决定模板整体格式。可选值为学士 (\texttt{bachelor})、硕士 (\texttt{master}) 和博士 (\texttt{doctor})。此选项也可在 \tn{sysusetup}|[option]| 中设置。
 % \end{function}
 %
 % \subsubsection{页面模式}
@@ -428,30 +341,25 @@ To produce the documentation run the original source files ending with
 %   \begin{syntax}
 %     <(oneside)|twoside>
 %   \end{syntax}
-% 开启单面或双面模式，默认为双面模式。
+% 指定单面或双面模式。
 % \end{function}
 %
-% 本选项继承自 \LaTeXe \cls{book} 标准文档类。
-% 单双面选项为全局选项，开启后会改变页码编号，以及部分宏包的行为。
-% 在单面模式下，页面是连续的，不会产生空白页；在双面模式下，
-% 新的一章以及封面、摘要、参考文献表等特殊页面都会从奇数页开始，
-% 在奇数页结束的内容后会补上一页空页，更适合印刷输出。
+% 本选项为全局选项，继承自 \cls{book} 类。双面模式下，新章节（如 \tn{chapter}）和特殊页面将始于奇数页，必要时会自动添加空白页，适合打印。单面模式则无此行为。
 %
 % \begin{function}[added=2025-04-30]{draft}
 %   \begin{syntax}
 %     <draft>
 %   \end{syntax}
-% 是否开启草稿模式，默认关闭。
+% 切换草稿模式，默认关闭。
 % \end{function}
 %
-% 本选项继承自 \LaTeXe \cls{book} 标准文档类。
-% 草稿模式为全局选项，启用这一选项将产生以下整体影响：
+% 本选项为全局选项，继承自 \cls{book} 类。启用后效果如下：
 % \begin{itemize}
-%   \item 禁用封面的绘制
-%   \item 显示页面文字范围边框以及页眉页脚线
-%   \item 在超出宽度的内容右侧添加黑色方块标记
-%   \item 不再渲染图片，使用含有图片路径的空白盒子占位
-%   \item 不再渲染超链接
+%   \item 不生成封面
+%   \item 显示版心、页眉页脚边框
+%   \item 在过宽行的右侧添加黑色方块标记
+%   \item 图片仅显示为含路径的占位框
+%   \item 不生成超链接
 % \end{itemize}
 %
 % \subsubsection{配置文件}
@@ -460,7 +368,7 @@ To produce the documentation run the original source files ending with
 %   \begin{syntax}
 %     config = \Arg{文件}
 %   \end{syntax}
-% 配置文件路径。本选项可用于载入额外的用户配置文件。该文件支持 \LaTeX3 语法。
+% 指定并加载额外的用户配置文件。该文件可使用 \LaTeX3 语法。
 % \end{function}
 %
 % \subsection{设置接口}
@@ -469,11 +377,10 @@ To produce the documentation run the original source files ending with
 %   \begin{syntax}
 %     \tn{sysusetup}\oarg{键路径}\marg{设置项}
 %   \end{syntax}
-% \cls{sysuthesis} 文档类的通用设置命令，提供自定义接口。
+% 本模板的通用设置命令，用于各类自定义设置。
 % \end{function}
 %
-% 在键路径留空时，为最基础的用法。此时设置项的参数是一个使用
-% \emph{英文半角逗号}分隔的键值列表，通常形如 \meta{key}|=|\meta{value}。
+% 当可选参数 \oarg{键路径} 留空时，在必选参数 \marg{设置项} 中以“键 = 值”的形式提供一组或多组设置，并以英文逗号分隔。
 %
 % \begin{latexexample}
 %   \sysusetup
@@ -496,7 +403,7 @@ To produce the documentation run the original source files ending with
 %     }
 % \end{latexexample}
 %
-% 在键路径填入模块（类）时，只能设定当前模块下的选项。此时参数是键值列表。
+% 当 \oarg{键路径} 为模块名时，可在 \marg{设置项} 中设置该模块下的多个选项。
 %
 % \begin{latexexample}
 %   \sysusetup[info]
@@ -506,7 +413,7 @@ To produce the documentation run the original source files ending with
 %     }
 % \end{latexexample}
 %
-% 在键路径填入具体选项名称时，只能设定该选项的值。
+% 当 \oarg{键路径} 为具体的选项路径时，在 \marg{设置项} 中直接提供其值。
 %
 % \begin{latexexample}
 %   \sysusetup[info/title]{标题}
@@ -517,24 +424,24 @@ To produce the documentation run the original source files ending with
 %
 % \subsection{中文字体}
 %
-% 学校论文格式要求英文字体用 Times New Roman，所以只有中文字体和数学字体可以设置。
+% 因学校规定英文字体为 Times New Roman，故仅提供中文字体和数学字体的设置选项。
 %
 % \begin{function}[added=2025-04-30]{style/cjk-font}
 %   \begin{syntax}
 %     cjk-font = <adobe|(fandol)|founder|mac|macnew|macold|ubuntu|windows>
 %   \end{syntax}
-% 指定中文字库，默认使用 fandol。推荐使用 windows, founder 或 ubuntu。
+% 指定中文字体族，默认为 |fandol|。推荐使用 |windows|, |founder| 或 |ubuntu|。
 % \end{function}
 %
 % \begin{description}
-%   \item[adobe] 使用 Adobe 公司的四款中文字体。
-%   \item[fandol] 使用 Fandol 中文字体。
-%   \item[founder] 使用方正公司的中文字体。
-%   \item[mac] 使用 macOS 系统下的字体，根据版本分为 macnew 和 macold 两种。
-%   \item[macnew] 使用 El Capitan 或之后的多字重华文字体和苹方字体。
-%   \item[macold] 使用 Yosemite 或之前的华文字体。
-%   \item[ubuntu] 使用 Ubuntu 系统下的思源宋体、思源黑体和 \TeX 发行版自带的文鼎楷体。
-%   \item[windows] 使用 Windows 系统下的中易字体和微软雅黑字体。
+%   \item[adobe] 调用 Adobe 公司的四款中文字体。
+%   \item[fandol] 调用 Fandol 中文字体。
+%   \item[founder] 调用方正公司的中文字体。
+%   \item[mac] 调用 macOS 系统字体，根据版本分为 |macnew| 和 |macold|。
+%   \item[macnew] 调用 El Capitan 或更新版本的多字重华文和苹方字体。
+%   \item[macold] 调用 Yosemite 或更早版本的华文字体。
+%   \item[ubuntu] 调用 Ubuntu 系统下的思源宋体、思源黑体和文鼎楷体。
+%   \item[windows] 调用 Windows 系统下的中易字体和微软雅黑字体。
 % \end{description}
 %
 % \subsection{数学字体}
@@ -544,7 +451,7 @@ To produce the documentation run the original source files ending with
 %     math-font = <asana|bonum|cambria|dejavu|fira|garamond|gfsneohellenic|ibmplex|
 %                 lete|libertinus|lm|luciole|pagella|schola|stix|stix2|termes|kp|newcm|(xits)>
 %   \end{syntax}
-% 指定数学字体，默认使用 xits。推荐使用 xits 或 newcm。
+% 指定数学字体，默认为 |xits|。推荐使用 xits 或 newcm。
 % \end{function}
 %
 % \subsection{封面图片}
@@ -553,9 +460,8 @@ To produce the documentation run the original source files ending with
 %   \begin{syntax}
 %     logo-path = \Arg{图片路径}
 %   \end{syntax}
-% 封面图片路径。本科生默认为 \file{sysu-emblem.pdf}，研究生默认为 \file{sysu-name-cn.pdf}。
-% 请将封面图片放置在与主文档同级的目录下，或放置在以下任意子目录中：
-% \file{figures}, \file{images}, \file{logos}, \file{pictures} 文件夹下。
+% 设置封面图片路径。本科生默认为 \file{sysu-emblem.pdf}，研究生默认为 \file{sysu-name-cn.pdf}。
+% 图片文件应置于主文档同级目录，或 \file{figures}, \file{images}, \file{logos}, \file{pictures} 子目录中。
 % \end{function}
 %
 % \subsection{\pkg{unicode-math} 选项设置}
@@ -568,7 +474,7 @@ To produce the documentation run the original source files ending with
 %     nabla      = <(upright)|italic>
 %     partial    = <upright|(italic)>
 %   \end{syntax}
-% \pkg{unicode-math} 选项设置，具体的参数含义请参考其手册\cite{Robertson2023}。
+% 配置 \pkg{unicode-math} 宏包选项，具体含义请参考其官方手册\cite{Robertson2023}。
 % \end{function}
 %
 % \section{设置个人信息}
@@ -590,23 +496,23 @@ To produce the documentation run the original source files ending with
 %       major        = {数学与应用数学},
 %       major*       = {Mathematics and Applied Mathematics},
 %       supervisors  = {XXX~教授, XXX~教授},
-%       supervisors* = {Professor~XXX, Professor~XXX},
-%       date         = {2025/05/31},  % 默认为今日
-%       secret-level = {公开},  % 研究生模版参数
-%       thesis-code  = {00000000}  % 研究生模版参数
+%       supervisors* = {Prof.~XXX, Prof.~XXX},
+%       date         = {2025/05/31},  % 默认为编译当天
+%       secret-level = {公开},  % 仅研究生
+%       thesis-code  = {00000000}  % 仅研究生
 %     }
 % \end{latexexample}
 %
 % \subsection{具体设置}
 %
-% |info| 类用于设置个人信息，其中带星号的为相应的英文字段。
+% |info| 类选项用于设置论文的元信息（如标题、作者等）。带星号的键名为对应的英文信息。
 %
 % \begin{function}[added=2025-04-30]{info/title, info/title*}
 %   \begin{syntax}
 %     title  = \Arg{标题}
 %     title* = \Arg{英文标题}
 %   \end{syntax}
-% 题目。若标题有两行或以上，请使用换行控制符 |\\| 手动换行。
+% 论文题目。可使用 |\\| 换行。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{info/author, info/author*}
@@ -614,14 +520,14 @@ To produce the documentation run the original source files ending with
 %     author  = \Arg{姓名}
 %     author* = \Arg{英文姓名}
 %   \end{syntax}
-% 姓名。
+% 作者姓名。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{info/date}
 %   \begin{syntax}
 %     date = \Arg{yyyy/mm/dd}
 %   \end{syntax}
-% 日期。使用 |yyyy/mm/dd| 格式，例如 |2025/04/30|。
+% 封面日期，格式为 |yyyy/mm/dd|。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{info/department, info/department*}
@@ -629,7 +535,7 @@ To produce the documentation run the original source files ending with
 %     department  = \Arg{学院}
 %     department* = \Arg{学院英文}
 %   \end{syntax}
-% 学院。
+% 作者所属院系。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{info/major, info/major*}
@@ -637,7 +543,7 @@ To produce the documentation run the original source files ending with
 %     major  = \Arg{专业}
 %     major* = \Arg{专业英文}
 %   \end{syntax}
-% 专业。
+% 作者专业。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{info/supervisors, info/supervisors*}
@@ -645,7 +551,7 @@ To produce the documentation run the original source files ending with
 %     supervisors  = \Arg{导师}
 %     supervisors* = \Arg{导师英文}
 %   \end{syntax}
-% 导师。若有多个导师，请用英文逗号隔开。
+% 指导教师。多位教师请用英文逗号分隔。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{info/keywords, info/keywords*}
@@ -653,28 +559,28 @@ To produce the documentation run the original source files ending with
 %     keywords  = \Arg{关键词}
 %     keywords* = \Arg{关键词英文}
 %   \end{syntax}
-% 关键词。请用英文逗号隔开。
+% 摘要关键词。多个关键词请用英文逗号分隔。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{info/student-id}
 %   \begin{syntax}
 %     student-id = \Arg{学号}
 %   \end{syntax}
-% 学号。
+% 作者学号。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{info/secret-level}
 %   \begin{syntax}
 %     secret-level = \Arg{密级}
 %   \end{syntax}
-% 密级。研究生字段。
+% 论文密级（仅研究生）。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{info/thesis-code}
 %   \begin{syntax}
 %     thesis-code = \Arg{论文编号}
 %   \end{syntax}
-% 论文编号。研究生字段。
+% 论文编号（仅研究生）。
 % \end{function}
 %
 % \section{特殊页面}
@@ -685,16 +591,16 @@ To produce the documentation run the original source files ending with
 %   \begin{syntax}
 %     \tn{maketitle}\oarg{页面}
 %   \end{syntax}
-% 生成封面、扉页、声明页。若不填写参数，则默认生成封面、扉页以及声明页；
-% 可选参数为 |cover, titlepage, declaration|。
-% 例如可使用命令 \tn{maketitle[cover, declaration]}。
+% 生成封面、扉页和声明页。默认生成全部页面，也可在可选参数中指定生成特定页面，
+% 可选值为 |cover|、|titlepage|、|declaration|。
+% 例如可使用命令 \tn{maketitle}|[cover, declaration]|。
 % \end{function}
 %
 % \subsection{摘要页}
 %
 % \DescribeEnv{abstract}
 % \DescribeEnv{abstract*}
-% 摘要。带星号的环境会生成英文摘要。
+% 用于排版中、英文摘要。星号版环境 \env{abstract*} 用于排版英文摘要。
 %
 % \begin{latexexample}
 %   \begin{abstract}
@@ -705,16 +611,16 @@ To produce the documentation run the original source files ending with
 %   \end{abstract*}
 % \end{latexexample}
 %
-% \subsubsection{目录页}
+% \subsection{目录页}
 %
 % \begin{function}[added=2025-04-30]{\tableofcontents, \listoffigures, \listoftables}
-% 分别生成目录、图片目录和表格目录。
+% 分别生成正文目录、插图目录和表格目录。
 % \end{function}
 %
 % \subsection{致谢页}
 %
 % \DescribeEnv{acknowledgements}
-% 致谢。
+% 用于排版致谢内容。
 %
 % \begin{latexexample}
 %   \begin{acknowledgements}
@@ -724,14 +630,13 @@ To produce the documentation run the original source files ending with
 %
 % \section{参考文献}
 %
-% 可以选择基于 \BibTeX 的宏包\pkg{gbt7714}\cite{Lee2025}
-% 或者基于 \BibLaTeX 的宏包\pkg{biblatex-gb7714-2015}\cite{胡2025}。
+% 参考文献排版可选用基于 \BibTeX{} 的 \pkg{gbt7714} 宏包\cite{Lee2025}，或基于 \BibLaTeX{} 的 \pkg{biblatex-gb7714-2015} 宏包\cite{胡2025}。
 %
 % \begin{function}[added=2025-04-30]{bib/backend}
 %   \begin{syntax}
 %     backend = <bibtex|biblatex>
 %   \end{syntax}
-% 排版参考文献工具。
+% 选择参考文献处理后端。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{bib/style}
@@ -739,27 +644,27 @@ To produce the documentation run the original source files ending with
 %     style = <gbt7714-numerical|gbt7714-author-year>   使用 bibtex
 %     style = <gb7714-2015|gb7714-2015ay>               使用 biblatex
 %   \end{syntax}
-% 参考文献样式。
+% 指定参考文献著录格式。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{bib/option}
 %   \begin{syntax}
 %     option = \Arg{键值对}
 %   \end{syntax}
-% \BibLaTeX 宏包的额外选项。例如 |option = {url = false, doi = false}|，更多选项请参阅 \pkg{biblatex-gb7714-2015} 手册\cite{胡2025} 以及 \pkg{biblatex} 手册\cite{Kime2024}。
+% 设置 \pkg{biblatex} 宏包的额外选项。更多选项请参阅 \pkg{biblatex-gb7714-2015}\cite{胡2025} 及 \pkg{biblatex}\cite{Kime2024} 的宏包手册。例如 |option = {url = false, doi = false}|。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{bib/resource}
 %   \begin{syntax}
 %     resource = \Arg{文件名}
 %   \end{syntax}
-% 参考文献文件。若使用 \BibTeX，则不需要添加文件后缀，例如 |resource = {ref1, ref2}|；
-% 若使用 \BibLaTeX，则需要添加文件后缀，例如 |resource = {ref1.bib, ref2.bib}|。
+% 指定参考文献数据库文件。使用 \BibTeX{} 后端时无需写后缀名，例如 |resource = {ref1, ref2}|；
+% 使用 \BibLaTeX{} 后端时需要写后缀名，例如 |resource = {ref1.bib, ref2.bib}|。
 % \end{function}
 %
 % \subsection{示例}
 %
-% 若使用 \BibTeX，使用示例如下：
+% 使用 \BibTeX{} 的示例如下：
 % \begin{latexexample}
 %   \sysusetup[bib]
 %     {
@@ -769,7 +674,7 @@ To produce the documentation run the original source files ending with
 %     }
 % \end{latexexample}
 %
-% 若使用 \BibLaTeX，使用示例如下：
+% 使用 \BibLaTeX{} 的示例如下：
 % \begin{latexexample}
 %   \sysusetup[bib]
 %     {
@@ -781,13 +686,10 @@ To produce the documentation run the original source files ending with
 %
 % \section{定理环境}
 %
-% 该模板使用 \pkg{thmtools} 或者 \pkg{keytheorems} 配置定理环境，请自行在导言区引入其一。
+% 本模板兼容 \pkg{thmtools} 和 \pkg{keytheorems} 宏包，用户可在导言区自行引入其一以使用定理类环境。
 %
-% 可以使用的定理环境有 \env{theorem}, \env{definition}, \env{example}, \env{remark},
-% \env{lemma}, \env{proposition}, \env{corollary}, \env{assumption}, \env{proof}。
-%
-% 其中 \env{theorem}, \env{lemma}, \env{proposition}, \env{corollary},
-% \env{assumption} 共同编号；\env{definition}, \env{example}, \env{remark} 独立编号。
+% 模板预定义了 \env{theorem}, \env{definition}, \env{example}, \env{remark}, \env{lemma}, \env{proposition}, \env{corollary}, \env{assumption}, \env{proof} 常用定理类环境。
+% 其中，定理、引理、命题、推论、假设共享一套计数器；定义、示例、注记各自独立编号。
 %
 % \section{视觉形象元素}
 %
@@ -799,11 +701,11 @@ To produce the documentation run the original source files ending with
 %   \end{syntax}
 % 绘制视觉形象元素。
 % \begin{arguments}
-%   \item 元素 (elements): badge, name-cn, name-en, name, badge-name
-%   \item 布局 (layout): \textbf{landscape}, portrait, landscape-lr, landscape-rl
-%   \item 尺寸 (scale): \textbf{3cm}, 12pt, \dots
-%   \item 颜色 (color): \textbf{sysugreen}, sysured, anngreen, annred, anngold
-%   \item 其他参数，此参数可以省略
+%   \item 元素: badge, name-cn, name-en, name, badge-name
+%   \item 布局: \textbf{landscape}, portrait, landscape-lr, landscape-rl
+%   \item 尺寸: \textbf{3cm}, 12pt, \dots
+%   \item 颜色: \textbf{sysugreen}, sysured, anngreen, annred, anngold
+%   \item 其他参数 (可选)
 % \end{arguments}
 % \end{function}
 %
@@ -2177,7 +2079,9 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 封面论文中文标题。!Todo:单行标题不显示。
+% \changes{v0.1.1}{2025/06/17}{修复单行标题不显示的问题。}
+% 
+% 封面论文中文标题。
 %    \begin{macrocode}
 \@@_define_element:nn { i / cover / title }
   {

@@ -9,7 +9,7 @@
 \sysusetup[style]
   {
     % cjk-font  = windows,
-    math-font = newcm
+    % math-font = newcm
   }
 \sysusetup[info]
   {
@@ -25,11 +25,13 @@
     major        = {数学与应用数学},
     major*       = {Mathematics and Applied Mathematics},
     supervisors  = {XXX~教授, XXX~教授},
-    supervisors* = {Professor~XXX, Professor~XXX},
-    % date         = {2025/04/30},  % 默认为今日
-    secret-level = {公开},  % 研究生模版参数
-    thesis-code  = {00000000}  % 研究生模版参数
+    supervisors* = {Prof.~XXX, Prof.~XXX},
+    date         = {2025/05/31},  % 默认为编译当天
+    secret-level = {公开},  % 仅研究生
+    thesis-code  = {00000000}  % 仅研究生
   }
+
+% 参考文献设置: 可选 BibTeX 或 BibLaTeX
 \sysusetup[bib]
   {
     backend  = bibtex,
@@ -43,16 +45,14 @@
 %     resource = sysuthesis-sample.bib
 %   }
 
-% 载入其他宏包
-% 数学定理
-\usepackage{thmtools}
-% \usepackage{keytheorems}
-% 图片并排
-\usepackage{subcaption}
-% 算法
-\usepackage[ruled]{algorithm2e}
-% 代码
-\usepackage{minted}
+% 载入其他常用宏包
+\usepackage{thmtools}       % 数学定理
+\usepackage{subcaption}     % 图片并排
+\usepackage{tabularray}     % 表格
+\UseTblrLibrary{booktabs}   % 三线表样式
+\usepackage{float}          % 浮动体
+\usepackage[ruled]{algorithm2e} % 算法
+\usepackage{minted}         % 代码
 
 \begin{document}
 
@@ -60,75 +60,99 @@
 \frontmatter
 
 \begin{abstract}
-  中文摘要 \cite{Knuth1984}
+  这里是中文摘要内容 \cite{Knuth1984}。
 \end{abstract}
 
 \begin{abstract*}
-  abstract \cite{Knuth1986}
+  Here is the English abstract content \cite{Knuth1986}。
 \end{abstract*}
 
 \tableofcontents
 
 \mainmatter
 
-\chapter{测试}
-\section{测试}
-\subsection{定理测试}
+\chapter{引言}
 
-测试。\footnote{测试。}
+本章主要介绍研究背景、意义以及论文的整体结构。
+
+\section{研究背景}
+
+此处陈述研究背景和现状。脚注是个好用的功能。\footnote{这是一个脚注示例。}
+
+\section{主要工作}
+
+本文的主要工作包括……。脚注可以多次使用。\footnote{这是另一个脚注示例。}
+
+\chapter{理论基础}
+
+本章主要介绍研究所需的理论基础，包括相关定义、定理和关键数学公式。
+
+\section{基本定义与定理}
+
+下面将介绍本文所依赖的一些基本定理和定义。
 
 \begin{lemma}[Fubini] \label{lemma-Fubini}
-  测试。
+  这里是 Fubini 引理的具体内容。
 \end{lemma}
 
 \begin{theorem}[Lebesgue] \label{thm-Lebesgue}
-  测试。
+  这里是 Lebesgue 定理的具体内容。
 \end{theorem}
 
 \begin{corollary}[Fourier] \label{cor-Fourier}
-  测试。
+  这里是 Fourier 推论的具体内容。
 \end{corollary}
 
 \begin{proposition}[Cantor] \label{prop-Cantor}
-  测试。
+  这里是 Cantor 命题的具体内容。
 \end{proposition}
 
 \begin{definition}[Riemann] \label{def-Riemann}
-  测试。
+  这里是 Riemann 定义的具体内容。
 \end{definition}
 
 \begin{example}[Gauss] \label{exp-Gauss}
-  测试。
+  这里是 Gauss 示例的具体内容。
 \end{example}
 
 \begin{remark}[Kolmogorov] \label{rmk-Kolmogorov}
-  测试。
+  这里是 Kolmogorov 评注的具体内容。
 \end{remark}
 
 \begin{proof}
-  测试。
+  这里是证明过程。
 \end{proof}
 
-\autoref{thm-Lebesgue}, \autoref{lemma-Fubini}, \autoref{cor-Fourier}, \autoref{prop-Cantor}, \autoref{def-Riemann}, \autoref{exp-Gauss}, \autoref{rmk-Kolmogorov} \footnote{测试。}
+通过 \verb|\autoref| 命令可以方便地引用这些环境，例如：\autoref{thm-Lebesgue}, \autoref{lemma-Fubini}, \autoref{cor-Fourier}, \autoref{prop-Cantor}, \autoref{def-Riemann}, \autoref{exp-Gauss}, \autoref{rmk-Kolmogorov}。
 
-\nameref{thm-Lebesgue}, \nameref{lemma-Fubini}, \nameref{cor-Fourier}, \nameref{prop-Cantor}, \nameref{def-Riemann}, \nameref{exp-Gauss}, \nameref{rmk-Kolmogorov}
+\section{关键数学公式}
 
-\newpage
+大写希腊字母默认为斜体，例如：
+\begin{equation*}
+  \Gamma \Delta \Theta \Lambda \Xi \Pi \Sigma \Upsilon \Phi \Psi \Omega.
+\end{equation*}
 
-\section{脚注测试}
+公式按章节独立编号，便于引用。
+\begin{equation} \label{eq-1}
+  \int_I \omega(x)\ dx = \upint_{a}^b f(x)\ dx - \lowint_a^b f(x)\ dx.
+\end{equation}
+引用上述公式：见\autoref{eq-1}。
 
-测试。 \footnote{测试。}
+\chapter{核心算法与实现}
 
-\chapter{测试}
-\section{算法测试}
+本章介绍本文提出的核心算法及其代码实现。
 
-\begin{algorithm}
-  \caption{算法示例}
+\section{算法描述}
+
+算法的具体流程如 \autoref{alg-algorithm} 所示。
+
+\begin{algorithm}[H]
+  \caption{算法流程示例}
   \label{alg-algorithm}
-  \KwIn{input data}
-  \KwOut{output data}
-  \tcc{a comment line in C-style}
-  \Repeat{$e<\tau$}{
+  \KwIn{输入数据}
+  \KwOut{输出结果}
+  \tcc{这是一个C语言风格的注释}
+  \Repeat{$e < \tau$}{
     $f_n\leftarrow Y_1$\;
     $f_{n+1}\leftarrow f_n\times f_{n-1}$\;
     $e\leftarrow \frac{f_n}{2}$\;
@@ -136,9 +160,9 @@
   \KwRet{$e$}
 \end{algorithm}
 
-\autoref{alg-algorithm}
+\section{代码实现示例}
 
-\section{代码测试}
+下面是使用 C 语言实现的 "hello, world" 程序片段。
 
 \begin{minted}[bgcolor=gray!5!white, autogobble]{c}
   int main() {
@@ -147,9 +171,76 @@
   }
 \end{minted}
 
-\appendix
+\chapter{实验结果与分析}
 
-\chapter{测试}
-\section{测试}
+本章通过图表展示实验结果，并进行分析。
+
+\section{插图示例}
+
+图 \ref{fig-1} 展示了并排插图的示例。
+
+\begin{figure}[H]
+  \centering
+  \begin{subfigure}{0.45\linewidth}
+    \includegraphics[width=\linewidth]{example-image-a}
+    \caption{子图 a}
+  \end{subfigure}
+  \hfil
+  \begin{subfigure}{0.45\linewidth}
+    \includegraphics[width=\linewidth]{example-image-b}
+    \caption{子图 b}
+  \end{subfigure}
+  \caption{并排图片示例}\label{fig-1}
+\end{figure}
+
+\section{表格示例}
+
+表格是展示结构化数据的有效方式。如\autoref{tab-1} 展示了一个标准的三线表。
+
+\begin{table}[H]
+  \caption{标准三线表}\label{tab-1}
+  \centering
+  \begin{tblr}{llll}
+    \toprule
+    Alpha   & Beta  & Gamma   & Delta \\
+    \midrule
+    Epsilon & Zeta  & Eta     & Theta \\
+    Iota    & Kappa & Lambda  & Mu    \\
+    Nu      & Xi    & Omicron & Pi    \\
+    \bottomrule
+  \end{tblr}
+\end{table}
+
+此外，我们还可以创建带有颜色的表格，如\autoref{tab-2} 所示。
+
+\begin{table}[H]
+  \caption{彩色条纹表格}\label{tab-2}
+  \centering
+  \begin{tblr}{
+      row{odd} = {bg=azure8},
+      row{1} = {bg=azure3, fg=white, font=\sffamily},
+    }
+    Alpha         & Beta         & Gamma           \\
+    Delta         & Epsilon      & Zeta            \\
+    Eta           & Theta        & Iota            \\
+    Kappa         & Lambda       & Mu              \\
+    Nu Xi Omicron & Pi Rho Sigma & Tau Upsilon Phi \\
+  \end{tblr}
+\end{table}
+
+\appendix
+\chapter{附录A}
+
+这里是附录内容。可以放置一些补充材料。
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\linewidth]{example-image-a}
+  \caption{附录中的图片}
+\end{figure}
+
+\begin{acknowledgements}
+  这里是致谢内容。
+\end{acknowledgements}
 
 \end{document}
