@@ -1658,6 +1658,10 @@ To produce the documentation run the original source files ending with
         fixskip = true
       }
   }
+%    \end{macrocode}
+%
+% \changes{v0.2.0}{2025-06-18}{修复研究生章节样式。}
+%    \begin{macrocode}
 \tl_set:Nn \l_@@_section_style_ii_tl
   {
     chapter =
@@ -1675,6 +1679,7 @@ To produce the documentation run the original source files ending with
       {
         number = \thesection,
         format = \raggedright \songti \bfseries \zihao { -3 },
+        aftername = \@@_quad:,
         indent = 2 \ccwd,
         beforeskip = \baselineskip,
         afterskip = \baselineskip,
@@ -1683,7 +1688,8 @@ To produce the documentation run the original source files ending with
     subsection =
       {
         number = \thesubsection,
-        format = \raggedright \songti \bfseries \zihao { -3 },
+        format = \raggedright \songti \bfseries \zihao { 4 },
+        aftername = \@@_quad:,
         indent = 2 \ccwd,
         beforeskip = \baselineskip,
         afterskip = \baselineskip,
