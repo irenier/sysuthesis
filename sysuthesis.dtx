@@ -1455,7 +1455,7 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \bool_lazy_or:nnTF
   { \sys_if_platform_windows_p: }
-  { \str_if_eq_p:Vn { \g_@@_style_cjk_font_tl } { windows } }
+  { \str_if_eq_p:Vn \g_@@_style_cjk_font_tl { windows } }
   {
     \setmainfont { Times~ New~ Roman }
     \setsansfont { Arial }
@@ -1999,9 +1999,9 @@ To produce the documentation run the original source files ending with
           { \tl_gset:Nn \g_@@_style_logo_path_tl { sysu-name-cn.pdf } }
       }
     \bool_gset:Nn \g_@@_image_i_bool
-      { \file_if_exist_p:V { \g_@@_style_logo_path_tl } }
+      { \file_if_exist_p:V \g_@@_style_logo_path_tl }
     \bool_gset:Nn \g_@@_image_ii_bool
-      { \file_if_exist_p:V { \g_@@_style_logo_path_tl } }
+      { \file_if_exist_p:V \g_@@_style_logo_path_tl }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2058,7 +2058,7 @@ To produce the documentation run the original source files ending with
         \color { sysugreen } \bfseries
         \bool_lazy_or:nnTF
           { \sys_if_platform_windows_p: }
-          { \str_if_eq_p:Vn { \g_@@_style_cjk_font_tl } { windows } }
+          { \str_if_eq_p:Vn \g_@@_style_cjk_font_tl { windows } }
           { \CJKfontspec { STZHONGS.TTF } } { \songti }
         \fontsize { 36 bp } { 36 bp } \selectfont
       },
