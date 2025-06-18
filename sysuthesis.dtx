@@ -90,7 +90,7 @@ To produce the documentation run the original source files ending with
 %
 %<class|visual>\NeedsTeXFormat{LaTeX2e}
 %<*!(driver|install)>
-%<!driver>  \GetIdInfo $Id: sysuthesis.dtx 0.1.0 2025-04-30 12:00:00 +0800 Renier Tan <irantan@163.com> $
+%<!driver>  \GetIdInfo $Id: sysuthesis.dtx 0.2.0 2025-06-18 12:00:00 +0800 Renier Tan <irantan@163.com> $
 %<class>  {Thesis template for Sun Yat-sen University}
 %<class>\ProvidesExplClass{sysuthesis}
 %<visual>  {Sun Yat-sen University's visual elements}
@@ -171,7 +171,7 @@ To produce the documentation run the original source files ending with
 %
 % \title{\heiti 中山大学学位论文模板}
 % \author{Renier Tan}
-% \date{2025/06/17\quad v0.2.0}
+% \date{2025/06/18\quad v0.2.0}
 %
 % \changes{v0.1.0}{2025/04/30}{进行模板编写。}
 %
@@ -1451,22 +1451,33 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 % \end{variable}
+%
+% \begin{macro}{\@@_load_latin_font:}
+% \changes{v0.2.0}{2025-06-18}{在导言区末尾加载英文字体。}
+% 加载英文字体命令。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_load_latin_font:
+  {
+%    \end{macrocode}
+% 通过是否为 windows 平台或者是否指定了 |cjk-font = windows|
 % 判断字体 Times New Roman 是否存在，若不存在则使用 texgyretermes。
 %    \begin{macrocode}
-\bool_lazy_or:nnTF
-  { \sys_if_platform_windows_p: }
-  { \str_if_eq_p:Vn \g_@@_style_cjk_font_tl { windows } }
-  {
-    \setmainfont { Times~ New~ Roman }
-    \setsansfont { Arial }
-    \setmonofont { Courier~ New }
-  }
-  {
-    \setmainfont { texgyretermes } [ \c_@@_name_gyrefeature_tl ]
-    \setsansfont { texgyreheros } [ \c_@@_name_gyrefeature_tl ]
-    \setmonofont { inconsolata }
+    \bool_lazy_or:nnTF
+      { \sys_if_platform_windows_p: }
+      { \str_if_eq_p:Vn \g_@@_style_cjk_font_tl { windows } }
+      {
+        \setmainfont { Times~ New~ Roman }
+        \setsansfont { Arial }
+        \setmonofont { Consolas }
+      }
+      {
+        \setmainfont { texgyretermes } [ \c_@@_name_gyrefeature_tl ]
+        \setsansfont { texgyreheros } [ \c_@@_name_gyrefeature_tl ]
+        \setmonofont { inconsolata }
+      }
   }
 %    \end{macrocode}
+% \end{macro}
 %
 % 处理脚注带圈数字。
 % 带圈数字使用中文字体。
@@ -1588,7 +1599,7 @@ To produce the documentation run the original source files ending with
 % 在导言区末尾加载字体。
 %    \begin{macrocode}
 \hook_gput_code:nnn { begindocument / before } { . }
-  { \@@_load_cjk_font: \@@_load_math_font: }
+  { \@@_load_cjk_font: \@@_load_latin_font: \@@_load_math_font: }
 %    \end{macrocode}
 % 确保导言区末尾字体加载的钩子先于 \pkg{xeCJK} 的钩子执行。
 %    \begin{macrocode}
@@ -1684,11 +1695,11 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\l_@@_appendix_section_style_tl}
+% \begin{variable}{\l_@@_appendix_section_style_i_tl}
 % 本科生附录章节格式。
 %    \begin{macrocode}
-\tl_new:N \l_@@_appendix_section_style_tl
-\tl_set:Nn \l_@@_appendix_section_style_tl
+\tl_new:N \l_@@_appendix_section_style_i_tl
+\tl_set:Nn \l_@@_appendix_section_style_i_tl
   {
     section / name = { 附~ },
     subsection / name = { 附~ },
@@ -1715,7 +1726,7 @@ To produce the documentation run the original source files ending with
 \hook_gput_code:nnn { cmd / appendix / before } { . }
   {
     \int_compare:nNnT { \g_@@_info_type_int } = { 1 }
-      { \keys_set:nV { ctex } \l_@@_appendix_section_style_tl }
+      { \keys_set:nV { ctex } \l_@@_appendix_section_style_i_tl }
   }
 %    \end{macrocode}
 %
@@ -1833,6 +1844,23 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\@@_set_clist_tl:nnn}
+% 设置 |clist| 和对应的 |tl| 变量。
+% \begin{arguments}
+%   \item 变量名
+%   \item 分隔符
+%   \item 逗号分隔序列
+% \end{arguments}
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_set_clist_tl:nnn #1#2#3
+  {
+    \clist_gset:cn { g_@@_info_ #1 _clist } { #3 }
+    \tl_gset:cn { g_@@_info_ #1 _tl }
+      { \clist_use:cn { g_@@_info_ #1 _clist } { #2 } }
+  }
+%    \end{macrocode}
+% \end{macro}
+%
 % \begin{macro}{
 %   info/supervisors,
 %   info/supervisors*,
@@ -1841,12 +1869,6 @@ To produce the documentation run the original source files ending with
 % }
 % 导师、论文关键词列表以及对应的英文字段。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_set_clist_tl:nnn #1#2#3
-  {
-    \clist_gset:cn { g_@@_info_ #1 _clist } { #3 }
-    \tl_gset:cn { g_@@_info_ #1 _tl }
-      { \clist_use:cn { g_@@_info_ #1 _clist } { #2 } }
-  }
 \keys_define:nn { sysu / info }
   {
     supervisors .code:n =
@@ -2602,12 +2624,14 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\@@_cover_iii:, \@@_titlepage_iii:, \@@_declaration_iii:}
 % 博士封面和扉页内容与硕士保持一致。
 %    \begin{macrocode}
 \cs_set_eq:NN \@@_cover_iii: \@@_cover_ii:
 \cs_set_eq:NN \@@_titlepage_iii: \@@_titlepage_ii:
 \cs_set_eq:NN \@@_declaration_iii: \@@_declaration_ii:
 %    \end{macrocode}
+% \end{macro}
 %
 % \subsubsection{用户命令}
 %
