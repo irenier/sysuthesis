@@ -13,6 +13,7 @@ A minimal example of this document class should look like
 
 ```tex
 \documentclass{sysuthesis}
+\sysusetup[option]{type=bachelor}
 \begin{document}
 \maketitle
 \frontmatter

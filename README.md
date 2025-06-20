@@ -1,8 +1,8 @@
 # `sysuthesis`: 中山大学学位论文 LaTeX 模板
 
-![build status](https://github.com/irenier/sysuthesis/actions/workflows/build.yml/badge.svg)
-[![CTAN](https://img.shields.io/ctan/v/sysuthesis.svg)](https://www.ctan.org/pkg/sysuthesis)
+[![build status](https://github.com/irenier/sysuthesis/actions/workflows/build.yml/badge.svg)](https://github.com/irenier/sysuthesis/actions/workflows/build.yml)
 [![GitHub release](https://img.shields.io/github/release/irenier/sysuthesis/all.svg)](https://github.com/irenier/sysuthesis/releases/latest)
+[![CTAN](https://img.shields.io/ctan/v/sysuthesis.svg)](https://www.ctan.org/pkg/sysuthesis)
 [![Overleaf](https://img.shields.io/badge/Overleaf-brightgreen)](https://www.overleaf.com/latex/templates/sysuthesis/sghrrhbdvjbd)
 [![TeXPage](https://img.shields.io/badge/TeXPage-steelblue)](https://texpage.com/template/88eb11aa-bd5c-4b6b-b654-86517c5148a1)
 
@@ -38,6 +38,7 @@
 
 ```tex
 \documentclass{sysuthesis}
+\sysusetup[option]{type=bachelor}
 \begin{document}
 \maketitle
 \frontmatter
