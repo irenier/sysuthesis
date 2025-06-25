@@ -452,7 +452,7 @@ To produce the documentation run the original source files ending with
 %     math-font = <asana|bonum|cambria|dejavu|fira|garamond|gfsneohellenic|ibmplex|
 %                 lete|libertinus|lm|luciole|pagella|schola|stix|stix2|termes|kp|newcm|(xits)>
 %   \end{syntax}
-% 指定数学字体，默认为 |xits|。推荐使用 xits 或 newcm。
+% 指定数学字体，默认为 |xits|。推荐使用 |xits| 或 |newcm|。
 % \end{function}
 %
 % \subsection{封面图片}
@@ -2997,7 +2997,7 @@ To produce the documentation run the original source files ending with
 % \begin{macro}[int]{\thefootnote}
 % 重定义脚注编号。
 %    \begin{macrocode}
-\cs_set:Npn \thefootnote { \@@_circled_number:n { \c@footnote } }
+\cs_gset:Npn \thefootnote { \@@_circled_number:n { \c@footnote } }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -3006,7 +3006,7 @@ To produce the documentation run the original source files ending with
 % 见 \url{http://tex.stackexchange.com/q/19844} 和
 % \url{https://www.zhihu.com/question/53030087}。
 %    \begin{macrocode}
-\cs_set:Npn \@makefntext #1
+\cs_gset:Npn \@makefntext #1
   {
     \mode_leave_vertical:
     \hbox_to_wd:nn { 1.5 em } { \@thefnmark \tex_hfil:D }
@@ -3118,7 +3118,7 @@ To produce the documentation run the original source files ending with
     \RenewDocumentCommand { \listofalgorithms } { }
       {
         \@@_chapter:n { \c_@@_name_loa_tl }
-        \@starttoc { lof }
+        \@starttoc { loa }
       }
   }
 %    \end{macrocode}
@@ -3139,16 +3139,16 @@ To produce the documentation run the original source files ending with
 %
 % 按 \url{https://texfaq.org/FAQ-floats} 的建议对浮动体放宽要求。
 %    \begin{macrocode}
-\cs_set:Npn \topfraction { 0.85 }
-\cs_set:Npn \bottomfraction { 0.7 }
-\cs_set:Npn \textfraction { 0.15 }
-\cs_set:Npn \floatpagefraction { 0.66 }
-\cs_set:Npn \dbltopfraction { 0.66 }
-\cs_set:Npn \dblfloatpagefraction { 0.66 }
-\int_set:Nn \c@topnumber { 9 }
-\int_set:Nn \c@bottomnumber { 9 }
-\int_set:Nn \c@totalnumber { 20 }
-\int_set:Nn \c@dbltopnumber { 9 }
+\cs_gset:Npn \topfraction { 0.85 }
+\cs_gset:Npn \bottomfraction { 0.7 }
+\cs_gset:Npn \textfraction { 0.15 }
+\cs_gset:Npn \floatpagefraction { 0.66 }
+\cs_gset:Npn \dbltopfraction { 0.66 }
+\cs_gset:Npn \dblfloatpagefraction { 0.66 }
+\int_gset:Nn \c@topnumber { 9 }
+\int_gset:Nn \c@bottomnumber { 9 }
+\int_gset:Nn \c@totalnumber { 20 }
+\int_gset:Nn \c@dbltopnumber { 9 }
 %    \end{macrocode}
 %
 % \subsection{参考文献}
