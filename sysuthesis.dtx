@@ -90,7 +90,7 @@ To produce the documentation run the original source files ending with
 %
 %<class|visual>\NeedsTeXFormat{LaTeX2e}
 %<*!(driver|install)>
-%<!driver>  \GetIdInfo $Id: sysuthesis.dtx 0.2.0 2025-06-18 12:00:00 +0800 Renier Tan <irantan@163.com> $
+%<!driver>  \GetIdInfo $Id: sysuthesis.dtx 0.3.0 2025-06-18 12:00:00 +0800 Renier Tan <irantan@163.com> $
 %<class>  {Thesis template for Sun Yat-sen University}
 %<class>\ProvidesExplClass{sysuthesis}
 %<visual>  {Sun Yat-sen University's visual elements}
@@ -171,7 +171,7 @@ To produce the documentation run the original source files ending with
 %
 % \title{\heiti 中山大学学位论文模板}
 % \author{Renier Tan}
-% \date{2025/06/18\quad v0.2.0}
+% \date{2025/07/01\quad v0.3.0}
 %
 % \changes{v0.1.0}{2025/04/30}{进行模板编写。}
 %
@@ -2109,6 +2109,7 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 %
 % \changes{v0.1.1}{2025/06/17}{修复单行标题不显示的问题。}
+% \changes{v0.3.0}{2025/07/01}{将表格中的相对行距改为固定。}
 %
 % 封面论文中文标题。
 %    \begin{macrocode}
@@ -2123,7 +2124,7 @@ To produce the documentation run the original source files ending with
       {
         \begin { tabular } { r @ { } p { 18 em } }
           题目： &
-          \seq_use:Nn \l_@@_tmpa_seq { \\ [ 0.25 \baselineskip ] & }
+          \seq_use:Nn \l_@@_tmpa_seq { \\ [ 10 pt ] & }
         \end { tabular }
       },
     format = \heiti \LARGE,
@@ -2143,7 +2144,7 @@ To produce the documentation run the original source files ending with
             {
               \@@_box_spread:nc { 4 em } { c_@@_name_ #1 _tl } &
               \@@_box_ulined:nc { 14 em } { g_@@_info_ #1 _tl }
-              \\ [ 0.75 \baselineskip ]
+              \\ [ 20 pt ]
             }
         \end { tabular }
       },
@@ -2233,7 +2234,7 @@ To produce the documentation run the original source files ending with
       {
         \parbox { 16 em }
           {
-            \c_@@_name_author_sign_tl ： \\ [ \baselineskip ]
+            \c_@@_name_author_sign_tl ： \\ [ 15 pt ]
             \@@_box_spread:nN { 4 em } \c_@@_name_date_tl ：
             \skip_horizontal:n { 6 ex } 年
             \skip_horizontal:n { 6 ex } 月
@@ -2462,7 +2463,7 @@ To produce the documentation run the original source files ending with
       {
         \parbox { 15 em }
           {
-            学位论文作者签名： \\ [ \baselineskip ]
+            学位论文作者签名： \\ [ 15 pt ]
             日期：
             \skip_horizontal:n { 6 ex } 年
             \skip_horizontal:n { 6 ex } 月
@@ -2517,7 +2518,7 @@ To produce the documentation run the original source files ending with
       {
         \parbox { 15 em }
           {
-            学位论文作者签名： \\ [ \baselineskip ]
+            学位论文作者签名： \\ [ 15 pt ]
             日期：
             \skip_horizontal:n { 6 ex } 年
             \skip_horizontal:n { 6 ex } 月
@@ -2526,7 +2527,7 @@ To produce the documentation run the original source files ending with
         \tex_hfill:D
         \parbox { 15 em }
           {
-            导师签名： \\ [ \baselineskip ]
+            导师签名： \\ [ 15 pt ]
             日期：
             \skip_horizontal:n { 6 ex } 年
             \skip_horizontal:n { 6 ex } 月
@@ -3266,6 +3267,8 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
+% \changes{v0.3.0}{2025/06/20}{添加参考文献到目录。}
+%
 % 打印参考文献列表。
 %    \begin{macrocode}
 \hook_gput_code:nnn { cmd / appendix / after } { . }
@@ -3275,6 +3278,7 @@ To produce the documentation run the original source files ending with
         \bool_if:NTF \g_@@_bib_backend_bool
           { \exp_args:Ne \bibliography { \g_@@_bib_resource_tl } }
           { \printbibliography }
+        \addcontentsline { toc } { chapter } { \bibname }
       }
   }
 %    \end{macrocode}
