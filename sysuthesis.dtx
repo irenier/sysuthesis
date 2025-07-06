@@ -1155,6 +1155,7 @@ To produce the documentation run the original source files ending with
     { school } { 中山大学 } { Sun Yat-sen University },
     { department } { 院系 } { Department },
     { major } { 专业 } { Major },
+    { supervisor } { 指导教师 } { Supervisor },
     { supervisors } { 指导教师 } { Supervisors },
     { abstract } { 摘要 } { Abstract },
     { keywords } { 关键词 } { Keywords },
@@ -2253,7 +2254,7 @@ To produce the documentation run the original source files ending with
   {
     content =
       {
-        \begin { tabular } { l @ { ： } l }
+        \begin { tabular } { l @ { ： } l @ { } }
           密级 & \g_@@_info_secret_level_tl \\
           编号 & \g_@@_info_thesis_code_tl
         \end { tabular }
@@ -2299,7 +2300,11 @@ To produce the documentation run the original source files ending with
 \@@_define_element:nn { ii / cover / thesis-type-name }
   {
     content = \g_@@_name_thesis_tl,
-    format = \songti \bfseries \fontsize { 42 bp } { 63 bp } \selectfont ,
+    format =
+      {
+        \color { sysugreen } \songti \bfseries
+        \fontsize { 42 bp } { 63 bp } \selectfont
+      },
     bottom-skip = 0 pt plus 1 fil
   }
 %    \end{macrocode}
@@ -2357,7 +2362,7 @@ To produce the documentation run the original source files ending with
   {
     content = \exp_args:Ne \zhdate { \g_@@_info_date_tl },
     format = \kaishu \large,
-    bottom-skip = -50 pt
+    bottom-skip = 0 pt plus -1 fil
   }
 %    \end{macrocode}
 %
@@ -2367,7 +2372,7 @@ To produce the documentation run the original source files ending with
   {
     content = \g_@@_name_school_thesis_tl,
     format = \zihao { 4 },
-    bottom-skip = 0 pt plus 0.5 fil
+    bottom-skip = 0 pt plus 1 fil
   }
 %    \end{macrocode}
 %
@@ -2387,7 +2392,7 @@ To produce the documentation run the original source files ending with
   {
     content = \g_@@_info_title_en_tl,
     format = \huge,
-    bottom-skip = 0 pt plus 0.5 fil
+    bottom-skip = 0 pt plus 1 fil
   }
 %    \end{macrocode}
 %
@@ -2404,7 +2409,7 @@ To produce the documentation run the original source files ending with
         \end { tabular }
       },
     format = \zihao { 3 },
-    bottom-skip = 0 pt plus 1 fil
+    bottom-skip = 2 \baselineskip
   }
 %    \end{macrocode}
 %
@@ -2421,7 +2426,7 @@ To produce the documentation run the original source files ending with
         \end { tabular }
       },
     format = \zihao { 3 },
-    bottom-skip = 0 pt plus 1 fil
+    bottom-skip = 0 pt plus 2 fil
   }
 %    \end{macrocode}
 %
@@ -2430,7 +2435,7 @@ To produce the documentation run the original source files ending with
 \@@_define_element:nn { ii / title-page / date }
   {
     content = \exp_args:Ne \zhdate { \g_@@_info_date_tl },
-    bottom-skip = -50 pt
+    bottom-skip = 0 pt plus -1 fil
   }
 %    \end{macrocode}
 %
@@ -2742,7 +2747,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 研究生中文摘要页信息。
+% 研究生中文摘要页信息栏。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / abstract / info }
   {
@@ -2784,16 +2789,23 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 研究生英文摘要页信息。
+% 研究生英文摘要页信息栏。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / abstract-en / info }
   {
+    code-before =
+      {
+        \int_compare:nNnTF
+          { \clist_count:N \g_@@_info_supervisors_en_clist } = { 1 }
+          { \tl_set_eq:NN \l_@@_tmp_tl \c_@@_name_supervisor_en_tl }
+          { \tl_set_eq:NN \l_@@_tmp_tl \c_@@_name_supervisors_en_tl }
+      },
     content =
       {
         \begin { tabular } { l l }
           \c_@@_name_major_en_tl : & \g_@@_info_major_en_tl \\
           Name : & \g_@@_info_author_en_tl \\
-          \c_@@_name_supervisors_en_tl : & \g_@@_info_supervisors_en_tl
+          \l_@@_tmp_tl : & \g_@@_info_supervisors_en_tl
         \end { tabular }
       },
     format = \zihao { 4 },
@@ -2921,17 +2933,17 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \RenewDocumentCommand { \tableofcontents } { }
   {
-    \@@_chapter:n { \c_@@_name_toc_tl }
+    \@@_chapter:n { \contentsname }
     \@starttoc { toc }
   }
 \RenewDocumentCommand { \listoffigures } { }
   {
-    \@@_chapter:n { \c_@@_name_lof_tl }
+    \@@_chapter:n { \listfigurename }
     \@starttoc { lof }
   }
 \RenewDocumentCommand { \listoftables } { }
   {
-    \@@_chapter:n { \c_@@_name_lot_tl }
+    \@@_chapter:n { \listtablename }
     \@starttoc { lot }
   }
 %    \end{macrocode}
@@ -3331,11 +3343,11 @@ To produce the documentation run the original source files ending with
 %
 % 设置 \tn{autoref} 相关格式。
 %    \begin{macrocode}
-    \tl_gset:Nn \figureautorefname { 图 }
-    \tl_gset:Nn \tableautorefname { 表 }
+    \tl_gset_eq:NN \figureautorefname \figurename
+    \tl_gset_eq:NN \tableautorefname \tablename
+    \tl_gset_eq:NN \appendixautorefname \appendixname
     \tl_gset:Nn \equationautorefname { 公式 }
     \tl_gset:Nn \footnoteautorefname { 脚注 }
-    \tl_gset:Nn \appendixautorefname { 附录 }
   }
 %    \end{macrocode}
 %
