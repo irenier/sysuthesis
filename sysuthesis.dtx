@@ -455,6 +455,16 @@ To produce the documentation run the original source files ending with
 % 指定数学字体，默认为 |xits|。推荐使用 |xits| 或 |newcm|。
 % \end{function}
 %
+% \subsection{元素颜色}
+%
+% \begin{function}[added=2025-07-06]{sytle/color}
+%   \begin{syntax}
+%     color = \Arg{颜色名称}
+%   \end{syntax}
+% 指定全局的元素颜色，默认为 |sysugreen|。本模板预定义了 |sysugreen| 和 |sysured| 两种颜色，
+% 并且可以使用 \pkg{xcolor} 宏包中 |svgnames| 定义的颜色。
+% \end{function}
+%
 % \subsection{封面图片}
 %
 % \begin{function}[added=2025-04-30]{style/logo-path}
@@ -463,6 +473,7 @@ To produce the documentation run the original source files ending with
 %   \end{syntax}
 % 设置封面图片路径。本科生默认为 \file{sysu-emblem.pdf}，研究生默认为 \file{sysu-name-cn.pdf}。
 % 图片文件应置于主文档同级目录，或 \file{figures}, \file{images}, \file{logos}, \file{pictures} 子目录中。
+% 如果未找到指定图片，将添加视觉元素宏包 \pkg{sysuvisual}，使用 \pkg{tikz} 绘图，可能延长编译时间。
 % \end{function}
 %
 % \subsection{\pkg{unicode-math} 选项设置}
@@ -1309,6 +1320,15 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{variable}
 %
+% \begin{variable}{sytle/color}
+% \changes{v0.4.0}{2025/07/06}{添加全局颜色选项。}
+% 设置全局颜色。
+%    \begin{macrocode}
+    color .tl_gset:N = \g_@@_style_color_tl,
+    color .initial:n = sysugreen,
+%    \end{macrocode}
+% \end{variable}
+%
 % \begin{variable}{style/logo-path}
 % 设置封面图片路径。
 %    \begin{macrocode}
@@ -2067,7 +2087,10 @@ To produce the documentation run the original source files ending with
           }
           {
             \tl_set:Nn \l_@@_tmpa_tl
-              { \sysudraw { badge } [ landscape ] [ 3 cm ] [ sysugreen ] }
+              {
+                \sysudraw { badge }
+                  [ landscape ] [ 3 cm ] [ \g_@@_style_color_tl ]
+              }
             \msg_warning:nnV { sysuthesis } { image-not-found }
               \g_@@_style_logo_path_tl
           }
@@ -2084,7 +2107,7 @@ To produce the documentation run the original source files ending with
     content = \g_@@_name_thesis_tl,
     format =
       {
-        \color { sysugreen } \bfseries
+        \color { \g_@@_style_color_tl } \bfseries
         \bool_lazy_or:nnTF
           { \sys_if_platform_windows_p: }
           { \str_if_eq_p:Vn \g_@@_style_cjk_font_tl { windows } }
@@ -2104,7 +2127,7 @@ To produce the documentation run the original source files ending with
         \rule { \paperwidth } { 3.75 pt } \para_end: \skip_vertical:n { 2.5 pt }
         \rule [ \baselineskip ] { \paperwidth } { 1.25 pt }
       },
-    format = \color { sysugreen },
+    format = \color { \g_@@_style_color_tl },
     bottom-skip = 0 pt plus 0.5 fil
   }
 %    \end{macrocode}
@@ -2283,8 +2306,8 @@ To produce the documentation run the original source files ending with
           {
             \tl_set:Nn \l_@@_tmpa_tl
               {
-                \sysudraw { name-cn } [ landscape ] [ 2.5 cm ]
-                  [ white ] [ draw = sysugreen, line~width = 1 pt ]
+                \sysudraw { name-cn } [ landscape ] [ 2.5 cm ] [ white ]
+                  [ draw = \g_@@_style_color_tl, line~width = 1 pt ]
                 \msg_warning:nnV { sysuthesis } { image-not-found }
                   \g_@@_style_logo_path_tl
               }
@@ -2302,7 +2325,7 @@ To produce the documentation run the original source files ending with
     content = \g_@@_name_thesis_tl,
     format =
       {
-        \color { sysugreen } \songti \bfseries
+        \color { \g_@@_style_color_tl } \songti \bfseries
         \fontsize { 42 bp } { 63 bp } \selectfont
       },
     bottom-skip = 0 pt plus 1 fil
@@ -3328,16 +3351,7 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
         pdftitle = \g_@@_info_title_tl,
         pdfauthor = \g_@@_info_author_tl,
-        pdfkeywords = \g_@@_info_keywords_tl,
-%    \end{macrocode}
-%
-% 设置 |hyperlink| 颜色。
-%    \begin{macrocode}
-        colorlinks = true,
-        linkcolor = black,
-        filecolor = sysugreen,
-        citecolor = sysugreen,
-        urlcolor = sysugreen
+        pdfkeywords = \g_@@_info_keywords_tl
       }
 %    \end{macrocode}
 %
