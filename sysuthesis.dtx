@@ -256,7 +256,6 @@ To produce the documentation run the original source files ending with
 %
 % 模板不定期打包正式发行版，发布于 \href{https://github.com/irenier/sysuthesis/releases/latest}{GitHub Releases}。可供下载的文件主要有：
 % \begin{description}
-%   \item[\file{sysuthesis-v*.pdf}] 模板说明文档（即本文档）。
 %   \item[\file{sysuthesis-user-v*.zip}] 用户模板包，包含编译论文所需的所有文件。解压后可用于本地编译，或直接上传至在线平台。
 %   \item[\file{sysuthesis-ctan-v*.zip}] CTAN 发布包，普通用户无需关心。
 % \end{description}
@@ -2820,15 +2819,15 @@ To produce the documentation run the original source files ending with
       {
         \int_compare:nNnTF
           { \clist_count:N \g_@@_info_supervisors_en_clist } = { 1 }
-          { \tl_set_eq:NN \l_@@_tmp_tl \c_@@_name_supervisor_en_tl }
-          { \tl_set_eq:NN \l_@@_tmp_tl \c_@@_name_supervisors_en_tl }
+          { \tl_set_eq:NN \l_@@_tmpa_tl \c_@@_name_supervisor_en_tl }
+          { \tl_set_eq:NN \l_@@_tmpa_tl \c_@@_name_supervisors_en_tl }
       },
     content =
       {
         \begin { tabular } { l l }
           \c_@@_name_major_en_tl : & \g_@@_info_major_en_tl \\
           Name : & \g_@@_info_author_en_tl \\
-          \l_@@_tmp_tl : & \g_@@_info_supervisors_en_tl
+          \l_@@_tmpa_tl : & \g_@@_info_supervisors_en_tl
         \end { tabular }
       },
     format = \zihao { 4 },
