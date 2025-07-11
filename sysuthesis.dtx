@@ -1341,12 +1341,6 @@ To produce the documentation run the original source files ending with
 %
 % \subsection{载入宏包、文档类}
 %
-% 若使用 \XeTeX{} 引擎，将使用伪粗体。
-%    \begin{macrocode}
-\sys_if_engine_xetex:T
-  { \PassOptionsToPackage { AutoFakeBold=2.5 } { xeCJK } }
-%    \end{macrocode}
-%
 % 将 \cs{g_@@_pass_to_ctexbook_seq} 中的选项传入 \cls{ctexbook} 文档类。
 %    \begin{macrocode}
 \exp_args:Ne \PassOptionsToClass
@@ -1455,6 +1449,22 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 % \end{macro}
+%
+% \changes{v0.4.0}{2025/07/11}{仅在指定 windows 字库时使用伪粗选项。}
+%
+% 仅在指定 |windows| 字库时使用伪粗选项。
+%    \begin{macrocode}
+\hook_gput_code:nnn { begindocument / before } { . }
+  {
+    \bool_lazy_and:nnT
+      { \sys_if_engine_xetex_p: }
+      { \str_if_eq_p:Vn \g_@@_style_cjk_font_tl { windows } }
+      {
+        \keys_set:nn { xeCJK / options }
+          { AutoFakeBold = 2.5 }
+      }
+  }
+%    \end{macrocode}
 %
 % 处理英文字体选项。
 % 本科生应为字体使用 Times New Roman。
