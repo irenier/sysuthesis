@@ -426,11 +426,11 @@ To produce the documentation run the original source files ending with
 %
 % 因学校规定英文字体为 Times New Roman，故仅提供中文字体和数学字体的设置选项。
 %
-% \begin{function}[added=2025-04-30]{style/cjk-font}
+% \begin{function}[added=2025-04-30, updated=2025-07-18]{style/cjk-font}
 %   \begin{syntax}
-%     cjk-font = <adobe|(fandol)|founder|mac|macnew|macold|ubuntu|windows>
+%     cjk-font = <adobe|fandol|founder|mac|macnew|macold|ubuntu|windows>
 %   \end{syntax}
-% 指定中文字体族，默认为 |fandol|。推荐使用 |windows|, |founder| 或 |ubuntu|。
+% 指定中文字体族，默认按操作系统设置。推荐使用 |windows|, |founder| 或 |ubuntu|。
 % \end{function}
 %
 % \begin{description}
@@ -1307,7 +1307,6 @@ To produce the documentation run the original source files ending with
 % 设置中文字体。
 %    \begin{macrocode}
     cjk-font .tl_gset:N = \g_@@_style_cjk_font_tl,
-    cjk-font .initial:n = fandol,
 %    \end{macrocode}
 % \end{variable}
 %
@@ -1449,6 +1448,19 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 % \end{macro}
+%
+% \changes{v0.5.0}{2025/07/18}{根据操作系统设置默认中文字体。}
+%
+% 根据操作系统设置默认中文字体。
+%    \begin{macrocode}
+\sys_if_platform_windows:TF
+  { \tl_gset:Nn \g_@@_style_cjk_font_tl { windows } }
+    {
+      \ctex_if_platform_macos:TF
+        { \tl_gset:Nn \g_@@_style_cjk_font_tl { mac } }
+        { \tl_gset:Nn \g_@@_style_cjk_font_tl { ubuntu } }
+    }
+%    \end{macrocode}
 %
 % \changes{v0.4.0}{2025/07/11}{仅在指定 windows 字库时使用伪粗选项。}
 %
@@ -1720,6 +1732,15 @@ To produce the documentation run the original source files ending with
         number = \thesubsection,
         format = \raggedright \songti \bfseries \zihao { 4 },
         aftername = \@@_quad:,
+        indent = 2 \ccwd,
+        beforeskip = \baselineskip,
+        afterskip = \baselineskip,
+        fixskip = true
+      },
+    paragraph =
+      {
+        numbering = false,
+        format = \raggedright \songti \bfseries \zihao { -4 },
         indent = 2 \ccwd,
         beforeskip = \baselineskip,
         afterskip = \baselineskip,
