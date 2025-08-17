@@ -171,7 +171,7 @@ To produce the documentation run the original source files ending with
 %
 % \title{\heiti 中山大学学位论文模板}
 % \author{Renier Tan}
-% \date{2025/07/11\quad v0.4.0}
+% \date{2025/08/17\quad v0.5.0}
 %
 % \changes{v0.1.0}{2025/04/30}{进行模板编写。}
 %
@@ -2101,7 +2101,7 @@ To produce the documentation run the original source files ending with
 %
 % \subsubsection{本科生页面对象实例}
 %
-% 封面校徽。
+% 本科生封面校徽。
 %    \begin{macrocode}
 \@@_define_element:nn { i / cover / emblem-image }
   {
@@ -2132,7 +2132,7 @@ To produce the documentation run the original source files ending with
 %
 % \changes{v0.4.1}{2025/07/11}{修复本科生论文类型标题的加粗。}
 %
-% 封面论文类型名称。
+% 本科生封面论文类型名称。
 %    \begin{macrocode}
 \@@_define_element:nn { i / cover / thesis-type-name }
   {
@@ -2148,7 +2148,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 封面分割线。
+% 本科生封面分割线。
 %    \begin{macrocode}
 \@@_define_element:nn { i / cover / divide-lines }
   {
@@ -2165,7 +2165,7 @@ To produce the documentation run the original source files ending with
 % \changes{v0.1.1}{2025/06/17}{修复单行标题不显示的问题。}
 % \changes{v0.3.0}{2025/07/01}{将表格中的相对行距改为固定。}
 %
-% 封面论文中文标题。
+% 本科生封面论文中文标题。
 %    \begin{macrocode}
 \@@_define_element:nn { i / cover / title }
   {
@@ -2178,7 +2178,7 @@ To produce the documentation run the original source files ending with
       {
         \begin { tabular } { r @ { } p { 18 em } }
           题目： &
-          \seq_use:Nn \l_@@_tmpa_seq { \\ [ 10 pt ] & }
+            \seq_use:Nn \l_@@_tmpa_seq { \\ [ 10 pt ] & }
         \end { tabular }
       },
     format = \heiti \LARGE,
@@ -2186,7 +2186,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 封面信息栏。
+% 本科生封面信息栏。
 %    \begin{macrocode}
 \@@_define_element:nn { i / cover / info }
   {
@@ -2197,7 +2197,7 @@ To produce the documentation run the original source files ending with
             { author, student_id, department, major, supervisors }
             {
               \@@_box_spread:nc { 4 em } { c_@@_name_ #1 _tl } &
-              \@@_box_ulined:nc { 14 em } { g_@@_info_ #1 _tl }
+                \@@_box_ulined:nc { 14 em } { g_@@_info_ #1 _tl }
               \\ [ 20 pt ]
             }
         \end { tabular }
@@ -2207,7 +2207,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 封面日期。
+% 本科生封面日期。
 %    \begin{macrocode}
 \@@_define_element:nn { i / cover / date }
   {
@@ -2217,7 +2217,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 扉页论文中文标题。
+% 本科生扉页论文中文标题。
 %    \begin{macrocode}
 \@@_define_element:nn { i / title-page / title }
   {
@@ -2228,7 +2228,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 扉页论文英文标题。
+% 本科生扉页论文英文标题。
 %    \begin{macrocode}
 \@@_define_element:nn { i / title-page / title-en }
   {
@@ -2238,7 +2238,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 扉页信息栏。
+% 本科生扉页信息栏。
 %    \begin{macrocode}
 \DeclareInstanceCopy { sysu } { i / title-page / info } { i / cover / info }
 \EditInstance { sysu } { i / title-page / info }
@@ -2248,7 +2248,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 扉页日期。
+% 本科生扉页日期。
 %    \begin{macrocode}
 \@@_define_element:nn { i / title-page / date }
   {
@@ -2258,7 +2258,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 声明页学术诚信声明。
+% 本科生声明页学术诚信声明。
 %    \begin{macrocode}
 \@@_define_element:nn { i / declaration / integr-decl }
   {
@@ -2280,7 +2280,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 声明页作者签名。
+% 本科生声明页作者签名。
 %    \begin{macrocode}
 \@@_define_element:nn { i / declaration / author-sign }
   {
@@ -2301,7 +2301,7 @@ To produce the documentation run the original source files ending with
 %
 % \subsubsection{研究生页面对象实例}
 %
-% 封面密级和编号。
+% 研究生封面密级和编号。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / cover / secret-code }
   {
@@ -2319,7 +2319,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 封面校名图片。
+% 研究生封面校名图片。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / cover / school-image }
   {
@@ -2348,7 +2348,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 封面论文类型名称。
+% 研究生封面论文类型名称。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / cover / thesis-type-name }
   {
@@ -2362,7 +2362,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 封面论文中文标题。
+% 研究生封面论文中文标题。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / cover / title }
   {
@@ -2375,7 +2375,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 封面论文英文标题。
+% 研究生封面论文英文标题。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / cover / title-en }
   {
@@ -2389,7 +2389,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 封面信息栏。
+% 研究生封面信息栏。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / cover / info }
   {
@@ -2397,11 +2397,11 @@ To produce the documentation run the original source files ending with
       {
         \begin { tabular } { c @ { ： } c }
           \@@_box_spread:nn { 7em } { 学位申请人 } &
-          \@@_box_ulined:nN { 10 em } \g_@@_info_author_tl \\
+            \@@_box_ulined:nN { 10 em } \g_@@_info_author_tl \\
           \@@_box_spread:nn { 7em } { 导师姓名及职称 } &
-          \@@_box_ulined:nN { 10 em } \g_@@_info_supervisors_tl \\
+            \@@_box_ulined:nN { 10 em } \g_@@_info_supervisors_tl \\
           \@@_box_spread:nn { 7em } { 专业名称 } &
-          \@@_box_ulined:nN { 10 em } \g_@@_info_major_tl
+            \@@_box_ulined:nN { 10 em } \g_@@_info_major_tl
         \end { tabular }
       },
     format = \kaishu \large,
@@ -2409,7 +2409,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 封面日期。
+% 研究生封面日期。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / cover / date }
   {
@@ -2419,7 +2419,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 扉页论文类型名称。
+% 研究生扉页论文类型名称。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / title-page / thesis-type-name }
   {
@@ -2429,7 +2429,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 扉页论文中文标题。
+% 研究生扉页论文中文标题。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / title-page / title }
   {
@@ -2439,7 +2439,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 扉页论文英文标题。
+% 研究生扉页论文英文标题。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / title-page / title-en }
   {
@@ -2449,16 +2449,19 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 扉页信息栏。
+% 研究生扉页信息栏。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / title-page / info }
   {
     content =
       {
-        \begin { tabular } { r @ { ： } l }
-          专业 & \g_@@_info_major_tl \\
-          申请人 & \g_@@_info_author_tl \\
-          指导教师 & \g_@@_info_supervisors_tl
+        \begin { tabular } { l @ { ： } c }
+          \@@_box_spread:nn { 4 em } { 专业 } &
+            \g_@@_info_major_tl \\
+          \@@_box_spread:nn { 4 em } { 申请人 } &
+            \g_@@_info_author_tl \\
+          \@@_box_spread:nn { 4 em } { 指导教师 } &
+            \g_@@_info_supervisors_tl
         \end { tabular }
       },
     format = \zihao { 3 },
@@ -2466,7 +2469,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 扉页答辩委员会。
+% 研究生扉页答辩委员会。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / title-page / committee }
   {
@@ -2483,7 +2486,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 扉页日期。
+% 研究生扉页日期。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / title-page / date }
   {
@@ -2492,7 +2495,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 声明页论文原创性声明。
+% 研究生声明页论文原创性声明。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / declaration / orig-decl }
   {
@@ -2513,7 +2516,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 声明页作者签名。
+% 研究生声明页作者签名。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / declaration / author-sign }
   {
@@ -2533,7 +2536,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 声明页授权申明标题。
+% 研究生声明页授权申明标题。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / declaration / auth-title }
   {
@@ -2543,7 +2546,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 声明页学位论文使用授权声明。
+% 研究生声明页学位论文使用授权声明。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / declaration / auth-decl }
   {
@@ -2568,7 +2571,7 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% 声明页作者导师签名。
+% 研究生声明页作者导师签名。
 %    \begin{macrocode}
 \@@_define_element:nn { ii / declaration / author-supervisors-sign }
   {
@@ -2808,11 +2811,11 @@ To produce the documentation run the original source files ending with
       {
         \begin { tabular } { l @ { ： } c }
           \@@_box_spread:nN { 4 em } \c_@@_name_major_tl &
-          \g_@@_info_major_tl \\
+            \g_@@_info_major_tl \\
           \@@_box_spread:nN { 4 em } \g_@@_name_degree_tl &
-          \g_@@_info_author_tl \\
+            \g_@@_info_author_tl \\
           \@@_box_spread:nN { 4 em } \c_@@_name_supervisors_tl &
-          \g_@@_info_supervisors_tl
+            \g_@@_info_supervisors_tl
         \end { tabular }
       },
     format = \zihao { 4 },
