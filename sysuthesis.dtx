@@ -90,7 +90,7 @@ To produce the documentation run the original source files ending with
 %
 %<class|visual>\NeedsTeXFormat{LaTeX2e}
 %<*!(driver|install)>
-%<!driver>  \GetIdInfo $Id: sysuthesis.dtx 0.4.0 2025-07-11 12:00:00 +0800 Renier Tan <irantan@163.com> $
+%<!driver>  \GetIdInfo $Id: sysuthesis.dtx 0.5.0 2025-08-17 12:00:00 +0800 Renier Tan <irantan@163.com> $
 %<class>  {Thesis template for Sun Yat-sen University}
 %<class>\ProvidesExplClass{sysuthesis}
 %<visual>  {Sun Yat-sen University's visual elements}
@@ -2064,40 +2064,54 @@ To produce the documentation run the original source files ending with
   { \seq_push:Nn \l_file_search_path_seq { #1 } }
 %    \end{macrocode}
 %
-% \begin{macro}{\g_@@_image_i_bool, \g_@@_image_ii_bool}
-% 定义布尔变量存储图片是否存在。如果用户指定了图片路径，则按指定的路径进行判断。
 %    \begin{macrocode}
-\bool_new:N \g_@@_image_i_bool
-\bool_new:N \g_@@_image_ii_bool
 \hook_gput_code:nnn { begindocument / before } { . }
   {
+%    \end{macrocode}
+% 设置封面图片默认路径。
+%    \begin{macrocode}
     \tl_if_empty:NT \g_@@_style_logo_path_tl
       {
         \int_compare:nNnTF { \g_@@_info_type_int } = { 1 }
           { \tl_gset:Nn \g_@@_style_logo_path_tl { sysu-emblem.pdf } }
           { \tl_gset:Nn \g_@@_style_logo_path_tl { sysu-name-cn.pdf } }
       }
-    \bool_gset:Nn \g_@@_image_i_bool
-      { \file_if_exist_p:V \g_@@_style_logo_path_tl }
-    \bool_gset:Nn \g_@@_image_ii_bool
-      { \file_if_exist_p:V \g_@@_style_logo_path_tl }
 %    \end{macrocode}
-% \end{macro}
-%
 % 如果未找到指定图片则添加视觉元素宏包 \pkg{sysuvisual}。
 %    \begin{macrocode}
-    \bool_lazy_or:nnF
-      {
-        \g_@@_image_i_bool &&
-        \int_compare_p:nNn { \g_@@_info_type_int } = { 1 }
-      }
-      {
-        \g_@@_image_ii_bool &&
-        \int_compare_p:nNn { \g_@@_info_type_int } > { 1 }
-      }
+    \file_if_exist:VF \g_@@_style_logo_path_tl
       { \RequirePackage { sysuvisual } }
   }
 %    \end{macrocode}
+%
+% \begin{macro}{\@@_logo:}
+% \changes{v0.5.0}{2025/08/17}{封装封面图片绘制函数。}
+% 封装封面图片绘制函数。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_logo:
+  {
+    \file_if_exist:VTF \g_@@_style_logo_path_tl
+      {
+        \int_compare:nNnTF { \g_@@_info_type_int } = { 1 }
+          { \includegraphics [ width = 3 cm ] { \g_@@_style_logo_path_tl } }
+          { \includegraphics [ width = 9 cm ] { \g_@@_style_logo_path_tl } }
+      }
+      {
+        \int_compare:nNnTF { \g_@@_info_type_int } = { 1 }
+          {
+            \sysudraw { badge } [ landscape ] [ 3 cm ]
+              [ \g_@@_style_color_tl ]
+          }
+          {
+            \sysudraw { name-cn } [ landscape ] [ 2.5 cm ] [ white ]
+              [ draw = \g_@@_style_color_tl, line~width = 1 pt ]
+          }
+        \msg_warning:nnV { sysuthesis } { image-not-found }
+          \g_@@_style_logo_path_tl
+      }
+  }
+%    \end{macrocode}
+% \end{macro}
 %
 % \subsubsection{本科生页面对象实例}
 %
@@ -2105,27 +2119,7 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \@@_define_element:nn { i / cover / emblem-image }
   {
-    code-before =
-      {
-        \bool_if:NTF \g_@@_image_i_bool
-          {
-            \tl_set:Nn \l_@@_tmpa_tl
-              {
-                \includegraphics [ width = 3 cm ]
-                  { \g_@@_style_logo_path_tl }
-              }
-          }
-          {
-            \tl_set:Nn \l_@@_tmpa_tl
-              {
-                \sysudraw { badge }
-                  [ landscape ] [ 3 cm ] [ \g_@@_style_color_tl ]
-              }
-            \msg_warning:nnV { sysuthesis } { image-not-found }
-              \g_@@_style_logo_path_tl
-          }
-      },
-    content = \l_@@_tmpa_tl,
+    content = \@@_logo:,
     bottom-skip = 20 pt
   }
 %    \end{macrocode}
@@ -2198,7 +2192,7 @@ To produce the documentation run the original source files ending with
             {
               \@@_box_spread:nc { 4 em } { c_@@_name_ #1 _tl } &
                 \@@_box_ulined:nc { 14 em } { g_@@_info_ #1 _tl }
-              \\ [ 20 pt ]
+                \\ [ 20 pt ]
             }
         \end { tabular }
       },
@@ -2323,27 +2317,7 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \@@_define_element:nn { ii / cover / school-image }
   {
-    code-before =
-      {
-        \bool_if:NTF \g_@@_image_ii_bool
-          {
-             \tl_set:Nn \l_@@_tmpa_tl
-                {
-                  \includegraphics [ width = 9 cm ]
-                    { \g_@@_style_logo_path_tl }
-                }
-          }
-          {
-            \tl_set:Nn \l_@@_tmpa_tl
-              {
-                \sysudraw { name-cn } [ landscape ] [ 2.5 cm ] [ white ]
-                  [ draw = \g_@@_style_color_tl, line~width = 1 pt ]
-                \msg_warning:nnV { sysuthesis } { image-not-found }
-                  \g_@@_style_logo_path_tl
-              }
-          }
-      },
-    content = \l_@@_tmpa_tl,
+    content = \@@_logo:,
     bottom-skip = 20 pt
   }
 %    \end{macrocode}
@@ -2395,7 +2369,7 @@ To produce the documentation run the original source files ending with
   {
     content =
       {
-        \begin { tabular } { c @ { ： } c }
+        \begin { tabular } { l @ { ： } c }
           \@@_box_spread:nn { 7em } { 学位申请人 } &
             \@@_box_ulined:nN { 10 em } \g_@@_info_author_tl \\
           \@@_box_spread:nn { 7em } { 导师姓名及职称 } &
