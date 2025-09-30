@@ -2080,7 +2080,11 @@ To produce the documentation run the original source files ending with
 % 如果未找到指定图片则添加视觉元素宏包 \pkg{sysuvisual}。
 %    \begin{macrocode}
     \file_if_exist:VF \g_@@_style_logo_path_tl
-      { \RequirePackage { sysuvisual } }
+      {
+        \RequirePackage { sysuvisual }
+        \msg_warning:nnV { sysuthesis } { image-not-found }
+          \g_@@_style_logo_path_tl
+      }
   }
 %    \end{macrocode}
 %
@@ -2106,8 +2110,6 @@ To produce the documentation run the original source files ending with
             \sysudraw { name-cn } [ landscape ] [ 2.5 cm ] [ white ]
               [ draw = \g_@@_style_color_tl, line~width = 1 pt ]
           }
-        \msg_warning:nnV { sysuthesis } { image-not-found }
-          \g_@@_style_logo_path_tl
       }
   }
 %    \end{macrocode}
@@ -3030,7 +3032,7 @@ To produce the documentation run the original source files ending with
           {
             \int_compare:nNnTF { #1 } < { 51 }
               { \@@_symbol:n { \int_eval:n { "32B1 + #1 - 36 } } }
-              { \msg_error:nn { sysu } { too-many-footnotes } }
+              { \msg_error:nn { sysuthesis } { too-many-footnotes } }
           }
       }
   }
@@ -3491,9 +3493,9 @@ To produce the documentation run the original source files ending with
 %
 % 基于基本元素组合的新元素声明。
 %    \begin{macrocode}
-\seq_gset_from_clist:Nn \c_@@_elements_seq
+\seq_const_from_clist:Nn \c_@@_elements_seq
   { badge, name_cn, name_en, name, badge_name }
-\seq_gset_from_clist:Nn \c_@@_layouts_seq
+\seq_const_from_clist:Nn \c_@@_layouts_seq
   { landscape, portrait, landscape_lr, landscape_rl }
 \seq_map_inline:Nn \c_@@_elements_seq
   {
