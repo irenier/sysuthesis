@@ -598,7 +598,7 @@ To produce the documentation run the original source files ending with
 %
 % \subsection{封面与扉页}
 %
-% \begin{function}[added=2025-04-30, updated=2025-06-17]{\maketitle}
+% \begin{function}[added=2025-04-30, updated=2025-09-30]{\maketitle}
 %   \begin{syntax}
 %     \tn{maketitle}\oarg{页面}
 %   \end{syntax}
@@ -888,6 +888,11 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \msg_new:nnn { sysuthesis } { unknown-option }
   { Class~ option~ "#1"~ is~ unknown. }
+\msg_new:nnn { sysuthesis } { invalid-option }
+  {
+    The~ option~ "#1"~ is~ not~ valid.\\
+    Please~ select~ one~ of~ the~ following~ valid~ options:~ #2.
+  }
 \msg_new:nnn { sysuthesis } { load-config-file }
   { You~ are~ loading~ config~ file~ "#1". }
 \msg_new:nnn { sysuthesis } { package-conflict }
@@ -2691,10 +2696,13 @@ To produce the documentation run the original source files ending with
       {
         \tl_set:Nn \l_@@_tmpa_tl
           { \int_to_roman:n { \g_@@_info_type_int } }
+        \seq_set_from_clist:Nn \l_@@_tmpa_seq
+          { cover, titlepage, declaration }
         \begin { titlepage }
 %    \end{macrocode}
 %
 % \changes{v0.2.0}{2025/06/17}{修复封面页码错误。}
+% \changes{v0.6.0}{2025/09/30}{添加错误消息提示。}
 %
 % 封面页码使用大写英文字母。
 %    \begin{macrocode}
@@ -2702,13 +2710,19 @@ To produce the documentation run the original source files ending with
           \pagenumbering { Alph }
           \tl_if_novalue:nTF { #1 }
             {
-              \clist_map_inline:nn
-                { cover, titlepage, declaration }
+              \seq_map_inline:Nn \l_@@_tmpa_seq
                 { \use:c { @@_ ##1 _ \l@@_tmpa_tl : } }
             }
             {
               \clist_map_inline:nn { #1 }
-                { \use:c { @@_ ##1 _ \l@@_tmpa_tl : } }
+                {
+                  \seq_if_in:NnTF \l_@@_tmpa_seq { ##1 }
+                    { \use:c { @@_ ##1 _ \l@@_tmpa_tl : } }
+                    {
+                      \msg_error:nnne { sysuthesis } { invalid-option }
+                        { ##1 } { \seq_use:Nn \l_@@_tmpa_seq { ,~ } }
+                    }
+                }
             }
         \end { titlepage }
       }
