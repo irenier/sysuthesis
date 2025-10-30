@@ -90,7 +90,7 @@ To produce the documentation run the original source files ending with
 %
 %<class|visual>\NeedsTeXFormat{LaTeX2e}
 %<*!(driver|install)>
-%<!driver>  \GetIdInfo $Id: sysuthesis.dtx 0.5.0 2025-08-17 12:00:00 +0800 Renier Tan <irantan@163.com> $
+%<!driver>  \GetIdInfo $Id: sysuthesis.dtx 0.6.0 2025-10-30 12:00:00 +0800 Renier Tan <irantan@163.com> $
 %<class>  {Thesis template for Sun Yat-sen University}
 %<class>\ProvidesExplClass{sysuthesis}
 %<visual>  {Sun Yat-sen University's visual elements}
@@ -171,7 +171,7 @@ To produce the documentation run the original source files ending with
 %
 % \title{\heiti 中山大学学位论文模板}
 % \author{Renier Tan}
-% \date{2025/08/17\quad v0.5.0}
+% \date{2025/10/30\quad v0.6.0}
 %
 % \changes{v0.1.0}{2025/04/30}{进行模板编写。}
 %
@@ -869,7 +869,7 @@ To produce the documentation run the original source files ending with
     \@ifl@t@r \ExplLoaderFileDate { #1 } { }
       { \msg_error:nnn { sysuthesis } { l3-too-old } { #1 } }
   }
-\_@@_if_expl_as_least:n { 2024/03/14 }
+\_@@_if_expl_as_least:n { 2024/06/01 }
 %    \end{macrocode}
 %
 % \cls{sysuthesis} 仅支持 \XeTeX{} 和 \LuaTeX{}。
@@ -1373,11 +1373,12 @@ To produce the documentation run the original source files ending with
   { \PassOptionsToPackage #1 }
 %    \end{macrocode}
 %
+% \changes{v0.6.0}{2025/10/30}{移除对 \pkg{xtemplate} 的依赖。}
+%
 % 载入各宏包。
 %    \begin{macrocode}
 \RequirePackage
   {
-    xtemplate,
     geometry,
     fancyhdr,
     footmisc,
@@ -1973,7 +1974,7 @@ To produce the documentation run the original source files ending with
 %
 % 声明对象类型。此类对象不需要参数。
 %    \begin{macrocode}
-\DeclareObjectType { sysu } { \c_zero_int }
+\NewTemplateType { sysu } { \c_zero_int }
 %    \end{macrocode}
 %
 % 声明元素模板接口。
