@@ -1001,20 +1001,21 @@ To produce the documentation run the original source files ending with
     \mode_leave_vertical:
     \rule [ -0.8 ex ] { #1 } { 0.5 pt }
     \skip_horizontal:n { -#1 }
-    \hbox_to_wd:nn { #1 } { \tex_hfil:D #2 \tex_hfil:D }
+    \hbox_to_wd:nn { #1 } { \tex_hss:D #2 \tex_hss:D }
   }
 \cs_new_protected:Npn \@@_box_ulined:nN #1#2
   {
     \mode_leave_vertical:
     \rule [ -0.8 ex ] { #1 } { 0.5 pt }
     \skip_horizontal:n { -#1 }
-    \hbox_to_wd:nn { #1 } { \tex_hfil:D #2 \tex_hfil:D }
+    \hbox_to_wd:nn { #1 } { \tex_hss:D #2 \tex_hss:D }
   }
 \cs_generate_variant:Nn \@@_box_ulined:nN { nc }
 %    \end{macrocode}
 % \end{macro}
 %
 % \begin{macro}{\@@_box_spread:nN, \@@_box_spread:nn, \@@_box_spread:nc}
+% \changes{v0.7.0}{2025/11/05}{简化命令，事实上 \cs{hbox_to_wd:nn} 已经是分散对齐的盒子。}
 % 分散对齐的水平盒子。
 % \begin{arguments}
 %   \item 宽度
@@ -1024,14 +1025,12 @@ To produce the documentation run the original source files ending with
 \cs_new_protected:Npn \@@_box_spread:nN #1#2
   {
     \mode_leave_vertical:
-    \hbox_to_wd:nn { #1 }
-      { \tl_map_inline:nn { #2 } { ##1 \tex_hfil:D } \tex_unskip:D }
+    \hbox_to_wd:nn { #1 } { #2 }
   }
 \cs_new_protected:Npn \@@_box_spread:nn #1#2
   {
     \mode_leave_vertical:
-    \hbox_to_wd:nn { #1 }
-      { \tl_map_inline:nn { #2 } { ##1 \tex_hfil:D } \tex_unskip:D }
+    \hbox_to_wd:nn { #1 } { #2 }
   }
 \cs_generate_variant:Nn \@@_box_spread:nN { nc }
 %    \end{macrocode}
@@ -1616,8 +1615,13 @@ To produce the documentation run the original source files ending with
           }
       }
       {
-        \msg_warning:nne { sysuthesis } { unknown-option }
-          { \g_@@_style_math_font_tl }
+        \msg_error:nnVn { sysuthesis } { invalid-option }
+          \g_@@_style_math_font_tl
+          {
+            asana,~ bonum,~ cambria,~ dejavu,~ fira,~ garamond,~
+            gfsneohellenic,~ ibmplex,~ kp,~ lete,~ libertinus,~ lm,~ luciole,~
+            newcm,~ pagella,~ schola,~ stix,~ stix2,~ termes,~ xits~
+          }
       }
   }
 %    \end{macrocode}
@@ -3069,7 +3073,7 @@ To produce the documentation run the original source files ending with
 \cs_gset:Npn \@makefntext #1
   {
     \mode_leave_vertical:
-    \hbox_to_wd:nn { 1.5 em } { \@thefnmark \tex_hfil:D }
+    \hbox_to_wd:nn { 1.5 em } { \@thefnmark \tex_hss:D }
     #1
   }
 %    \end{macrocode}
@@ -3678,16 +3682,16 @@ To produce the documentation run the original source files ending with
             \tl_set:Ne \l_@@_layout_tl
               { \seq_use:Nn \c_@@_layouts_seq { ,~ } }
             \tl_replace_all:Nnn \l_@@_layout_tl { _ } { - }
-            \msg_error:nnne { sysuvisual } { invalid-option }
-              { #2 } { \l_@@_layout_tl  }
+            \msg_error:nnnV { sysuvisual } { invalid-option }
+              { #2 } \l_@@_layout_tl
           }
       }
       {
         \tl_set:Ne \l_@@_element_tl
           { \seq_use:Nn \c_@@_elements_seq { ,~ } }
         \tl_replace_all:Nnn \l_@@_element_tl { _ } { - }
-        \msg_error:nnne { sysuvisual } { invalid-option }
-          { #1 } { \l_@@_element_tl  }
+        \msg_error:nnnV { sysuvisual } { invalid-option }
+          { #1 } \l_@@_element_tl
       }
   }
 %    \end{macrocode}
@@ -3698,7 +3702,7 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \NewDocumentCommand \sysudraw { m O { landscape } O { 3cm } O { sysugreen } o }
   {
-    \IfNoValueTF { #5 }
+    \tl_if_novalue:nTF { #5 }
       { \@@_tikz_draw:nnnnn { #1 } { #2 } { #3 } { #4 } { } }
       { \@@_tikz_draw:nnnnn { #1 } { #2 } { #3 } { #4 } { #5 } }
   }
