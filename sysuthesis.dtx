@@ -341,10 +341,8 @@ To produce the documentation run the original source files ending with
 %   \begin{syntax}
 %     <(oneside)|twoside>
 %   \end{syntax}
-% 指定单面或双面模式。
+% 指定单面或双面模式。本选项为全局选项，继承自 \cls{book} 类。双面模式下，新章节（如 \tn{chapter}）和特殊页面将始于奇数页，必要时会自动添加空白页，适合打印。单面模式则无此行为。
 % \end{function}
-%
-% 本选项为全局选项，继承自 \cls{book} 类。双面模式下，新章节（如 \tn{chapter}）和特殊页面将始于奇数页，必要时会自动添加空白页，适合打印。单面模式则无此行为。
 %
 % \begin{function}[added=2025-04-30]{draft}
 %   \begin{syntax}
@@ -361,6 +359,14 @@ To produce the documentation run the original source files ending with
 %   \item 图片仅显示为含路径的占位框
 %   \item 不生成超链接
 % \end{itemize}
+%
+% \begin{function}[added=2025-11-25]{anonymous}
+%   \begin{syntax}
+%     <anonymous>
+%   \end{syntax}
+% 切换盲审（匿名）模式，默认关闭。开启时与师生身份相关的字段（作者姓名、导师姓名、学号）将不会被设置，
+% 并且将去除封面、扉页、学术诚信声明和致谢页。
+% \end{function}
 %
 % \subsubsection{配置文件}
 %
@@ -957,6 +963,13 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{variable}
 %
+% \begin{variable}{\g_@@_opt_anon_bool}
+% 判断开启盲审模式（默认关闭）。
+%    \begin{macrocode}
+\bool_new:N \g_@@_opt_anon_bool
+%    \end{macrocode}
+% \end{variable}
+%
 % \begin{variable}{\g_@@_opt_config_tl}
 % 存储配置文件名称，默认为空。
 %    \begin{macrocode}
@@ -1139,6 +1152,13 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{macro}
 %
+% \begin{macro}{\@@_keys_set:nn}
+% 设置键值对。
+%    \begin{macrocode}
+\cs_new_eq:NN \@@_keys_set:nn \keys_set:nn
+%    \end{macrocode}
+% \end{macro}
+%
 % \subsubsection{字符串常量}
 %
 % 设置字符串常量。
@@ -1265,6 +1285,24 @@ To produce the documentation run the original source files ending with
       },
     draft .default:n = true,
     draft .initial:n = false,
+%    \end{macrocode}
+% \end{variable}
+%
+% \begin{variable}{anonymous}
+% \changes{v0.7.0}{2025/11/25}{新增盲审模式选项。}
+% 判断开启盲审模式（默认关闭）。
+%    \begin{macrocode}
+    anonymous .choice:,
+    anonymous / true .code:n =
+      {
+        \bool_gset_true:N \g_@@_opt_anon_bool
+        \cs_set:Npn \@@_keys_set:nn ##1##2
+          { \keys_set_exclude_groups:nnn { ##1 } { anonymous } { ##2 } }
+      },
+    anonymous / false .code:n =
+        { \bool_gset_false:N \g_@@_opt_anon_bool },
+    anonymous .default:n = true,
+    anonymous .initial:n = false,
 %    \end{macrocode}
 % \end{variable}
 %
@@ -1950,6 +1988,16 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{macro}
 %
+% 将指定信息项归入 |anonymous| 组，以在盲审模式下选择性屏蔽。
+%    \begin{macrocode}
+\clist_map_inline:nn
+  { author, supervisors, student-id }
+  { \keys_define:nn { sysu / info } { #1 .groups:n = { anonymous } } }
+\clist_map_inline:nn
+  { author, supervisors }
+  { \keys_define:nn { sysu / info } { #1 * .groups:n = { anonymous } } }
+%    \end{macrocode}
+%
 % \begin{macro}{\sysusetup}
 % 定义设置接口。
 % \begin{arguments}
@@ -1960,11 +2008,11 @@ To produce the documentation run the original source files ending with
 \NewDocumentCommand \sysusetup { o m }
   {
     \tl_if_novalue:nTF { #1 }
-      { \keys_set:nn { sysu } { #2 } }
+      { \@@_keys_set:nn { sysu } { #2 } }
       {
         \tl_if_in:nnTF { #1 } { / }
-          { \keys_set:nn { sysu } { #1 = { #2 } } }
-          { \keys_set:nn { sysu / #1 } { #2 } }
+          { \@@_keys_set:nn { sysu } { #1 = { #2 } } }
+          { \@@_keys_set:nn { sysu / #1 } { #2 } }
       }
   }
 %    \end{macrocode}
@@ -2695,9 +2743,13 @@ To produce the documentation run the original source files ending with
 \RenewDocumentCommand \maketitle { o }
   {
 %    \end{macrocode}
-% 在草稿模式下，封面绘制将被禁用，有助于提升编译速度。
+%
+% \changes{v0.7.0}{2025/11/25}{盲审模式不进行封面绘制。}
+%
+% 在草稿模式或盲审模式下，封面绘制将被禁用，有助于提升编译速度。
 %    \begin{macrocode}
-    \bool_if:NF \g_@@_opt_draft_bool
+    \bool_lazy_or:nnF
+      { \g_@@_opt_draft_bool } { \g_@@_opt_anon_bool }
       {
         \tl_set:Nn \l_@@_tmpa_tl
           { \int_to_roman:n { \g_@@_info_type_int } }
@@ -2950,11 +3002,13 @@ To produce the documentation run the original source files ending with
 % \subsection{致谢}
 %
 % \begin{environment}{acknowledgements}
+% \changes{v0.7.0}{2025/11/25}{盲审模式不生成致谢页。}
 % 封装致谢环境。
 %    \begin{macrocode}
-\NewDocumentEnvironment { acknowledgements } { }
+\NewDocumentEnvironment { acknowledgements } { +b }
   {
-    \@@_chapter:n { \c_@@_name_acknowledgements_tl }
+    \bool_if:NF \g_@@_opt_anon_bool
+      { \@@_chapter:n { \c_@@_name_acknowledgements_tl } #1 }
   } { }
 %    \end{macrocode}
 % \end{environment}
