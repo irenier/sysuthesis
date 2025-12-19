@@ -16,7 +16,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Install fonts
         run: |
@@ -41,7 +41,7 @@ jobs:
           latexmk -${{ matrix.engine }} -halt-on-error -jobname="%A-${{ matrix.engine }}" thesis-*.tex
 
       - name: Upload PDFs
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: test-${{ matrix.engine }}
           path: test/*.pdf
