@@ -453,12 +453,13 @@ To produce the documentation run the original source files ending with
 %
 % \subsection{数学字体}
 %
-% \begin{function}[added=2025-04-30, updated=2025-11-26]{style/math-font}
+% \begin{function}[added=2025-04-30, updated=2026-01-08]{style/math-font}
 %   \begin{syntax}
-%     math-font = <asana|bonum|cambria|dejavu|fira|garamond|gfsneohellenic|ibmplex|lete|
-%                 libertinus|lm|luciole|pagella|schola|stix|stix2|termes|kp|newcm|(xits)|none>
+%     math-font = <asana|bonum|cambria|concrete|dejavu|erewhon|euler|garamond|
+%                  gfsneohellenic|ibmplex|kp|libertinus|lm|newcm|oldstandard|
+%                  pagella|schola|stix|stix2|termes|xcharter|(xits)|none>
 %   \end{syntax}
-% 指定数学字体，默认为 |xits|。推荐使用 |xits| 或 |newcm|。
+% 指定数学字体，默认为 |xits|。推荐使用 |xits|, |newcm|, |stix2|。
 % \end{function}
 %
 % \subsection{元素颜色}
@@ -1588,7 +1589,8 @@ To produce the documentation run the original source files ending with
 %
 % \begin{macro}{\@@_load_math_font:}
 % \changes{v0.7.0}{2025/11/26}{添加 none 选项。}
-% 加载数学字体命令。
+% \changes{v0.8.0}{2026/01/08}{添加数学字体。}
+% 加载数学字体命令。\footnote{数学字体参考 \url{https://mathfonts.github.io/woff2-list}。}
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_load_math_font:
   {
@@ -1598,19 +1600,39 @@ To produce the documentation run the original source files ending with
         { bonum } { \setmathfont { texgyrebonum-math.otf } }
         { cambria } { \setmathfont { Cambria~Math } }
         { dejavu } { \setmathfont { texgyredejavu-math.otf } }
-        { fira } { \setmathfont { FiraMath-Regular.otf } }
+        { euler } { \setmathfont { Euler-Math.otf } }
         { garamond } { \setmathfont { Garamond-Math.otf } }
         { gfsneohellenic } { \setmathfont { GFSNeohellenicMath.otf } }
         { ibmplex } { \setmathfont { IBMPlexMath-Regular.otf } }
-        { lete } { \setmathfont { LeteSansMath.otf } }
         { libertinus } { \setmathfont { LibertinusMath-Regular.otf } }
         { lm } { \setmathfont { latinmodern-math.otf } }
-        { luciole } { \setmathfont { Luciole-Math.otf } }
+        { oldstandard } { \setmathfont { OldStandard-Math.otf } }
         { pagella } { \setmathfont { texgyrepagella-math.otf } }
         { schola } { \setmathfont { texgyreschola-math.otf } }
         { stix } { \setmathfont { STIXMath-Regular.otf } }
-        { stix2 } { \setmathfont { STIXTwoMath-Regular.otf } }
         { termes } { \setmathfont { texgyretermes-math.otf } }
+        { concrete }
+          {
+            \setmathfont { Concrete-Math }
+              [
+                Extension = .otf,
+                BoldFont = Concrete-Math-Bold
+              ]
+          }
+        { erewhon }
+          {
+            \setmathfont { Erewhon-Math }
+              [
+                Extension = .otf,
+                BoldFont = Erewhon-Math-Bold
+              ]
+            \setmathfont { Erewhon-Math }
+              [
+                Extension = .otf,
+                range = { cal, bfcal },
+                StylisticSet = 1
+              ]
+          }
         { kp }
           {
             \setmathfont { KpMath-Regular }
@@ -1639,6 +1661,31 @@ To produce the documentation run the original source files ending with
                 StylisticSet = 1
               ]
           }
+        { stix2 }
+          {
+            \setmathfont { STIXTwoMath-Regular }
+              [ Extension = .otf ]
+            \setmathfont { STIXTwoMath-Regular }
+              [
+                Extension = .otf,
+                range = { scr, bfscr },
+                StylisticSet = 1
+              ]
+          }
+        { xcharter }
+          {
+            \setmathfont { XCharter-Math }
+              [
+                Extension = .otf,
+                BoldFont = XCharter-Math-Bold
+              ]
+            \setmathfont { XCharter-Math }
+              [
+                Extension = .otf,
+                range = { cal, bfcal },
+                StylisticSet = 1
+              ]
+          }
         { xits }
           {
             \setmathfont { XITSMath-Regular }
@@ -1659,9 +1706,10 @@ To produce the documentation run the original source files ending with
         \msg_error:nnVn { sysuthesis } { invalid-option }
           \g_@@_style_math_font_tl
           {
-            asana,~ bonum,~ cambria,~ dejavu,~ fira,~ garamond,~
-            gfsneohellenic,~ ibmplex,~ kp,~ lete,~ libertinus,~ lm,~ luciole,~
-            newcm,~ pagella,~ schola,~ stix,~ stix2,~ termes,~ xits~
+            asana,~ bonum,~ cambria,~ concrete,~ dejavu,~ erewhon,~
+            euler,~ garamond,~ gfsneohellenic,~ ibmplex,~ kp,~
+            libertinus,~ lm,~ newcm,~ oldstandard,~ pagella,~
+            schola,~ stix,~ stix2,~ termes,~ xcharter,~ xits
           }
       }
   }
