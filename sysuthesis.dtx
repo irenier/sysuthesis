@@ -2,7 +2,7 @@
 % !TeX program  = XeLaTeX
 % !TeX encoding = UTF-8
 %
-% Copyright 2024 - 2025 Renier Tan <irantan@163.com>
+% Copyright 2024 - 2026 Renier Tan <irantan@163.com>
 %
 % This work may be distributed and/or modified under the
 % conditions of the LaTeX Project Public License, either version 1.3c
@@ -37,7 +37,7 @@
 
 \preamble
 
-Copyright (C) 2024 - 2025 by Renier Tan <irantan@163.com>
+Copyright (C) 2024 - 2026 by Renier Tan <irantan@163.com>
 
 This work may be distributed and/or modified under the
 conditions of the LaTeX Project Public License, either version 1.3c
@@ -90,7 +90,7 @@ To produce the documentation run the original source files ending with
 %
 %<class|visual>\NeedsTeXFormat{LaTeX2e}
 %<*!(driver|install)>
-%<!driver>  \GetIdInfo $Id: sysuthesis.dtx 0.7.0 2025-11-26 12:00:00 +0800 Renier Tan <irantan@163.com> $
+%<!driver>  \GetIdInfo $Id: sysuthesis.dtx 1.0.0 2026-02-06 12:00:00 +0800 Renier Tan <irantan@163.com> $
 %<class>  {Thesis template for Sun Yat-sen University}
 %<class>\ProvidesExplClass{sysuthesis}
 %<visual>  {Sun Yat-sen University's visual elements}
@@ -171,7 +171,7 @@ To produce the documentation run the original source files ending with
 %
 % \title{\heiti 中山大学学位论文模板}
 % \author{Renier Tan}
-% \date{2025/11/26\quad v0.7.0}
+% \date{2026/02/06\quad v1.0.0}
 %
 % \changes{v0.1.0}{2025/04/30}{进行模板编写。}
 %
@@ -426,76 +426,6 @@ To produce the documentation run the original source files ending with
 %   \sysusetup[info/author]{作者}
 % \end{latexexample}
 %
-% \section{设置样式}
-%
-% \subsection{中文字体}
-%
-% 因学校规定英文字体为 Times New Roman，故仅提供中文字体和数学字体的设置选项。
-%
-% \begin{function}[added=2025-04-30, updated=2025-11-26]{style/cjk-font}
-%   \begin{syntax}
-%     cjk-font = <adobe|fandol|founder|mac|macnew|macold|ubuntu|windows|none>
-%   \end{syntax}
-% 指定中文字体族，默认按操作系统设置。推荐使用 |windows|, |founder| 或 |ubuntu|。
-% \end{function}
-%
-% \begin{description}
-%   \item[adobe] 调用 Adobe 公司的四款中文字体。
-%   \item[fandol] 调用 Fandol 中文字体。
-%   \item[founder] 调用方正公司的中文字体。
-%   \item[mac] 调用 macOS 系统字体，根据版本分为 |macnew| 和 |macold|。
-%   \item[macnew] 调用 El Capitan 或更新版本的多字重华文和苹方字体。
-%   \item[macold] 调用 Yosemite 或更早版本的华文字体。
-%   \item[ubuntu] 调用 Ubuntu 系统下的思源宋体、思源黑体和文鼎楷体。
-%   \item[windows] 调用 Windows 系统下的中易字体和微软雅黑字体。
-%   \item[none] 不配置中文字体，需要用户自己配置，并且需要提供 \cs{songti} 和 \cs{heiti} 命令。
-% \end{description}
-%
-% \subsection{数学字体}
-%
-% \begin{function}[added=2025-04-30, updated=2026-01-08]{style/math-font}
-%   \begin{syntax}
-%     math-font = <asana|bonum|cambria|concrete|dejavu|erewhon|euler|garamond|
-%                  gfsneohellenic|ibmplex|kp|libertinus|lm|newcm|oldstandard|
-%                  pagella|schola|stix|stix2|termes|xcharter|(xits)|none>
-%   \end{syntax}
-% 指定数学字体，默认为 |xits|。推荐使用 |xits|, |newcm|, |stix2|。
-% \end{function}
-%
-% \subsection{元素颜色}
-%
-% \begin{function}[added=2025-07-06]{sytle/color}
-%   \begin{syntax}
-%     color = \Arg{颜色名称}
-%   \end{syntax}
-% 指定全局的元素颜色，默认为 |sysugreen|。本模板预定义了 |sysugreen| 和 |sysured| 两种颜色，
-% 并且可以使用 \pkg{xcolor} 宏包中 |svgnames| 定义的颜色。
-% \end{function}
-%
-% \subsection{封面图片}
-%
-% \begin{function}[added=2025-04-30]{style/logo-path}
-%   \begin{syntax}
-%     logo-path = \Arg{图片路径}
-%   \end{syntax}
-% 设置封面图片路径。本科生默认为 \file{sysu-emblem.pdf}，研究生默认为 \file{sysu-name-cn.pdf}。
-% 图片文件应置于主文档同级目录，或 \file{figures}, \file{images}, \file{logos}, \file{pictures} 子目录中。
-% 如果未找到指定图片，将添加视觉元素宏包 \pkg{sysuvisual}，使用 \pkg{tikz} 绘图，可能延长编译时间。
-% \end{function}
-%
-% \subsection{\pkg{unicode-math} 选项设置}
-%
-% \begin{function}[added=2025-04-30]{unicode-math}
-%   \begin{syntax}
-%     math-style = <(ISO)|TeX|french|upright|literal>
-%     bold-style = <(ISO)|TeX|upright>
-%     sans-style = <upright|(italic)>
-%     nabla      = <(upright)|italic>
-%     partial    = <upright|(italic)>
-%   \end{syntax}
-% 配置 \pkg{unicode-math} 宏包选项，具体含义请参考其官方手册\cite{Robertson2023}。
-% \end{function}
-%
 % \section{设置个人信息}
 %
 % \subsection{示例}
@@ -503,7 +433,7 @@ To produce the documentation run the original source files ending with
 % \begin{latexexample}
 %   \sysusetup[info]
 %     {
-%       title        = {标题第一行\\标题第二行},
+%       title        = {标题第一行\\ 标题第二行},
 %       title*       = {first line\\ second line},
 %       keywords     = {中山大学, 论文模版, 本科生, 研究生},
 %       keywords*    = {SYSU, template, undergraduate, graduate},
@@ -600,6 +530,77 @@ To produce the documentation run the original source files ending with
 %     thesis-code = \Arg{论文编号}
 %   \end{syntax}
 % 论文编号（仅研究生）。
+% \end{function}
+%
+% \section{设置样式}
+%
+% \subsection{中文字体}
+%
+% 因学校规定英文字体为 Times New Roman，故仅提供中文字体和数学字体的设置选项。
+%
+% \begin{function}[added=2025-04-30, updated=2025-11-26]{style/cjk-font}
+%   \begin{syntax}
+%     cjk-font = <adobe|fandol|founder|mac|macnew|macold|ubuntu|windows|none>
+%   \end{syntax}
+% 指定中文字体族，默认按操作系统设置。推荐使用 |windows|, |founder| 或 |ubuntu|。
+% 建议 macOS 用户使用 |macnew|。
+% \end{function}
+%
+% \begin{description}
+%   \item[adobe] 调用 Adobe 公司的四款中文字体。
+%   \item[fandol] 调用 Fandol 中文字体。
+%   \item[founder] 调用方正公司的中文字体。
+%   \item[mac] 调用 macOS 系统字体，根据版本分为 |macnew| 和 |macold|。
+%   \item[macnew] 调用 El Capitan 或更新版本的多字重华文和苹方字体。
+%   \item[macold] 调用 Yosemite 或更早版本的华文字体。
+%   \item[ubuntu] 调用 Ubuntu 系统下的思源宋体、思源黑体和文鼎楷体。
+%   \item[windows] 调用 Windows 系统下的中易字体和微软雅黑字体。
+%   \item[none] 不配置中文字体，需要用户自己配置，并且需要提供 \cs{songti} 和 \cs{heiti} 命令。
+% \end{description}
+%
+% \subsection{数学字体}
+%
+% \begin{function}[added=2025-04-30, updated=2026-01-08]{style/math-font}
+%   \begin{syntax}
+%     math-font = <asana|bonum|cambria|concrete|dejavu|erewhon|euler|garamond|
+%                  gfsneohellenic|ibmplex|kp|libertinus|lm|newcm|oldstandard|
+%                  pagella|schola|stix|stix2|termes|xcharter|(xits)|none>
+%   \end{syntax}
+% 指定数学字体，默认为 |xits|。推荐使用 |xits|, |newcm|, |stix2|。
+% \end{function}
+%
+% \subsection{元素颜色}
+%
+% \begin{function}[added=2025-07-06]{sytle/color}
+%   \begin{syntax}
+%     color = \Arg{颜色名称}
+%   \end{syntax}
+% 指定全局的元素颜色，默认为 |sysugreen|。本模板预定义了 |sysugreen| 和 |sysured| 两种颜色，
+% 并且可以使用 \pkg{xcolor} 宏包中 |svgnames| 定义的颜色。
+% \end{function}
+%
+% \subsection{封面图片}
+%
+% \begin{function}[added=2025-04-30]{style/logo-path}
+%   \begin{syntax}
+%     logo-path = \Arg{图片路径}
+%   \end{syntax}
+% 设置封面图片路径。本科生默认为 \file{sysu-emblem.pdf}，研究生默认为 \file{sysu-name-cn.pdf}。
+% 图片文件应置于主文档同级目录，或 \file{figures}, \file{images}, \file{logos}, \file{pictures} 子目录中。
+% 如果未找到指定图片，将添加视觉元素宏包 \pkg{sysuvisual}，使用 \pkg{tikz} 绘图，可能延长编译时间。
+% \end{function}
+%
+% \subsection{\pkg{unicode-math} 选项设置}
+%
+% \begin{function}[added=2025-04-30]{unicode-math}
+%   \begin{syntax}
+%     math-style = <(ISO)|TeX|french|upright|literal>
+%     bold-style = <(ISO)|TeX|upright>
+%     sans-style = <upright|(italic)>
+%     nabla      = <(upright)|italic>
+%     partial    = <upright|(italic)>
+%   \end{syntax}
+% 配置 \pkg{unicode-math} 宏包选项，具体含义请参考其官方手册\cite{Robertson2023}。
 % \end{function}
 %
 % \section{特殊页面}
@@ -872,12 +873,12 @@ To produce the documentation run the original source files ending with
     a~ version~ of~ L3~ programming~ layer~\\
     after~ #1.
   }
-\cs_new_protected:Npn \_@@_if_expl_as_least:n #1
+\cs_new_protected:Npn \@@_if_expl_as_least:n #1
   {
     \@ifl@t@r \ExplLoaderFileDate { #1 } { }
       { \msg_error:nnn { sysuthesis } { l3-too-old } { #1 } }
   }
-\_@@_if_expl_as_least:n { 2024/06/01 }
+\@@_if_expl_as_least:n { 2024/06/01 }
 %    \end{macrocode}
 %
 % \cls{sysuthesis} 仅支持 \XeTeX{} 和 \LuaTeX{}。
@@ -921,8 +922,6 @@ To produce the documentation run the original source files ending with
 %   \l_@@_tmpa_box,
 %   \l_@@_tmpa_seq,
 %   \l_@@_tmpa_dim,
-%   \l_@@_tmpa_skip,
-%   \l_@@_tmpa_int,
 %   \l_@@_tmpa_tl
 % }
 % 临时变量。
@@ -930,8 +929,6 @@ To produce the documentation run the original source files ending with
 \box_new:N \l_@@_tmpa_box
 \seq_new:N \l_@@_tmpa_seq
 \dim_new:N \l_@@_tmpa_dim
-\skip_new:N \l_@@_tmpa_skip
-\int_new:N \l_@@_tmpa_int
 \tl_new:N \l_@@_tmpa_tl
 %    \end{macrocode}
 % \end{variable}
@@ -1275,16 +1272,14 @@ To produce the documentation run the original source files ending with
 % \begin{variable}{draft}
 % 判断开启草稿模式（默认关闭）。
 %    \begin{macrocode}
-    draft .choices:nn =
-      { true , false }
+    draft .choice:,
+    draft / true .code:n =
       {
-        \int_compare:nNnTF { \l_keys_choice_int } = { 1 }
-          {
-            \bool_gset_true:N \g_@@_opt_draft_bool
-            \seq_gpush:Nn \g_@@_pass_to_ctexbook_seq { draft }
-          }
-          { \bool_gset_false:N \g_@@_opt_draft_bool }
+        \bool_gset_true:N \g_@@_opt_draft_bool
+        \seq_gpush:Nn \g_@@_pass_to_ctexbook_seq { draft }
       },
+    draft / false .code:n =
+      { \bool_gset_false:N \g_@@_opt_draft_bool },
     draft .default:n = true,
     draft .initial:n = false,
 %    \end{macrocode}
@@ -1589,7 +1584,7 @@ To produce the documentation run the original source files ending with
 %
 % \begin{macro}{\@@_load_math_font:}
 % \changes{v0.7.0}{2025/11/26}{添加 none 选项。}
-% \changes{v0.8.0}{2026/01/08}{添加数学字体。}
+% \changes{v1.0.0}{2026/01/08}{添加数学字体。}
 % 加载数学字体命令。\footnote{数学字体参考 \url{https://mathfonts.github.io/woff2-list}。}
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_load_math_font:
@@ -1749,13 +1744,13 @@ To produce the documentation run the original source files ending with
 %
 % \subsection{章节标题格式}
 %
-% \begin{variable}{\l_@@_section_style_i_tl, \l_@@_section_style_ii_tl, \l_@@_section_style_iii_tl}
+% \begin{variable}{\l_@@_section_style_a_tl, \l_@@_section_style_b_tl, \l_@@_section_style_c_tl}
 % 本科生和研究生章节标题格式。
 %    \begin{macrocode}
-\tl_new:N \l_@@_section_style_i_tl
-\tl_new:N \l_@@_section_style_ii_tl
-\tl_new:N \l_@@_section_style_iii_tl
-\tl_set:Nn \l_@@_section_style_i_tl
+\tl_new:N \l_@@_section_style_a_tl
+\tl_new:N \l_@@_section_style_b_tl
+\tl_new:N \l_@@_section_style_c_tl
+\tl_set:Nn \l_@@_section_style_a_tl
   {
     chapter =
       {
@@ -1803,7 +1798,7 @@ To produce the documentation run the original source files ending with
 %
 % \changes{v0.2.0}{2025/06/18}{修复研究生章节样式。}
 %    \begin{macrocode}
-\tl_set:Nn \l_@@_section_style_ii_tl
+\tl_set:Nn \l_@@_section_style_b_tl
   {
     chapter =
       {
@@ -1846,16 +1841,16 @@ To produce the documentation run the original source files ending with
         fixskip = true
       }
   }
-\tl_set_eq:NN \l_@@_section_style_iii_tl
-  \l_@@_section_style_ii_tl
+\tl_set_eq:NN \l_@@_section_style_c_tl
+  \l_@@_section_style_b_tl
 %    \end{macrocode}
 % \end{variable}
 %
-% \begin{variable}{\l_@@_appendix_section_style_i_tl}
+% \begin{variable}{\l_@@_appendix_section_style_a_tl}
 % 本科生附录章节格式。
 %    \begin{macrocode}
-\tl_new:N \l_@@_appendix_section_style_i_tl
-\tl_set:Nn \l_@@_appendix_section_style_i_tl
+\tl_new:N \l_@@_appendix_section_style_a_tl
+\tl_set:Nn \l_@@_appendix_section_style_a_tl
   {
     section / name = { 附~ },
     subsection / name = { 附~ },
@@ -1871,7 +1866,7 @@ To produce the documentation run the original source files ending with
     \keys_set:nv { ctex }
       {
         l_@@_section_style_
-        \int_to_roman:n { \g_@@_info_type_int }
+        \int_to_alph:n { \g_@@_info_type_int }
         _tl
       }
   }
@@ -1882,7 +1877,7 @@ To produce the documentation run the original source files ending with
 \hook_gput_code:nnn { cmd / appendix / before } { . }
   {
     \int_compare:nNnT { \g_@@_info_type_int } = { 1 }
-      { \keys_set:nV { ctex } \l_@@_appendix_section_style_i_tl }
+      { \keys_set:nV { ctex } \l_@@_appendix_section_style_a_tl }
   }
 %    \end{macrocode}
 %
@@ -2042,11 +2037,11 @@ To produce the documentation run the original source files ending with
 % 将指定信息项归入 |anonymous| 组，以在盲审模式下选择性屏蔽。
 %    \begin{macrocode}
 \clist_map_inline:nn
-  { author, supervisors, student-id }
+  {
+    author, supervisors, student-id,
+    author*, supervisors*
+  }
   { \keys_define:nn { sysu / info } { #1 .groups:n = { anonymous } } }
-\clist_map_inline:nn
-  { author, supervisors }
-  { \keys_define:nn { sysu / info } { #1 * .groups:n = { anonymous } } }
 %    \end{macrocode}
 %
 % \begin{macro}{\sysusetup}
@@ -2120,7 +2115,7 @@ To produce the documentation run the original source files ending with
         l = { \cs_set_eq:NN \@@_elem_align: \raggedright },
         r = { \cs_set_eq:NN \@@_elem_align: \raggedleft },
         c = { \cs_set_eq:NN \@@_elem_align: \centering },
-        n = { \cs_set:Nn \@@_elem_align: { } }
+        n = { \cs_set_eq:NN \@@_elem_align: \prg_do_nothing: }
       }
   }
   {
@@ -2228,7 +2223,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生封面校徽。
 %    \begin{macrocode}
-\@@_define_element:nn { i / cover / emblem-image }
+\@@_define_element:nn { a / cover / emblem-image }
   {
     content = \@@_logo:,
     bottom-skip = 20 pt
@@ -2239,7 +2234,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生封面论文类型名称。
 %    \begin{macrocode}
-\@@_define_element:nn { i / cover / thesis-type-name }
+\@@_define_element:nn { a / cover / thesis-type-name }
   {
     content = \g_@@_name_thesis_tl,
     format =
@@ -2255,7 +2250,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生封面分割线。
 %    \begin{macrocode}
-\@@_define_element:nn { i / cover / divide-lines }
+\@@_define_element:nn { a / cover / divide-lines }
   {
     content =
       {
@@ -2272,7 +2267,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生封面论文中文标题。
 %    \begin{macrocode}
-\@@_define_element:nn { i / cover / title }
+\@@_define_element:nn { a / cover / title }
   {
     code-before =
       {
@@ -2293,7 +2288,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生封面信息栏。
 %    \begin{macrocode}
-\@@_define_element:nn { i / cover / info }
+\@@_define_element:nn { a / cover / info }
   {
     content =
       {
@@ -2314,7 +2309,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生封面日期。
 %    \begin{macrocode}
-\@@_define_element:nn { i / cover / date }
+\@@_define_element:nn { a / cover / date }
   {
     content = \exp_args:Ne \zhdate { \g_@@_info_date_tl },
     format = \heiti \normalsize,
@@ -2324,7 +2319,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生扉页论文中文标题。
 %    \begin{macrocode}
-\@@_define_element:nn { i / title-page / title }
+\@@_define_element:nn { a / title-page / title }
   {
     content = \g_@@_info_title_tl,
     format = \heiti \LARGE,
@@ -2335,7 +2330,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生扉页论文英文标题。
 %    \begin{macrocode}
-\@@_define_element:nn { i / title-page / title-en }
+\@@_define_element:nn { a / title-page / title-en }
   {
     content = \g_@@_info_title_en_tl,
     format = \heiti \LARGE,
@@ -2345,8 +2340,8 @@ To produce the documentation run the original source files ending with
 %
 % 本科生扉页信息栏。
 %    \begin{macrocode}
-\DeclareInstanceCopy { sysu } { i / title-page / info } { i / cover / info }
-\EditInstance { sysu } { i / title-page / info }
+\DeclareInstanceCopy { sysu } { a / title-page / info } { a / cover / info }
+\EditInstance { sysu } { a / title-page / info }
   {
     code-before = \c_empty_tl,
     format = \heiti \zihao { 3 }
@@ -2355,7 +2350,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生扉页日期。
 %    \begin{macrocode}
-\@@_define_element:nn { i / title-page / date }
+\@@_define_element:nn { a / title-page / date }
   {
     content = \exp_args:Ne \zhdate { \g_@@_info_date_tl },
     format = \heiti \fontsize { 14 bp } { 21 bp } \selectfont,
@@ -2365,7 +2360,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生声明页学术诚信声明。
 %    \begin{macrocode}
-\@@_define_element:nn { i / declaration / integr-decl }
+\@@_define_element:nn { a / declaration / integr-decl }
   {
     content =
       {
@@ -2387,7 +2382,7 @@ To produce the documentation run the original source files ending with
 %
 % 本科生声明页作者签名。
 %    \begin{macrocode}
-\@@_define_element:nn { i / declaration / author-sign }
+\@@_define_element:nn { a / declaration / author-sign }
   {
     content =
       {
@@ -2408,7 +2403,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生封面密级和编号。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / cover / secret-code }
+\@@_define_element:nn { b / cover / secret-code }
   {
     content =
       {
@@ -2426,7 +2421,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生封面校名图片。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / cover / school-image }
+\@@_define_element:nn { b / cover / school-image }
   {
     content = \@@_logo:,
     bottom-skip = 20 pt
@@ -2435,7 +2430,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生封面论文类型名称。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / cover / thesis-type-name }
+\@@_define_element:nn { b / cover / thesis-type-name }
   {
     content = \g_@@_name_thesis_tl,
     format =
@@ -2449,7 +2444,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生封面论文中文标题。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / cover / title }
+\@@_define_element:nn { b / cover / title }
   {
     content =
       {
@@ -2462,7 +2457,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生封面论文英文标题。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / cover / title-en }
+\@@_define_element:nn { b / cover / title-en }
   {
     content =
       {
@@ -2476,7 +2471,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生封面信息栏。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / cover / info }
+\@@_define_element:nn { b / cover / info }
   {
     content =
       {
@@ -2496,7 +2491,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生封面日期。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / cover / date }
+\@@_define_element:nn { b / cover / date }
   {
     content = \exp_args:Ne \zhdate { \g_@@_info_date_tl },
     format = \kaishu \large,
@@ -2506,7 +2501,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生扉页论文类型名称。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / title-page / thesis-type-name }
+\@@_define_element:nn { b / title-page / thesis-type-name }
   {
     content = \g_@@_name_school_thesis_tl,
     format = \zihao { 4 },
@@ -2516,7 +2511,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生扉页论文中文标题。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / title-page / title }
+\@@_define_element:nn { b / title-page / title }
   {
     content = \g_@@_info_title_tl,
     format = \heiti \huge,
@@ -2526,7 +2521,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生扉页论文英文标题。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / title-page / title-en }
+\@@_define_element:nn { b / title-page / title-en }
   {
     content = \g_@@_info_title_en_tl,
     format = \huge,
@@ -2536,7 +2531,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生扉页信息栏。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / title-page / info }
+\@@_define_element:nn { b / title-page / info }
   {
     content =
       {
@@ -2556,7 +2551,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生扉页答辩委员会。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / title-page / committee }
+\@@_define_element:nn { b / title-page / committee }
   {
     content =
       {
@@ -2573,7 +2568,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生扉页日期。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / title-page / date }
+\@@_define_element:nn { b / title-page / date }
   {
     content = \exp_args:Ne \zhdate { \g_@@_info_date_tl },
     bottom-skip = 0 pt plus -1 fil
@@ -2582,7 +2577,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生声明页论文原创性声明。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / declaration / orig-decl }
+\@@_define_element:nn { b / declaration / orig-decl }
   {
     content =
       {
@@ -2603,7 +2598,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生声明页作者签名。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / declaration / author-sign }
+\@@_define_element:nn { b / declaration / author-sign }
   {
     content =
       {
@@ -2623,7 +2618,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生声明页授权申明标题。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / declaration / auth-title }
+\@@_define_element:nn { b / declaration / auth-title }
   {
     content = \c_@@_name_auth_decl_tl,
     format = \heiti \zihao { -2 },
@@ -2633,7 +2628,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生声明页学位论文使用授权声明。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / declaration / auth-decl }
+\@@_define_element:nn { b / declaration / auth-decl }
   {
     content =
       {
@@ -2658,7 +2653,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生声明页作者导师签名。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / declaration / author-supervisors-sign }
+\@@_define_element:nn { b / declaration / author-supervisors-sign }
   {
     content =
       {
@@ -2689,43 +2684,43 @@ To produce the documentation run the original source files ending with
 %
 % \subsubsection{本科生}
 %
-% \begin{macro}{\@@_cover_i:}
+% \begin{macro}{\@@_cover_a:}
 % 制作本科生封面。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_cover_i:
+\cs_new_protected:Npn \@@_cover_a:
   {
     \@@_clearpage:
     \newgeometry { hmargin = 0 pt, vmargin = { 2.5 cm, 2 cm } }
-    \@@_use_element:nn { i / cover }
+    \@@_use_element:nn { a / cover }
       { emblem-image, thesis-type-name, divide-lines, title, info, date }
     \restoregeometry
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_titlepage_i:}
+% \begin{macro}{\@@_titlepage_a:}
 % 制作本科生扉页。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_titlepage_i:
+\cs_new_protected:Npn \@@_titlepage_a:
   {
     \@@_clearpage:
     \newgeometry { hmargin = 0 pt, vmargin = { 2.5 cm, 2 cm } }
-    \@@_use_element:nn { i / title-page }
+    \@@_use_element:nn { a / title-page }
       { title, title-en, info, date }
     \restoregeometry
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_declaration_i:}
+% \begin{macro}{\@@_declaration_a:}
 % 制作本科生声明页。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_declaration_i:
+\cs_new_protected:Npn \@@_declaration_a:
   {
     \@@_clearpage:
     \@@_chapter:n { \c_@@_name_integr_decl_tl }
     \thispagestyle { empty }
-    \@@_use_element:nn { i / declaration }
+    \@@_use_element:nn { a / declaration }
       { integr-decl, author-sign }
   }
 %    \end{macrocode}
@@ -2733,13 +2728,13 @@ To produce the documentation run the original source files ending with
 %
 % \subsubsection{研究生}
 %
-% \begin{macro}{\@@_cover_ii:}
+% \begin{macro}{\@@_cover_b:}
 % 制作研究生封面。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_cover_ii:
+\cs_new_protected:Npn \@@_cover_b:
   {
     \@@_clearpage:
-    \@@_use_element:nn { ii / cover }
+    \@@_use_element:nn { b / cover }
       {
         secret-code, school-image, thesis-type-name,
         title, title-en, info, date
@@ -2748,27 +2743,27 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_titlepage_ii:}
+% \begin{macro}{\@@_titlepage_b:}
 % 制作研究生扉页。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_titlepage_ii:
+\cs_new_protected:Npn \@@_titlepage_b:
   {
     \@@_clearpage:
-    \@@_use_element:nn { ii / title-page }
+    \@@_use_element:nn { b / title-page }
       { thesis-type-name, title, title-en, info, committee, date }
   }
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_declaration_ii:}
+% \begin{macro}{\@@_declaration_b:}
 % 制作研究生声明页。
 %    \begin{macrocode}
-\cs_new_protected:Npn \@@_declaration_ii:
+\cs_new_protected:Npn \@@_declaration_b:
   {
     \@@_clearpage:
     \@@_chapter:n { \c_@@_name_orig_decl_tl }
     \thispagestyle { empty }
-    \@@_use_element:nn { ii / declaration }
+    \@@_use_element:nn { b / declaration }
       {
         orig-decl, author-sign, auth-title,
         auth-decl, author-supervisors-sign
@@ -2777,12 +2772,12 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_cover_iii:, \@@_titlepage_iii:, \@@_declaration_iii:}
+% \begin{macro}{\@@_cover_c:, \@@_titlepage_c:, \@@_declaration_c:}
 % 博士封面和扉页内容与硕士保持一致。
 %    \begin{macrocode}
-\cs_set_eq:NN \@@_cover_iii: \@@_cover_ii:
-\cs_set_eq:NN \@@_titlepage_iii: \@@_titlepage_ii:
-\cs_set_eq:NN \@@_declaration_iii: \@@_declaration_ii:
+\cs_new_eq:NN \@@_cover_c: \@@_cover_b:
+\cs_new_eq:NN \@@_titlepage_c: \@@_titlepage_b:
+\cs_new_eq:NN \@@_declaration_c: \@@_declaration_b:
 %    \end{macrocode}
 % \end{macro}
 %
@@ -2803,7 +2798,7 @@ To produce the documentation run the original source files ending with
       { \g_@@_opt_draft_bool } { \g_@@_opt_anon_bool }
       {
         \tl_set:Nn \l_@@_tmpa_tl
-          { \int_to_roman:n { \g_@@_info_type_int } }
+          { \int_to_alph:n { \g_@@_info_type_int } }
         \seq_set_from_clist:Nn \l_@@_tmpa_seq
           { cover, titlepage, declaration }
         \begin { titlepage }
@@ -2856,12 +2851,12 @@ To produce the documentation run the original source files ending with
 %
 % \subsubsection{本科生}
 %
-% \begin{macro}{\@@_abstract_begin_i:, \@@_abstract_end_i:}
+% \begin{macro}{\@@_abstract_begin_a:, \@@_abstract_end_a:}
 % 本科生中文摘要。
 %    \begin{macrocode}
-\cs_new:Npn \@@_abstract_begin_i:
+\cs_new:Npn \@@_abstract_begin_a:
   { \@@_chapter:n { \c_@@_name_abstract_tl } }
-\cs_new:Npn \@@_abstract_end_i:
+\cs_new:Npn \@@_abstract_end_a:
   {
     \@@_keywords:nN { \bfseries \c_@@_name_keywords_tl ： }
       \g_@@_info_keywords_tl
@@ -2870,16 +2865,16 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_abstract_en_begin_i:, \@@_abstract_en_end_i:}
+% \begin{macro}{\@@_abstract_en_begin_a:, \@@_abstract_en_end_a:}
 % 本科生英文摘要。
 %    \begin{macrocode}
-\cs_new:Npn \@@_abstract_en_begin_i:
+\cs_new:Npn \@@_abstract_en_begin_a:
   {
     \@@_chapter:en
       { \text_uppercase:n { \c_@@_name_abstract_en_tl } }
       { \bfseries }
   }
-\cs_new:Npn \@@_abstract_en_end_i:
+\cs_new:Npn \@@_abstract_en_end_a:
   {
     \@@_keywords:nN { \bfseries \c_@@_name_keywords_en_tl :~ }
       \g_@@_info_keywords_en_tl
@@ -2892,7 +2887,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生中文摘要页标题。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / abstract / title }
+\@@_define_element:nn { b / abstract / title }
   {
     code-before = \@@_bookmark:n { \c_@@_name_abstract_tl },
     content = \g_@@_info_title_tl,
@@ -2903,7 +2898,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生中文摘要页信息栏。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / abstract / info }
+\@@_define_element:nn { b / abstract / info }
   {
     content =
       {
@@ -2923,7 +2918,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生中文摘要摘要二字。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / abstract / abstract }
+\@@_define_element:nn { b / abstract / abstract }
   {
     content = \c_@@_name_abstract_tl,
     format = \bfseries,
@@ -2934,7 +2929,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生英文摘要页标题。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / abstract-en / title }
+\@@_define_element:nn { b / abstract-en / title }
   {
     code-before = \@@_bookmark:n { \c_@@_name_abstract_en_tl },
     content = \g_@@_info_title_en_tl,
@@ -2945,7 +2940,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生英文摘要页信息栏。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / abstract-en / info }
+\@@_define_element:nn { b / abstract-en / info }
   {
     code-before =
       {
@@ -2969,7 +2964,7 @@ To produce the documentation run the original source files ending with
 %
 % 研究生英文摘要摘要二字。
 %    \begin{macrocode}
-\@@_define_element:nn { ii / abstract-en / abstract }
+\@@_define_element:nn { b / abstract-en / abstract }
   {
     content = \c_@@_name_abstract_en_tl,
     format = \bfseries,
@@ -2978,15 +2973,15 @@ To produce the documentation run the original source files ending with
   }
 %    \end{macrocode}
 %
-% \begin{macro}{\@@_abstract_begin_ii:, \@@_abstract_end_ii:}
+% \begin{macro}{\@@_abstract_begin_b:, \@@_abstract_end_b:}
 % 研究生中文摘要。
 %    \begin{macrocode}
-\cs_new:Npn \@@_abstract_begin_ii:
+\cs_new:Npn \@@_abstract_begin_b:
   {
     \@@_clearpage:
-    \@@_use_element:nn { ii / abstract } { title, info, abstract }
+    \@@_use_element:nn { b / abstract } { title, info, abstract }
   }
-\cs_new:Npn \@@_abstract_end_ii:
+\cs_new:Npn \@@_abstract_end_b:
   {
     \@@_keywords:nN { \bfseries \c_@@_name_keywords_tl ： }
       \g_@@_info_keywords_tl
@@ -2995,15 +2990,15 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_abstract_en_begin_ii:, \@@_abstract_en_end_ii:}
+% \begin{macro}{\@@_abstract_en_begin_b:, \@@_abstract_en_end_b:}
 % 研究生英文摘要。
 %    \begin{macrocode}
-\cs_new:Npn \@@_abstract_en_begin_ii:
+\cs_new:Npn \@@_abstract_en_begin_b:
   {
     \@@_clearpage:
-    \@@_use_element:nn { ii / abstract-en } { title, info, abstract }
+    \@@_use_element:nn { b / abstract-en } { title, info, abstract }
   }
-\cs_new:Npn \@@_abstract_en_end_ii:
+\cs_new:Npn \@@_abstract_en_end_b:
   {
     \@@_keywords:nN { \bfseries \c_@@_name_keywords_en_tl :~ }
       \g_@@_info_keywords_en_tl
@@ -3012,13 +3007,13 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 % \end{macro}
 %
-% \begin{macro}{\@@_abstract_begin_iii:, \@@_abstract_end_iii:, \@@_abstract_en_begin_iii:, \@@_abstract_en_end_iii:}
+% \begin{macro}{\@@_abstract_begin_c:, \@@_abstract_end_c:, \@@_abstract_en_begin_c:, \@@_abstract_en_end_c:}
 % 博士摘要环境和硕士摘要环境一致。
 %    \begin{macrocode}
-\cs_new_eq:NN \@@_abstract_begin_iii: \@@_abstract_begin_ii:
-\cs_new_eq:NN \@@_abstract_end_iii: \@@_abstract_end_ii:
-\cs_new_eq:NN \@@_abstract_en_begin_iii: \@@_abstract_en_begin_ii:
-\cs_new_eq:NN \@@_abstract_en_end_iii: \@@_abstract_en_end_ii:
+\cs_new_eq:NN \@@_abstract_begin_c: \@@_abstract_begin_b:
+\cs_new_eq:NN \@@_abstract_end_c: \@@_abstract_end_b:
+\cs_new_eq:NN \@@_abstract_en_begin_c: \@@_abstract_en_begin_b:
+\cs_new_eq:NN \@@_abstract_en_end_c: \@@_abstract_en_end_b:
 %    \end{macrocode}
 % \end{macro}
 %
@@ -3030,7 +3025,7 @@ To produce the documentation run the original source files ending with
 \NewDocumentEnvironment { abstract } { }
   {
     \tl_set:Nn \l_@@_tmpa_tl
-      { \int_to_roman:n { \g_@@_info_type_int } }
+      { \int_to_alph:n { \g_@@_info_type_int } }
     \use:c { @@_abstract_begin_ \l_@@_tmpa_tl : }
   }
   { \use:c { @@_abstract_end_ \l_@@_tmpa_tl : } }
@@ -3043,7 +3038,7 @@ To produce the documentation run the original source files ending with
 \NewDocumentEnvironment { abstract* } { }
   {
     \tl_set:Nn \l_@@_tmpa_tl
-      { \int_to_roman:n { \g_@@_info_type_int } }
+      { \int_to_alph:n { \g_@@_info_type_int } }
     \use:c { @@_abstract_en_begin_ \l_@@_tmpa_tl : }
   }
   { \use:c { @@_abstract_en_end_ \l_@@_tmpa_tl : } }
@@ -3430,7 +3425,7 @@ To produce the documentation run the original source files ending with
       {
         \bool_if:NTF \g_@@_bib_backend_bool
           { \@@_load_bibtex: } { \@@_load_biblatex: }
-        \tl_gset:Nn \bibfont { \small }
+        \cs_gset:Npn \bibfont { \small }
       }
   }
 %    \end{macrocode}
@@ -3500,11 +3495,11 @@ To produce the documentation run the original source files ending with
 %
 % 设置 \cs{autoref} 相关格式。
 %    \begin{macrocode}
-    \tl_gset_eq:NN \figureautorefname \figurename
-    \tl_gset_eq:NN \tableautorefname \tablename
-    \tl_gset_eq:NN \appendixautorefname \appendixname
-    \tl_gset:Nn \equationautorefname { 公式 }
-    \tl_gset:Nn \footnoteautorefname { 脚注 }
+    \cs_gset_eq:NN \figureautorefname \figurename
+    \cs_gset_eq:NN \tableautorefname \tablename
+    \cs_gset_eq:NN \appendixautorefname \appendixname
+    \cs_gset:Npn \equationautorefname { 公式 }
+    \cs_gset:Npn \footnoteautorefname { 脚注 }
   }
 %    \end{macrocode}
 %
