@@ -3461,7 +3461,6 @@ To produce the documentation run the original source files ending with
 %    \end{macrocode}
 %
 % 抑制警告信息。
-% !Todo: 删除标题中空格。
 %    \begin{macrocode}
     \pdfstringdefDisableCommands
       {
@@ -3469,7 +3468,18 @@ To produce the documentation run the original source files ending with
         \cs_set_eq:NN \quad \prg_do_nothing:
         \cs_set_eq:NN \qquad \prg_do_nothing:
         \cs_set_eq:NN \hspace \use_none:n
+        \cs_set_eq:NN \vspace \use_none:n
       }
+%    \end{macrocode}
+%
+% \changes{v1.0.0}{2026/02/06}{删除标题中汉字间的空格。}
+% 删除标题中汉字间的空格。
+%    \begin{macrocode}
+    \tl_set_eq:NN \l_@@_tmpa_tl \g_@@_info_title_tl
+    \tl_replace_all:Nnn \l_@@_tmpa_tl { \\ } { }
+    \regex_replace_all:nnN
+      { ([ \x { 4e00 } - \x { 9fff } ]) \s+ ([ \x { 4e00 } - \x { 9fff } ]) }
+      { \1\2 } \l_@@_tmpa_tl
 %    \end{macrocode}
 %
 % \pkg{hyperref} 宏包设置。
@@ -3482,7 +3492,7 @@ To produce the documentation run the original source files ending with
 %
 % 填写 PDF 元信息。
 %    \begin{macrocode}
-        pdftitle = \g_@@_info_title_tl,
+        pdftitle = \l_@@_tmpa_tl,
         pdfauthor = \g_@@_info_author_tl,
         pdfkeywords = \g_@@_info_keywords_tl
       }

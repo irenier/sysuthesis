@@ -14,7 +14,7 @@
   }
 \sysusetup[info]
   {
-    title        = {标题第一行\\标题第二行},
+    title        = {标题第一行\\ 标题第二行},
     title*       = {first line\\ second line},
     keywords     = {中山大学, 论文模版, 本科生, 研究生},
     keywords*    = {SYSU, template, undergraduate, graduate},
@@ -54,7 +54,8 @@
 \UseTblrLibrary{booktabs}   % 三线表样式
 \usepackage{float}          % 浮动体
 \usepackage[ruled]{algorithm2e} % 算法
-\usepackage{minted}         % 代码
+% \usepackage{minted}         % 代码
+\usepackage{listings}       % 代码
 
 \begin{document}
 
@@ -176,12 +177,30 @@
 
 下面是使用 C 语言实现的 "hello, world" 程序片段。
 
-\begin{minted}[bgcolor=gray!5!white, autogobble]{c}
+% \begin{minted}[bgcolor=gray!5!white, autogobble]{c}
+%   int main() {
+%     printf("hello, world");
+%     return 0;
+%   }
+% \end{minted}
+
+\begin{lstlisting}[
+  backgroundcolor=\color{gray!5!white},
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{lightgray},
+  showstringspaces=false,
+  keywordstyle=\color{blue},
+  stringstyle=\color{purple},
+  commentstyle=\color{green!50!black},
+  language=C
+]
   int main() {
     printf("hello, world");
     return 0;
   }
-\end{minted}
+\end{lstlisting}
 
 \chapter{实验结果与分析}
 
