@@ -8,11 +8,9 @@
 
 **`sysuthesis`** 是为中山大学设计的 **LaTeX 学位论文模板**，旨在满足毕业论文排版需求。本科生模版格式遵循《中山大学本科生毕业论文（设计）写作与印制规范》，研究生模版格式遵循《中山大学研究生学位论文格式要求》，并采用 **LaTeX3 语法**实现简洁高效的排版体验。
 
------
-
 ## 快速入门
 
-建议您首先阅读[用户手册](http://mirrors.ctan.org/macros/unicodetex/latex/sysuthesis/sysuthesis.pdf)，其中详细介绍了模板的功能特性与使用方法。
+建议您首先阅读[用户手册](http://mirrors.ctan.org/macros/unicodetex/latex/sysuthesis/sysuthesis.pdf)以了解完整功能。
 
 ### 在线编译
 
@@ -23,16 +21,27 @@
 
 ### 本地编译
 
-推荐您使用 **包管理器** 安装最新版本的 `sysuthesis` 和 `sysuvisual`。
+您可以根据使用习惯选择以下任意一种方式。
 
-对于初次使用的用户，您可以参考以下步骤：
+> **提示**：为获得最佳兼容性，请确保您的 TeX 发行版不低于 2024 年。
 
-1. **安装 TeX 发行版**：确保您的 TeX 发行版版本不低于 2024 年，并更新所有宏包。
-2. **下载模板文件**：下载包含[模板文件](https://github.com/irenier/sysuthesis/releases/latest)的压缩包 `sysuthesis-user-v*.zip`。
-3. **修改内容**：根据您的实际需求，修改 `sysuthesis-sample.tex` 文件中的内容。
-4. **编译文档**：在模板根目录下运行 `latexmk -xelatex` 命令进行编译，即可生成相应的 PDF 文件。
+#### 通过包管理器（推荐）
 
-### 最小编译示例
+适用于已安装 TeX Live 2025+ 或 MiKTeX 的用户。
+
+1. **更新宏包**：在终端运行 `tlmgr update --self --all` (TeX Live) 或通过 MiKTeX Console 检查更新。
+2. **直接编写**：新建 `tex` 文件，参考下文的[最小编译示例](#最小编译示例)或使用仓库内的[示例文件](./test/sysuthesis-sample.tex)。
+3. **执行编译**：运行 `latexmk -xelatex`。
+
+#### 手动下载使用
+
+适用于需要完整工程目录进行参考，或不方便进行系统级更新的用户。
+
+1. **获取源码**：从 [Releases](https://github.com/irenier/sysuthesis/releases/latest) 下载并解压 `sysuthesis-user-v*.zip`。
+2. **编辑内容**：直接修改文件夹内的 `sysuthesis-sample.tex`。
+3. **执行编译**：在解压目录运行 `latexmk -xelatex`。
+
+## 最小编译示例
 
 以下是一个最小化的编译示例：
 
@@ -56,8 +65,10 @@
 \end{document}
 ```
 
------
-
 ## 许可
 
 本模板的发布遵守 [LaTeX Project Public License（版本 1.3c 或更高）](https://www.latex-project.org/lppl/lppl-1-3c/)。
+
+---
+
+**如果您在使用过程中遇到问题，欢迎提交 [Issue](https://github.com/irenier/sysuthesis/issues) 或 Pull Request。**

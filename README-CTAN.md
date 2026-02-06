@@ -48,4 +48,4 @@ version.
 
 -----
 
-Copyright (C) 2024 - 2025 by Renier Tan <irantan@163.com>.
+Copyright (C) 2024 - 2026 by Renier Tan <irantan@163.com>.
