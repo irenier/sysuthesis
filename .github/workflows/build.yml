@@ -41,7 +41,7 @@ jobs:
           latexmk -${{ matrix.engine }} -halt-on-error -jobname="%A-${{ matrix.engine }}" thesis-*.tex
 
       - name: Upload PDFs
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v7
         with:
           name: test-${{ matrix.engine }}
           path: test/*.pdf

@@ -139,12 +139,15 @@ To produce the documentation run the original source files ending with
   }
 }{}
 \ExplSyntaxOn
-\cs_new:Nn \__syntax_bar: { \textup { \textbar } }
-\cs_new:Npn \__syntax_opt:n #1 { \textsl { #1 } }
-\cs_new:Npn \__syntax_def:n #1 { \textbf { \textup { #1 } } }
-\cs_new:Npn \__syntax_opt_aux:n #1>
+\cs_new_protected:Npn \__syntax_bar:
+  { \textup { \textbar } }
+\cs_new_protected:Npn \__syntax_opt:n #1
+  { \textsl { #1 } }
+\cs_new_protected:Npn \__syntax_def:n #1
+  { \textbf { \textup { #1 } } }
+\cs_new_protected:Npn \__syntax_opt_aux:n #1>
   { \__syntax_opt:n { \ensuremath { \langle } #1 \ensuremath { \rangle } } }
-\cs_new:Npn \__syntax_def_aux:n #1)
+\cs_new_protected:Npn \__syntax_def_aux:n #1)
   { \__syntax_def:n { #1 } }
 \hook_gput_code:nnn { env / syntax / begin } { . }
   {
@@ -174,6 +177,7 @@ To produce the documentation run the original source files ending with
 % \date{2026/02/06\quad v1.0.0}
 %
 % \changes{v0.1.0}{2025/04/30}{进行模板编写。}
+% \changes{v1.1.0}{2026/04/10}{将不能完全展开的函数声明为 protected。}
 %
 % \maketitle
 %
@@ -978,11 +982,20 @@ To produce the documentation run the original source files ending with
 %
 % \subsubsection{内部函数}
 %
-% \begin{macro}{\@@_quad:, \@@_qquad:}
+% \begin{macro}{\@@_quad:}
 % 等价于 \LaTeXe{} 中的 \tn{quad} 和 \tn{qquad}。
 %    \begin{macrocode}
-\cs_new:Npn \@@_quad: { \skip_horizontal:n { 1 em } }
-\cs_new:Npn \@@_qquad: { \skip_horizontal:n { 2 em } }
+\cs_new_protected:Npn \@@_quad: { \skip_horizontal:n { 1 em } }
+%    \end{macrocode}
+% \end{macro}
+%
+% \begin{macro}{\@@_hss:, \@@_hfill}
+% 等价于 \LaTeXe{} 中的 \tn{hss} 和 \tn{hfill}。
+%    \begin{macrocode}
+\cs_new_protected:Npn \@@_hss:
+  { \skip_horizontal:n { 0pt plus 1fil minus 1fil } }
+\cs_new_protected:Npn \@@_hfill:
+  { \skip_horizontal:n { 0pt plus 1fill } }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -993,10 +1006,10 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_vskip:N #1
   {
-    \tex_hrule:D \@height \c_zero_dim \scan_stop:
+    \tex_hrule:D height \c_zero_dim
     \tex_penalty:D \@M
     \skip_vertical:N #1
-    \skip_vertical:N \c_zero_dim
+    \skip_vertical:N \c_zero_skip
   }
 %    \end{macrocode}
 % \end{macro}
@@ -1013,14 +1026,14 @@ To produce the documentation run the original source files ending with
     \mode_leave_vertical:
     \rule [ -0.8 ex ] { #1 } { 0.5 pt }
     \skip_horizontal:n { -#1 }
-    \hbox_to_wd:nn { #1 } { \tex_hss:D #2 \tex_hss:D }
+    \hbox_to_wd:nn { #1 } { \@@_hss: #2 \@@_hss: }
   }
 \cs_new_protected:Npn \@@_box_ulined:nN #1#2
   {
     \mode_leave_vertical:
     \rule [ -0.8 ex ] { #1 } { 0.5 pt }
     \skip_horizontal:n { -#1 }
-    \hbox_to_wd:nn { #1 } { \tex_hss:D #2 \tex_hss:D }
+    \hbox_to_wd:nn { #1 } { \@@_hss: #2 \@@_hss: }
   }
 \cs_generate_variant:Nn \@@_box_ulined:nN { nc }
 %    \end{macrocode}
@@ -1055,9 +1068,9 @@ To produce the documentation run the original source files ending with
 %   \item 内容
 % \end{arguments}
 %    \begin{macrocode}
-\cs_new:Npn \@@_get_text_width:Nn #1#2
+\cs_new_protected:Npn \@@_get_text_width:Nn #1#2
   {
-    \hbox_set:Nn \l_@@_tmpa_box {#2}
+    \hbox_set:Nn \l_@@_tmpa_box { #2 }
     \dim_set:Nn #1 { \box_wd:N \l_@@_tmpa_box }
   }
 %    \end{macrocode}
@@ -1066,7 +1079,7 @@ To produce the documentation run the original source files ending with
 % \begin{macro}{\@@_symbol:n}
 % 等价于 \LaTeXe{} 中的 \tn{symbol}。
 %    \begin{macrocode}
-\cs_new:Npn \@@_symbol:n #1 { \tex_char:D #1 \scan_stop: }
+\cs_new:Npn \@@_symbol:n #1 { \char_generate:nn { #1 } { 12 } }
 %    \end{macrocode}
 % \end{macro}
 %
@@ -1074,11 +1087,11 @@ To produce the documentation run the original source files ending with
 % 用来定义默认名称的辅助函数。
 %    \begin{macrocode}
 \cs_new_protected:Npn \@@_define_name:nn #1#2
-  { \tl_const:cn { c_@@_name_ #1 _tl } {#2} }
+  { \tl_const:cn { c_@@_name_ #1 _tl } { #2 } }
 \cs_new_protected:Npn \@@_define_name:nnn #1#2#3
   {
-    \tl_const:cn { c_@@_name_ #1 _tl } {#2}
-    \tl_const:cn { c_@@_name_ #1 _en_tl } {#3}
+    \tl_const:cn { c_@@_name_ #1 _tl } { #2 }
+    \tl_const:cn { c_@@_name_ #1 _en_tl } { #3 }
   }
 %    \end{macrocode}
 % \end{macro}
@@ -1090,7 +1103,7 @@ To produce the documentation run the original source files ending with
 %   \item 产生冲突的宏包
 % \end{arguments}
 %    \begin{macrocode}
-\cs_new:Npn \@@_check_pkg_conflict:nn #1#2
+\cs_new_protected:Npn \@@_check_pkg_conflict:nn #1#2
   {
     \hook_gput_code:nnn { package / #1 / after } { . }
       {
@@ -1104,7 +1117,7 @@ To produce the documentation run the original source files ending with
 % \begin{macro}{\@@_clearpage:}
 % 清除页面。
 %    \begin{macrocode}
-\cs_new:Npn \@@_clearpage:
+\cs_new_protected:Npn \@@_clearpage:
   {
     \if@openright
       \cleardoublepage
@@ -2139,7 +2152,7 @@ To produce the documentation run the original source files ending with
 %   \item 参数列表
 % \end{arguments}
 %    \begin{macrocode}
-\cs_new:Npn \@@_define_element:nn #1#2
+\cs_new_protected:Npn \@@_define_element:nn #1#2
   { \DeclareInstance { sysu } { #1 } { element } { #2 } }
 %    \end{macrocode}
 % \end{macro}
@@ -2151,7 +2164,7 @@ To produce the documentation run the original source files ending with
 %   \item 实例元素列表
 % \end{arguments}
 %    \begin{macrocode}
-\cs_new:Npn \@@_use_element:nn #1#2
+\cs_new_protected:Npn \@@_use_element:nn #1#2
   {
     \clist_map_inline:nn { #2 }
       { \UseInstance { sysu } { #1 / ##1 } }
@@ -2665,7 +2678,7 @@ To produce the documentation run the original source files ending with
             \skip_horizontal:n { 6 ex } 月
             \skip_horizontal:n { 6 ex } 日
           }
-        \tex_hfill:D
+        \@@_hfill:
         \parbox { 15 em }
           {
             导师签名： \\ [ 15 pt ]
@@ -2838,7 +2851,7 @@ To produce the documentation run the original source files ending with
 % \begin{macro}{\@@_keywords:nN}
 % 关键词列表前要空一行，使用悬挂缩进。
 %    \begin{macrocode}
-\cs_new:Npn \@@_keywords:nN #1#2
+\cs_new_protected:Npn \@@_keywords:nN #1#2
   {
     \para_end: \mode_leave_vertical: \para_end: \noindent
     \@@_get_text_width:Nn \l_@@_tmpa_dim { #1 }
@@ -2854,9 +2867,9 @@ To produce the documentation run the original source files ending with
 % \begin{macro}{\@@_abstract_begin_a:, \@@_abstract_end_a:}
 % 本科生中文摘要。
 %    \begin{macrocode}
-\cs_new:Npn \@@_abstract_begin_a:
+\cs_new_protected:Npn \@@_abstract_begin_a:
   { \@@_chapter:n { \c_@@_name_abstract_tl } }
-\cs_new:Npn \@@_abstract_end_a:
+\cs_new_protected:Npn \@@_abstract_end_a:
   {
     \@@_keywords:nN { \bfseries \c_@@_name_keywords_tl ： }
       \g_@@_info_keywords_tl
@@ -2868,13 +2881,13 @@ To produce the documentation run the original source files ending with
 % \begin{macro}{\@@_abstract_en_begin_a:, \@@_abstract_en_end_a:}
 % 本科生英文摘要。
 %    \begin{macrocode}
-\cs_new:Npn \@@_abstract_en_begin_a:
+\cs_new_protected:Npn \@@_abstract_en_begin_a:
   {
     \@@_chapter:en
       { \text_uppercase:n { \c_@@_name_abstract_en_tl } }
       { \bfseries }
   }
-\cs_new:Npn \@@_abstract_en_end_a:
+\cs_new_protected:Npn \@@_abstract_en_end_a:
   {
     \@@_keywords:nN { \bfseries \c_@@_name_keywords_en_tl :~ }
       \g_@@_info_keywords_en_tl
@@ -2976,12 +2989,12 @@ To produce the documentation run the original source files ending with
 % \begin{macro}{\@@_abstract_begin_b:, \@@_abstract_end_b:}
 % 研究生中文摘要。
 %    \begin{macrocode}
-\cs_new:Npn \@@_abstract_begin_b:
+\cs_new_protected:Npn \@@_abstract_begin_b:
   {
     \@@_clearpage:
     \@@_use_element:nn { b / abstract } { title, info, abstract }
   }
-\cs_new:Npn \@@_abstract_end_b:
+\cs_new_protected:Npn \@@_abstract_end_b:
   {
     \@@_keywords:nN { \bfseries \c_@@_name_keywords_tl ： }
       \g_@@_info_keywords_tl
@@ -2993,12 +3006,12 @@ To produce the documentation run the original source files ending with
 % \begin{macro}{\@@_abstract_en_begin_b:, \@@_abstract_en_end_b:}
 % 研究生英文摘要。
 %    \begin{macrocode}
-\cs_new:Npn \@@_abstract_en_begin_b:
+\cs_new_protected:Npn \@@_abstract_en_begin_b:
   {
     \@@_clearpage:
     \@@_use_element:nn { b / abstract-en } { title, info, abstract }
   }
-\cs_new:Npn \@@_abstract_en_end_b:
+\cs_new_protected:Npn \@@_abstract_en_end_b:
   {
     \@@_keywords:nN { \bfseries \c_@@_name_keywords_en_tl :~ }
       \g_@@_info_keywords_en_tl
@@ -3173,7 +3186,7 @@ To produce the documentation run the original source files ending with
 \cs_gset:Npn \@makefntext #1
   {
     \mode_leave_vertical:
-    \hbox_to_wd:nn { 1.5 em } { \@thefnmark \tex_hss:D }
+    \hbox_to_wd:nn { 1.5 em } { \@thefnmark \@@_hss: }
     #1
   }
 %    \end{macrocode}
@@ -3743,7 +3756,7 @@ To produce the documentation run the original source files ending with
 % \begin{macro}{\@@_tikz_wrapper:Nnnn}
 % 封装 \pkg{tikz} 作图命令。
 %    \begin{macrocode}
-\cs_new:Npn \@@_tikz_wrapper:Nnnn #1#2#3#4
+\cs_new_protected:Npn \@@_tikz_wrapper:Nnnn #1#2#3#4
   {
     \begin { tikzpicture }
       [
