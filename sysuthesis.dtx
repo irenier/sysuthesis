@@ -119,7 +119,7 @@ To produce the documentation run the original source files ending with
     hyperref
 }
 \UseTblrLibrary{booktabs}
-\bibliographystyle{gbt7714-numerical}
+\bibliographystyle{gbt7714-numeric}
 \def\tableautorefname{表}
 \def\figureautorefname{图}
 \lstnewenvironment{latexexample}{
@@ -665,10 +665,21 @@ To produce the documentation run the original source files ending with
 %
 % \begin{function}[added=2025-04-30]{bib/style}
 %   \begin{syntax}
-%     style = <gbt7714-numerical|gbt7714-author-year>   使用 bibtex
-%     style = <gb7714-2015|gb7714-2015ay>               使用 biblatex
+%     style = <gbt7714-numeric|gbt7714-authoryear|...>  使用 BibTeX
+%     style = <gb7714|gb7714ay|...>                     使用 BibLaTeX
 %   \end{syntax}
-% 指定参考文献著录格式。
+% 指定参考文献的著录格式。样式名称中不含年份的版本（如 \texttt{gbt7714-numeric} 或
+% \texttt{gb7714}）默认对应现行最新的 GB/T 7714 标准；用户也可显式指定带有特定年份的版本。
+%
+% 若使用 \BibTeX{}（对应 \pkg{gbt7714} 宏包），可用的样式包括 \texttt{gbt7714-numeric}、
+% \texttt{gbt7714-authoryear}，以及相应的带年份后缀的版本（如 \texttt{gbt7714-2025-numeric} 等）。
+%
+% \textbf{注意：}\pkg{gbt7714} 宏包自 v2.2.0 起，将样式名称后缀 \texttt{-numerical}
+% 和 \texttt{-author-year} 分别统一为 \texttt{-numeric} 和 \texttt{-authoryear}，
+% 以便与 \BibLaTeX{} 的命名习惯保持一致。旧版样式名称仍可使用，但编译时会触发过时警告。
+%
+% 若使用 \BibLaTeX{}（对应 \pkg{biblatex-gb7714-2015} 宏包），除了原有的 \texttt{gb7714-2015}、
+% \texttt{gb7714-2015ay} 之外，自 v1.1u 起还新增了 \texttt{gb7714-2025} 和 \texttt{gb7714-2025ay} 样式。
 % \end{function}
 %
 % \begin{function}[added=2025-04-30]{bib/option}
@@ -693,7 +704,7 @@ To produce the documentation run the original source files ending with
 %   \sysusetup[bib]
 %     {
 %       backend  = bibtex,
-%       style    = gbt7714-numerical,
+%       style    = gbt7714-numeric,
 %       resource = reference
 %     }
 % \end{latexexample}
@@ -703,7 +714,7 @@ To produce the documentation run the original source files ending with
 %   \sysusetup[bib]
 %     {
 %       backend  = biblatex,
-%       style    = gb7714-2015,
+%       style    = gb7714,
 %       resource = reference.bib
 %     }
 % \end{latexexample}
@@ -1521,9 +1532,7 @@ To produce the documentation run the original source files ending with
 %    \begin{macrocode}
 \hook_gput_code:nnn { begindocument / before } { . }
   {
-    \bool_lazy_and:nnT
-      { \sys_if_engine_xetex_p: }
-      { \str_if_eq_p:Vn \g_@@_style_cjk_font_tl { windows } }
+    \sys_if_engine_xetex:T
       {
         \keys_set:nn { xeCJK / options }
           { AutoFakeBold = 2.5 }

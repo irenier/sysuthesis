@@ -33,22 +33,24 @@
   }
 
 % 参考文献设置: 可选 BibTeX 或 BibLaTeX
+% 提示：样式名中不含年份（如 gbt7714-numeric）默认对应最新的 GB/T 7714 标准。
+% 注意：BibTeX 样式后缀已统一为 -numeric 和 -authoryear，旧版 -numerical 后缀会有过时警告。
 \sysusetup[bib]
   {
     backend  = bibtex,
-    style    = gbt7714-numerical,
+    style    = gbt7714-numeric,  % 旧版为 gbt7714-numerical
     resource = sysuthesis-sample
   }
 % \sysusetup[bib]
 %   {
 %     backend  = biblatex,
-%     style    = gb7714-2015,
+%     style    = gb7714,  % 旧版为 gb7714-2015
 %     resource = sysuthesis-sample.bib
 %   }
 
 % 载入其他常用宏包
-\usepackage{thmtools}       % 数学定理
-% \usepackage{keytheorems}    % 数学定理
+% \usepackage{thmtools}       % 数学定理
+\usepackage{keytheorems}    % 数学定理
 \usepackage{subcaption}     % 图片并排
 \usepackage{tabularray}     % 表格
 \UseTblrLibrary{booktabs}   % 三线表样式
